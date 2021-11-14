@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FilmPage() {
+function FilmPage(): JSX.Element {
   return (
     <>
       <div className="visually-hidden">

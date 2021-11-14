@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddReviewPage() {
+function AddReviewPage(): JSX.Element {
   return (
     <>
       <div className="visually-hidden">

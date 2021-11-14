@@ -1,0 +1,33 @@
+.not-found_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(-180deg, #180202 0, #000 100%);
+}
+
+.not-found_header {
+  color: #c9b37e;
+  text-transform: uppercase;
+}
+
+.not-found_link {
+  display: block;
+  margin-top: 10px;
+  border: 2px solid #c9b37e;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #b52b21;
+  color: #c9b37e;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s linear;
+}
+
+.not-found_link:hover {
+  transform: scale(1.02);
+}

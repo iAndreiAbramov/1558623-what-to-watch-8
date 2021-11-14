@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MyList() {
+function MyList(): JSX.Element {
   return (
     <>
       <div className="visually-hidden">
