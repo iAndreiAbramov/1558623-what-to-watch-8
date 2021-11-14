@@ -8,16 +8,24 @@ import App from './components/app/app';
 import { AuthorizationStatus } from './const';
 import { createApi } from './services/api';
 import { rootReducer } from './store/reducers/root-reducer';
-import { setAuthStatus } from './store/action-creators';
+import { setAuthStatus, setFilmsDataAction } from './store/action-creators';
+import { ThunkAppDispatch } from './types/action-types';
+import { getFilms } from './store/api-actions';
 
-const api = createApi(() => (
+export const api = createApi(() => (
   store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
 ));
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [thunk.withExtraArgument(api)],
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware ({
+    thunk: {
+      extraArgument: api,
+    },
+  }),
 });
+
+// (store.dispatch as ThunkAppDispatch)(getFilms());
 
 ReactDOM.render(
   <React.StrictMode>

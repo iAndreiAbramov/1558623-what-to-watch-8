@@ -1,6 +1,11 @@
 import React from 'react';
+import { getFilmsData } from '../../store/selectors';
+import { useSelector } from 'react-redux';
 
 function HomePage(): JSX.Element {
+  const filmsData = useSelector(getFilmsData);
+  console.log(filmsData);
+
   return (
     <>
       <div className="visually-hidden">

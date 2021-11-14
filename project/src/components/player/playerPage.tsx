@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Player(): JSX.Element {
+function PlayerPage(): JSX.Element {
   return (
     <>
       <div className="visually-hidden">
@@ -86,4 +86,4 @@ function Player(): JSX.Element {
   );
 }
 
-export default Player;
+export default PlayerPage;
