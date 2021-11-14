@@ -11,8 +11,12 @@ export type UserDataTypesFront = {
   email: string,
   name: string,
   avatarUrl: string,
-  token: string,
 };
+
+export type UserIntermediateTypes = {
+  ['avatar_url']?: string,
+  token?: string,
+}
 
 export type UserAuthorizationTypes = {
   email: string,

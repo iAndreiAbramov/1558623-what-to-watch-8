@@ -38,7 +38,7 @@ export type FilmDataTypesFront = {
   isFavorite: boolean,
 }
 
-export type IntermediateFilmTypes = {
+export type FilmIntermediateTypes = {
   ['poster_image']?: string,
   ['preview_image']?: string,
   ['background_image']?: string,

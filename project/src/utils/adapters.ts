@@ -1,8 +1,8 @@
-import { FilmDataTypesBack, FilmDataTypesFront, IntermediateFilmTypes } from '../types/film-data-types';
-import { UserDataTypesBack, UserDataTypesFront } from '../types/user-data-types';
+import { FilmDataTypesBack, FilmDataTypesFront, FilmIntermediateTypes } from '../types/film-data-types';
+import { UserDataTypesBack, UserDataTypesFront, UserIntermediateTypes } from '../types/user-data-types';
 
 export const adaptFilmDataToFront = (filmData: FilmDataTypesBack): FilmDataTypesFront => {
-  const adaptedData: FilmDataTypesFront & IntermediateFilmTypes = Object.assign(
+  const adaptedData: FilmDataTypesFront & FilmIntermediateTypes = Object.assign(
     {},
     filmData,
     {
@@ -36,7 +36,7 @@ export const adaptFilmsDataToFront = (filmsData: FilmDataTypesBack[]): FilmDataT
 );
 
 export const adaptUserDataToFront = (userData: UserDataTypesBack): UserDataTypesFront => {
-  const adaptedUserData: UserDataTypesFront & { ['avatar_url']?: string } = Object.assign(
+  const adaptedUserData: UserDataTypesFront & UserIntermediateTypes = Object.assign(
     {},
     userData,
     {
@@ -45,6 +45,7 @@ export const adaptUserDataToFront = (userData: UserDataTypesBack): UserDataTypes
   );
 
   delete adaptedUserData['avatar_url'];
+  delete adaptedUserData.token;
 
   return adaptedUserData;
 };
