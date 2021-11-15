@@ -16,7 +16,7 @@ export const getFilmsAction = (): ThunkActionResult => (
 );
 
 export const checkAuthStatusAction = (): ThunkActionResult => (
-  async (dispatch, _getState, api) => {
+  async (dispatch, _getState, api): Promise<void> => {
     await api.get(APIRoute.Login)
       .then(({ data }) => {
         setToken(data.token);
@@ -27,7 +27,7 @@ export const checkAuthStatusAction = (): ThunkActionResult => (
 );
 
 export const requireLoginAction = (loginData: UserAuthorizationTypes): ThunkActionResult => (
-  async (dispatch, _getState, api) => {
+  async (dispatch, _getState, api): Promise<void> => {
     await api.post(APIRoute.Login, loginData)
       .then(({ data }) => {
         setToken(data.token);
@@ -38,7 +38,7 @@ export const requireLoginAction = (loginData: UserAuthorizationTypes): ThunkActi
 );
 
 export const requireLogoutAction = (): ThunkActionResult => (
-  async (dispatch, _getState, api) => {
+  async (dispatch, _getState, api): Promise<void> => {
     await api.delete(APIRoute.Logout)
       .then(() => dispatch(setAuthStatus(AuthorizationStatus.NoAuth)))
     //todo: добавить оработку ошибки

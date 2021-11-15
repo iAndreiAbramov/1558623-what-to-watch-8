@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHeader from '../page-header/page-header';
 import PageHeaderLogin from '../page-header-login/page-header-login';
+import LoginPageForm from '../login-page-form/login-page-form';
 
 function LoginPage(): JSX.Element {
   return (
@@ -54,24 +55,7 @@ function LoginPage(): JSX.Element {
 
       <div className="user-page">
         <PageHeaderLogin />
-
-        <div className="sign-in user-page__content">
-          <form action="#" className="sign-in__form">
-            <div className="sign-in__fields">
-              <div className="sign-in__field">
-                <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
-                <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
-              </div>
-              <div className="sign-in__field">
-                <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
-                <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
-              </div>
-            </div>
-            <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">Sign in</button>
-            </div>
-          </form>
-        </div>
+        <LoginPageForm />
 
         <footer className="page-footer">
           <div className="logo">
