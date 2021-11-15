@@ -1,8 +1,9 @@
 import { adaptFilmsDataToFront, adaptUserDataToFront } from '../utils/adapters';
-import { APIRoute, AuthorizationStatus } from '../const';
+import { APIRoute, AuthorizationStatus, HttpResponseStatus } from '../const';
+import { dropAvatar, setAvatar } from '../services/avatar';
+import { dropToken, setToken } from '../services/token';
 import { setAuthStatus, setCurrentUser, setFilmsDataAction } from './action-creators';
 import { ThunkActionResult } from '../types/action-types';
-import { setToken } from '../services/token';
 import { UserAuthorizationTypes } from '../types/user-data-types';
 
 export const getFilmsAction = (): ThunkActionResult => (
@@ -18,11 +19,14 @@ export const getFilmsAction = (): ThunkActionResult => (
 export const checkAuthStatusAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
     await api.get(APIRoute.Login)
-      .then(({ data }) => {
-        setToken(data.token);
-        dispatch(setCurrentUser(adaptUserDataToFront(data)));
+      .then((response) => {
+        response
+        && response.status !== HttpResponseStatus.UnAuthorized
+        && dispatch(setAuthStatus(AuthorizationStatus.Auth));
       })
-    //todo: добавить обработку ошибки
+      .catch(() => {
+        dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+      })
   }
 );
 
@@ -30,8 +34,11 @@ export const requireLoginAction = (loginData: UserAuthorizationTypes): ThunkActi
   async (dispatch, _getState, api): Promise<void> => {
     await api.post(APIRoute.Login, loginData)
       .then(({ data }) => {
+        const adaptedData = adaptUserDataToFront(data);
         setToken(data.token);
-        dispatch(setCurrentUser(adaptUserDataToFront(data)));
+        setAvatar(adaptedData.avatarUrl);
+        dispatch(setAuthStatus(AuthorizationStatus.Auth));
+        dispatch(setCurrentUser(adaptedData));
       })
     //todo: Добавить обработку ошибки
   }
@@ -40,7 +47,11 @@ export const requireLoginAction = (loginData: UserAuthorizationTypes): ThunkActi
 export const requireLogoutAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
     await api.delete(APIRoute.Logout)
-      .then(() => dispatch(setAuthStatus(AuthorizationStatus.NoAuth)))
-    //todo: добавить оработку ошибки
+      .then(() => {
+        dropToken();
+        dropAvatar();
+        dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+      })
+    //todo: добавить обработку ошибки
   }
 );

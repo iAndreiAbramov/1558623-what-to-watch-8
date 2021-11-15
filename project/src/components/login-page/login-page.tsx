@@ -1,7 +1,6 @@
 import React from 'react';
-import PageHeader from '../page-header/page-header';
-import PageHeaderLogin from '../page-header-login/page-header-login';
 import LoginPageForm from '../login-page-form/login-page-form';
+import PageHeaderLogin from '../page-header-login/page-header-login';
 
 function LoginPage(): JSX.Element {
   return (

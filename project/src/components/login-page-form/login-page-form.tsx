@@ -1,9 +1,12 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, FormEventHandler, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { requireLoginAction } from '../../store/api-actions';
+import { AppRoute } from '../../const';
 
 function LoginPageForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,14 +20,15 @@ function LoginPageForm() {
     evt?.target && setPassword(evt.currentTarget.value);
   };
 
-  const handleFormSubmit = (evt: FormEvent<SubmitEvent>) => {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(requireLoginAction({ email, password }));
+    navigate(AppRoute.Main);
   }
 
   return (
     <div className="sign-in user-page__content">
-      <form action="#" className="sign-in__form" onSubmit={ () => handleFormSubmit }>
+      <form className="sign-in__form" onSubmit={ handleFormSubmit }>
         <div className="sign-in__fields">
           <div className="sign-in__field">
             <input
@@ -52,7 +56,12 @@ function LoginPageForm() {
           </div>
         </div>
         <div className="sign-in__submit">
-          <button className="sign-in__btn" type="submit">Sign in</button>
+          <button
+            className="sign-in__btn"
+            type="submit"
+          >
+            Sign in
+          </button>
         </div>
       </form>
     </div>

@@ -8,9 +8,9 @@ import App from './components/app/app';
 import { AuthorizationStatus } from './const';
 import { createApi } from './services/api';
 import { rootReducer } from './store/reducers/root-reducer';
-import { setAuthStatus, setFilmsDataAction } from './store/action-creators';
+import { setAuthStatus } from './store/action-creators';
 import { ThunkAppDispatch } from './types/action-types';
-import { getFilmsAction } from './store/api-actions';
+import { checkAuthStatusAction, getFilmsAction } from './store/api-actions';
 
 export const api = createApi(() => (
   store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
@@ -25,7 +25,8 @@ const store = configureStore({
   }),
 });
 
-// (store.dispatch as ThunkAppDispatch)(getFilms());
+(store.dispatch as ThunkAppDispatch)(checkAuthStatusAction());
+// (store.dispatch as ThunkAppDispatch)(getFilmsAction());
 
 ReactDOM.render(
   <React.StrictMode>
