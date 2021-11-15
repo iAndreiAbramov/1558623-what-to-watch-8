@@ -10,7 +10,7 @@ import { createApi } from './services/api';
 import { rootReducer } from './store/reducers/root-reducer';
 import { setAuthStatus, setFilmsDataAction } from './store/action-creators';
 import { ThunkAppDispatch } from './types/action-types';
-import { getFilms } from './store/api-actions';
+import { getFilmsAction } from './store/api-actions';
 
 export const api = createApi(() => (
   store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
