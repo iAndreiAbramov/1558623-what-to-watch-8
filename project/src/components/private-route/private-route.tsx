@@ -13,7 +13,7 @@ function PrivateRoute({ children }: PrivateRouteTypes): JSX.Element {
   const authorization = useSelector(getAuthStatus);
 
   if (authorization !== AuthorizationStatus.Auth) {
-    return <Navigate to={ AppRoute.Login } state={ { from: location } } />
+    return <Navigate to={ AppRoute.Login } state={ { from: location } } />;
   }
 
   return children;

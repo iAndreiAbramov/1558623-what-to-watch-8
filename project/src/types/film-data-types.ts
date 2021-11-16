@@ -49,3 +49,11 @@ export type FilmIntermediateTypes = {
   ['run_time']?: number,
   ['is_favorite']?: boolean,
 };
+
+export type FilmCardTypes = {
+  id: string,
+  name: string,
+  posterImage: string,
+  previewImage: string,
+  previewVideoLink: string,
+}

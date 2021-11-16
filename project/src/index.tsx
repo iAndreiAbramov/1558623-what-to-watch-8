@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import App from './components/app/app';
 import { AuthorizationStatus } from './const';
+import { checkAuthStatusAction, getFilmsAction } from './store/api-actions';
 import { createApi } from './services/api';
 import { rootReducer } from './store/reducers/root-reducer';
 import { setAuthStatus } from './store/action-creators';
 import { ThunkAppDispatch } from './types/action-types';
-import { checkAuthStatusAction, getFilmsAction } from './store/api-actions';
 
 export const api = createApi(() => (
   store.dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
@@ -26,7 +25,7 @@ const store = configureStore({
 });
 
 (store.dispatch as ThunkAppDispatch)(checkAuthStatusAction());
-// (store.dispatch as ThunkAppDispatch)(getFilmsAction());
+(store.dispatch as ThunkAppDispatch)(getFilmsAction());
 
 ReactDOM.render(
   <React.StrictMode>

@@ -2,7 +2,7 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   MyList = '/mylist',
-  Film = '/films/:id',
+  Film = '/films',
   AddReview = '/films/:id/review',
   Player = '/player/:id',
   NotFound = '*',
@@ -58,3 +58,6 @@ export const DEFAULT_USER = {
   name: '',
   avatarUrl: '',
 };
+
+export const INITIAL_FILMS_COUNT = 8;
+export const FILMS_INCREMENT_STEP = 8;

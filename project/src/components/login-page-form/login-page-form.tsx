@@ -1,8 +1,8 @@
-import React, { FormEvent, FormEventHandler, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { requireLoginAction } from '../../store/api-actions';
 import { AppRoute } from '../../const';
+import { requireLoginAction } from '../../store/api-actions';
 
 function LoginPageForm() {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function LoginPageForm() {
     evt.preventDefault();
     dispatch(requireLoginAction({ email, password }));
     navigate(AppRoute.Main);
-  }
+  };
 
   return (
     <div className="sign-in user-page__content">

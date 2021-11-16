@@ -11,7 +11,7 @@ export const getFilmsAction = (): ThunkActionResult => (
     await api.get(APIRoute.Films)
       .then(({ data }) => {
         dispatch(setFilmsDataAction(adaptFilmsDataToFront(data)));
-      })
+      });
     //todo: добавить обработку ошибки
   }
 );
@@ -26,7 +26,7 @@ export const checkAuthStatusAction = (): ThunkActionResult => (
       })
       .catch(() => {
         dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
-      })
+      });
   }
 );
 
@@ -39,7 +39,7 @@ export const requireLoginAction = (loginData: UserAuthorizationTypes): ThunkActi
         setAvatar(adaptedData.avatarUrl);
         dispatch(setAuthStatus(AuthorizationStatus.Auth));
         dispatch(setCurrentUser(adaptedData));
-      })
+      });
     //todo: Добавить обработку ошибки
   }
 );
@@ -51,7 +51,7 @@ export const requireLogoutAction = (): ThunkActionResult => (
         dropToken();
         dropAvatar();
         dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
-      })
+      });
     //todo: добавить обработку ошибки
   }
 );
