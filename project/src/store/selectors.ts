@@ -15,4 +15,6 @@ export const getFilmsData = (state: RootStateTypes): FilmDataTypesFront[] => (
   state[NameSpace.Film].filmsData
 );
 
-
+export const getActiveTabName = (state: RootStateTypes): string => (
+  state[NameSpace.Film].activeTabName
+);

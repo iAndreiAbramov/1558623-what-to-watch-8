@@ -61,3 +61,6 @@ export const DEFAULT_USER = {
 
 export const INITIAL_FILMS_COUNT = 8;
 export const FILMS_INCREMENT_STEP = 8;
+
+export const ALL_GENRES_TAB_NAME = 'All genres';
+export const MAX_GENRES_NUMBER = 10;

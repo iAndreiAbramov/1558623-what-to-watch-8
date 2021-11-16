@@ -5,6 +5,7 @@ import { UserDataTypesFront } from '../types/user-data-types';
 
 export enum ActionType {
   SetFilmsData = 'films/setFilmsData',
+  SetActiveTab = 'films/setActiveTab',
   SetAuthStatus = 'user/setAuthStatus',
   SetCurrentUser = 'user/setCurrentUser',
 }
@@ -27,5 +28,12 @@ export const setFilmsDataAction = createAction(
   ActionType.SetFilmsData,
   (filmsData: FilmDataTypesFront[]) => ({
     payload: filmsData,
+  }),
+);
+
+export const setActiveTabAction = createAction(
+  ActionType.SetActiveTab,
+  (activeTabName: string) => ({
+    payload: activeTabName,
   }),
 );
