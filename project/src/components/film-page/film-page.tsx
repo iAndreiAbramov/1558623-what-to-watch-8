@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getActiveTabName, getCurrentFilmData } from '../../store/selectors';
 import { getCurrentFilmDataAction } from '../../store/api-actions';
-import FilmPageAlike from '../film-page-alike/film-page-alike';
+import FilmPageSimilar from '../film-page-similar/film-page-similar';
 import FilmPageDetails from '../film-page-details/film-page-details';
 import FilmPageOverview from '../film-page-overview/film-page-overview';
 import FilmPagePoster from '../film-page-poster/film-page-poster';
@@ -55,7 +55,7 @@ function FilmPage(): JSX.Element {
       </section>
 
       <div className="page-content">
-        <FilmPageAlike />
+        <FilmPageSimilar />
         <PageFooter />
       </div>
     </>

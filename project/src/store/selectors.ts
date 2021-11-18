@@ -35,4 +35,8 @@ export const getCurrentFilmData = (state: RootStateTypes): FilmDataTypesFront =>
 
 export const getCurrentFilmReviews = (state: RootStateTypes): CommentTypes[] => (
   state[NameSpace.Film].currentFilmReviews
-)
+);
+
+export const getSimilarFilms = (state: RootStateTypes): FilmDataTypesFront[] => (
+  state[NameSpace.Film].similarFilms
+);

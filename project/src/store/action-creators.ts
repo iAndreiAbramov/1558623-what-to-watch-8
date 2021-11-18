@@ -11,6 +11,7 @@ export enum ActionType {
   SetCurrentFilmData = 'film/setCurrentFilmData',
   SetActiveTab = 'film/setActiveTab',
   SetCurrentFilmReviews = 'film/setCurrentFilmReviews',
+  SetSimilarFilms = 'film/setSimilarFilms',
   SetAuthStatus = 'user/setAuthStatus',
   SetCurrentUser = 'user/setCurrentUser',
 }
@@ -68,5 +69,12 @@ export const setCurrentFilmReviews = createAction(
   ActionType.SetCurrentFilmReviews,
   (comments: CommentTypes[]) => ({
     payload: comments,
+  }),
+);
+
+export const setSimilarFilms = createAction(
+  ActionType.SetSimilarFilms,
+  (similarFilms: FilmDataTypesFront[]) => ({
+    payload: similarFilms,
   }),
 );

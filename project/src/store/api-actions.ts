@@ -7,7 +7,7 @@ import {
   setCurrentFilmData,
   setCurrentUserAction,
   setFilmsDataAction,
-  setPromoMovieAction
+  setPromoMovieAction, setSimilarFilms
 } from './action-creators';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
@@ -38,6 +38,16 @@ export const getCurrentFilmReviewsAction = (id: string): ThunkActionResult => (
     await api.get(`${ APIRoute.Comments }/${ id }`)
       .then(({ data }) => {
         dispatch(setCurrentFilmReviews(data));
+      });
+    // todo: Добавить обработку ошибки
+  }
+);
+
+export const getSimilarFilmsAction = (id: string): ThunkActionResult => (
+  async (dispatch, _getState, api) => {
+    await api.get(`${ APIRoute.Films }/${ id }/similar`)
+      .then(({ data }) => {
+        dispatch(setSimilarFilms(adaptFilmsDataToFront(data)));
       });
     // todo: Добавить обработку ошибки
   }
