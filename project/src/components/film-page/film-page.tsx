@@ -3,6 +3,7 @@ import PageHeader from '../page-header/page-header';
 import PageFooter from '../page-footer/page-footer';
 import HiddenComponent from '../hidden-component/hidden-component';
 import FilmPageAlike from '../film-page-alike/film-page-alike';
+import FilmPageTabs from '../film-page-tabs/film-page-tabs';
 
 function FilmPage(): JSX.Element {
   return (
@@ -53,19 +54,7 @@ function FilmPage(): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
+              <FilmPageTabs />
 
               <div className="film-rating">
                 <div className="film-rating__score">8,9</div>
