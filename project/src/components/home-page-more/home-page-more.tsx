@@ -4,7 +4,7 @@ type HomePageMoreTypes = {
   clickHandler: () => void;
 }
 
-function HomePageMore(props: HomePageMoreTypes) {
+function HomePageMore(props: HomePageMoreTypes): JSX.Element {
   const { clickHandler } = props;
   return (
     <div className="catalog__more">

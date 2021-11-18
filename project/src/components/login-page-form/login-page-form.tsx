@@ -1,12 +1,9 @@
 import React, { FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const';
 import { requireLoginAction } from '../../store/api-actions';
 
 function LoginPageForm() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

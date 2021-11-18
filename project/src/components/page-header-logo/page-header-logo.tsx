@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-function PageHeaderLogo() {
+function PageHeaderLogo(): JSX.Element {
   return (
     <div className="logo">
       <Link to={ AppRoute.Main } className="logo__link">

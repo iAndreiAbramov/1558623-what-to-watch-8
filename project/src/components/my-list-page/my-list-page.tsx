@@ -1,7 +1,7 @@
 import React from 'react';
+import HiddenComponent from '../hidden-component/hidden-component';
 import PageHeader from '../page-header/page-header';
 import PageFooter from '../page-footer/page-footer';
-import HiddenComponent from '../hidden-component/hidden-component';
 
 function MyListPage(): JSX.Element {
   return (

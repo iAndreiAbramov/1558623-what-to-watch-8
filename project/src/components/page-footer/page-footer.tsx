@@ -2,7 +2,7 @@ import React from 'react';
 import { AppRoute } from '../../const';
 import { Link } from 'react-router-dom';
 
-function PageFooter() {
+function PageFooter(): JSX.Element {
   return (
     <footer className="page-footer">
       <div className="logo">

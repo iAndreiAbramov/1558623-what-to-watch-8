@@ -5,7 +5,7 @@ import { getAvatar } from '../../services/avatar';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-function PageHeaderUserAuth(props: { avatarUrl: string }) {
+function PageHeaderUserAuth(props: { avatarUrl: string }): JSX.Element {
   const { avatarUrl } = props;
   const dispatch = useDispatch();
   const [avatar, setAvatar] = useState(avatarUrl);

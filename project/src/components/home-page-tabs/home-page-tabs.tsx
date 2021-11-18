@@ -5,7 +5,7 @@ type HomePageTabsTypes = {
   tabsList: string[],
 }
 
-function HomePageTabs(props: HomePageTabsTypes) {
+function HomePageTabs(props: HomePageTabsTypes): JSX.Element {
   const { tabsList } = props;
 
   const tabs = tabsList.map((name) => (

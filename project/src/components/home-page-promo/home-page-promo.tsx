@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { getPromoData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
 
-function HomePagePromo() {
+function HomePagePromo(): JSX.Element {
   const promoData = useSelector(getPromoData);
   const { name, posterImage, backgroundImage, released, genre, isFavorite } = promoData;
   const myListIcon = isFavorite

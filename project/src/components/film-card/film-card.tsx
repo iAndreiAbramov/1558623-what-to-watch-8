@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { FilmCardTypes } from '../../types/film-data-types';
 
-function FilmCard(props: FilmCardTypes) {
+function FilmCard(props: FilmCardTypes): JSX.Element {
   const { name, posterImage, id } = props;
   return (
     <article className="small-film-card catalog__films-card">
