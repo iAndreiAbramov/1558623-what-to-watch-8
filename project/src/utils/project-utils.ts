@@ -1,4 +1,4 @@
-import { ALL_GENRES_TAB_NAME, MAX_GENRES_NUMBER, Rating } from '../const';
+import { ALL_GENRES_TAB_NAME, MAX_GENRES_NUMBER, MONTHS, Rating } from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
 
 const MINUTES_IN_HOUR = 60;
@@ -40,4 +40,13 @@ export const getGradeFromRating = (rating: number): Rating => {
     return Rating.Bad;
   }
   return Rating.Undefined;
+}
+
+export const formatDateForComment = (date: string): string => {
+  const commentDate = new Date(date);
+  const month = MONTHS[commentDate.getMonth()];
+  const day = commentDate.getDate();
+  const year = commentDate.getFullYear();
+
+  return `${ month } ${ day }, ${ year }`;
 }

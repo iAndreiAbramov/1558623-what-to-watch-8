@@ -2,6 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
 import { UserDataTypesFront } from '../types/user-data-types';
+import { CommentTypes } from '../types/comment-types';
 
 export enum ActionType {
   SetFilmsData = 'main/setFilmsData',
@@ -9,6 +10,7 @@ export enum ActionType {
   SetPromoMovie = 'promo/setPromoMovie',
   SetCurrentFilmData = 'film/setCurrentFilmData',
   SetActiveTab = 'film/setActiveTab',
+  SetCurrentFilmReviews = 'film/setCurrentFilmReviews',
   SetAuthStatus = 'user/setAuthStatus',
   SetCurrentUser = 'user/setCurrentUser',
 }
@@ -59,5 +61,12 @@ export const setActiveTabAction = createAction(
   ActionType.SetActiveTab,
   (activeTabName) => ({
     payload: activeTabName,
+  }),
+);
+
+export const setCurrentFilmReviews = createAction(
+  ActionType.SetCurrentFilmReviews,
+  (comments: CommentTypes[]) => ({
+    payload: comments,
   }),
 );

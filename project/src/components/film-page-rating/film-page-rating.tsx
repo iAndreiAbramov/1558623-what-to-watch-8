@@ -2,10 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getCurrentFilmData } from '../../store/selectors';
 import { getGradeFromRating } from '../../utils/project-utils';
+import { RATING_DIGITS } from '../../const';
 
 function FilmPageRating(): JSX.Element {
   const { rating, scoresCount } = useSelector(getCurrentFilmData);
-  const ratingString = rating.toFixed(1);
+  const ratingString = rating.toFixed(RATING_DIGITS);
   const scoresString = `${ scoresCount } ratings`;
   const grade = getGradeFromRating(rating);
 

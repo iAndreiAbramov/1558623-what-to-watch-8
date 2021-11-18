@@ -84,3 +84,9 @@ export enum Rating {
   Bad = 'Bad',
   Undefined = '',
 }
+
+export const RATING_DIGITS = 1;
+
+export const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+export const NUMBER_OF_COLUMNS = 2;

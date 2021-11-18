@@ -3,7 +3,7 @@ import { APIRoute, AppRoute, AuthorizationStatus, HttpResponseStatus } from '../
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
 import {
-  setAuthStatusAction,
+  setAuthStatusAction, setCurrentFilmReviews,
   setCurrentFilmData,
   setCurrentUserAction,
   setFilmsDataAction,
@@ -28,6 +28,16 @@ export const getCurrentFilmDataAction = (id: string): ThunkActionResult => (
     await api.get(`${ APIRoute.Films }/${ id }`)
       .then(({ data }) => {
         dispatch(setCurrentFilmData(adaptFilmDataToFront(data)));
+      });
+    // todo: Добавить обработку ошибки
+  }
+);
+
+export const getCurrentFilmReviewsAction = (id: string): ThunkActionResult => (
+  async (dispatch, _getState, api) => {
+    await api.get(`${ APIRoute.Comments }/${ id }`)
+      .then(({ data }) => {
+        dispatch(setCurrentFilmReviews(data));
       });
     // todo: Добавить обработку ошибки
   }

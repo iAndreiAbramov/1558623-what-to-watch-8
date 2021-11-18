@@ -15,6 +15,7 @@ import { TabName } from '../../const';
 
 function FilmPage(): JSX.Element {
   const activeTabName = useSelector(getActiveTabName);
+  const { backgroundColor } = useSelector(getCurrentFilmData);
   const { id } = useSelector(getCurrentFilmData);
   const dispatch = useDispatch();
   const locationId = useParams().id;
@@ -41,7 +42,7 @@ function FilmPage(): JSX.Element {
     <>
       <HiddenComponent />
 
-      <section className="film-card film-card--full">
+      <section className="film-card film-card--full" style={ { backgroundColor: backgroundColor } }>
         <FilmPageTop />
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">

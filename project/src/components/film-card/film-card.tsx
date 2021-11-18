@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { AppRoute } from '../../const';
+import { AppRoute, TabName } from '../../const';
 import { FilmCardTypes } from '../../types/film-data-types';
 import { getCurrentFilmDataAction } from '../../store/api-actions';
+import { setActiveTabAction } from '../../store/action-creators';
 
 function FilmCard(props: FilmCardTypes): JSX.Element {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function FilmCard(props: FilmCardTypes): JSX.Element {
 
   const handleLinkClick = () => {
     dispatch(getCurrentFilmDataAction(id));
+    dispatch(setActiveTabAction(TabName.Overview));
   };
 
   return (
