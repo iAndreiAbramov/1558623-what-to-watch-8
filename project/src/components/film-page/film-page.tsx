@@ -1,6 +1,8 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { getActiveTabName } from '../../store/selectors';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getActiveTabName, getCurrentFilmData } from '../../store/selectors';
+import { getCurrentFilmDataAction } from '../../store/api-actions';
 import FilmPageAlike from '../film-page-alike/film-page-alike';
 import FilmPageDetails from '../film-page-details/film-page-details';
 import FilmPageOverview from '../film-page-overview/film-page-overview';
@@ -13,6 +15,10 @@ import { TabName } from '../../const';
 
 function FilmPage(): JSX.Element {
   const activeTabName = useSelector(getActiveTabName);
+  const { id } = useSelector(getCurrentFilmData);
+  const dispatch = useDispatch();
+  const locationId = useParams().id;
+
   let content: JSX.Element;
   switch (activeTabName) {
     case TabName.Details:
@@ -24,6 +30,12 @@ function FilmPage(): JSX.Element {
     default:
       content = <FilmPageOverview />;
   }
+
+  useEffect(() => {
+    if (!id && locationId) {
+      dispatch(getCurrentFilmDataAction(locationId))
+    }
+  });
 
   return (
     <>

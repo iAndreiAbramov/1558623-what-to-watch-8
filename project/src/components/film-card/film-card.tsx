@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { AppRoute } from '../../const';
 import { FilmCardTypes } from '../../types/film-data-types';
-import { useDispatch } from 'react-redux';
 import { getCurrentFilmDataAction } from '../../store/api-actions';
 
 function FilmCard(props: FilmCardTypes): JSX.Element {

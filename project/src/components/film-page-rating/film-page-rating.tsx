@@ -1,12 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { getCurrentFilmData } from '../../store/selectors';
+import { getGradeFromRating } from '../../utils/project-utils';
 
 function FilmPageRating(): JSX.Element {
+  const { rating, scoresCount } = useSelector(getCurrentFilmData);
+  const ratingString = rating.toFixed(1);
+  const scoresString = `${ scoresCount } ratings`;
+  const grade = getGradeFromRating(rating);
+
   return (
     <div className="film-rating">
-      <div className="film-rating__score">8,9</div>
+      <div className="film-rating__score">{ ratingString }</div>
       <p className="film-rating__meta">
-        <span className="film-rating__level">Very good</span>
-        <span className="film-rating__count">240 ratings</span>
+        <span className="film-rating__level">{ grade }</span>
+        <span className="film-rating__count">{ scoresString }</span>
       </p>
     </div>
   );

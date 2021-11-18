@@ -75,3 +75,12 @@ export enum TabName {
 }
 
 export const TabNames: string[] = ['Overview', 'Details', 'Reviews'];
+
+export enum Rating {
+  Awesome = 'Awesome',
+  VeryGood = 'Very good',
+  Good = 'Good',
+  Normal = 'Normal',
+  Bad = 'Bad',
+  Undefined = '',
+}
