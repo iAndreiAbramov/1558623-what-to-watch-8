@@ -1,15 +1,15 @@
 import React from 'react';
-import HomePageTab from '../home-page-tab/home-page-tab';
+import MainPageTab from '../main-page-tab/main-page-tab';
 
 type HomePageTabsTypes = {
   tabsList: string[],
 }
 
-function HomePageTabs(props: HomePageTabsTypes): JSX.Element {
+function MainPageTabs(props: HomePageTabsTypes): JSX.Element {
   const { tabsList } = props;
 
   const tabs = tabsList.map((name) => (
-    <HomePageTab key={ name } name={ name } />
+    <MainPageTab key={ name } name={ name } />
   ));
 
   return (
@@ -19,4 +19,4 @@ function HomePageTabs(props: HomePageTabsTypes): JSX.Element {
   );
 }
 
-export default HomePageTabs;
+export default MainPageTabs;

@@ -6,7 +6,7 @@ type HomePageListTypes = {
   filmsList: FilmDataTypesFront[];
 }
 
-function HomePageList(props: HomePageListTypes): JSX.Element {
+function MainPageList(props: HomePageListTypes): JSX.Element {
   const { filmsList } = props;
   const listContent = filmsList.map((film) => {
     const { id, name, previewImage, posterImage, previewVideoLink } = film;
@@ -29,4 +29,4 @@ function HomePageList(props: HomePageListTypes): JSX.Element {
   );
 }
 
-export default HomePageList;
+export default MainPageList;

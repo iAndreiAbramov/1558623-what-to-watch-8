@@ -23,13 +23,15 @@ export enum HttpResponseStatus {
 
 export enum NameSpace {
   User = 'USER',
-  Film = 'FILM',
+  Main = 'MAIN',
   Promo = 'PROMO',
+  Film = 'FILM',
 }
 
 export enum AuthorizationStatus {
   Auth = 'AUTHORIZED',
   NoAuth = 'NOT_AUTHORIZED',
+  //todo: Этот статус должен устанавливаться по умолчанию
   Unknown = 'UNKNOWN',
 }
 
@@ -65,3 +67,11 @@ export const FILMS_INCREMENT_STEP = 8;
 
 export const ALL_GENRES_TAB_NAME = 'All genres';
 export const MAX_GENRES_NUMBER = 10;
+
+export enum TabName {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews',
+}
+
+export const TabNames: string[] = ['Overview', 'Details', 'Reviews'];

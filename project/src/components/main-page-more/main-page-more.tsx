@@ -4,7 +4,7 @@ type HomePageMoreTypes = {
   clickHandler: () => void;
 }
 
-function HomePageMore(props: HomePageMoreTypes): JSX.Element {
+function MainPageMore(props: HomePageMoreTypes): JSX.Element {
   const { clickHandler } = props;
   return (
     <div className="catalog__more">
@@ -19,4 +19,4 @@ function HomePageMore(props: HomePageMoreTypes): JSX.Element {
   );
 }
 
-export default HomePageMore;
+export default MainPageMore;

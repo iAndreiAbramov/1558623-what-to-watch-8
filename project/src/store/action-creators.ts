@@ -4,9 +4,10 @@ import { FilmDataTypesFront } from '../types/film-data-types';
 import { UserDataTypesFront } from '../types/user-data-types';
 
 export enum ActionType {
-  SetFilmsData = 'films/setFilmsData',
-  SetActiveTab = 'films/setActiveTab',
+  SetFilmsData = 'main/setFilmsData',
+  SetActiveFilter = 'main/setActiveFilter',
   SetPromoMovie = 'promo/setPromoMovie',
+  SetActiveTab = 'film/setActiveTab',
   SetAuthStatus = 'user/setAuthStatus',
   SetCurrentUser = 'user/setCurrentUser',
 }
@@ -39,9 +40,16 @@ export const setFilmsDataAction = createAction(
   }),
 );
 
+export const setActiveFilterAction = createAction(
+  ActionType.SetActiveFilter,
+  (activeTabName: string) => ({
+    payload: activeTabName,
+  }),
+);
+
 export const setActiveTabAction = createAction(
   ActionType.SetActiveTab,
-  (activeTabName: string) => ({
+  (activeTabName) => ({
     payload: activeTabName,
   }),
 );

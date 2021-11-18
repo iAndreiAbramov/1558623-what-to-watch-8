@@ -3,15 +3,15 @@ import { useSelector } from 'react-redux';
 import { FilmDataTypesFront } from '../../types/film-data-types';
 import { FILMS_INCREMENT_STEP, INITIAL_FILMS_COUNT } from '../../const';
 import { filterFilmsByGenre, getGenres } from '../../utils/project-utils';
-import { getActiveTabName, getFilmsData } from '../../store/selectors';
-import HomePageList from '../home-page-list/home-page-list';
-import HomePageMore from '../home-page-more/home-page-more';
-import HomePageTabs from '../home-page-tabs/home-page-tabs';
+import { getActiveFilterName, getFilmsData } from '../../store/selectors';
+import MainPageList from '../main-page-list/main-page-list';
+import MainPageMore from '../main-page-more/main-page-more';
+import MainPageTabs from '../main-page-tabs/main-page-tabs';
 import PageFooter from '../page-footer/page-footer';
 
-function HomePageContent(): JSX.Element {
+function MainPageContent(): JSX.Element {
   const filmsData = useSelector(getFilmsData);
-  const activeTabName = useSelector(getActiveTabName);
+  const activeTabName = useSelector(getActiveFilterName);
   const tabsList = getGenres(filmsData);
   const [filteredList, setFilteredList] = useState<FilmDataTypesFront[]>(filterFilmsByGenre(filmsData, activeTabName));
   const [renderList, setRenderList] = useState<FilmDataTypesFront[]>(filteredList.slice(0, INITIAL_FILMS_COUNT));
@@ -44,12 +44,12 @@ function HomePageContent(): JSX.Element {
     <div className="page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <HomePageTabs tabsList={ tabsList } />
-        <HomePageList filmsList={ renderList } />
+        <MainPageTabs tabsList={ tabsList } />
+        <MainPageList filmsList={ renderList } />
         {
           renderList.length < filteredList.length
           &&
-          <HomePageMore
+          <MainPageMore
             clickHandler={ handleMoreButtonClick }
           />
         }
@@ -59,4 +59,4 @@ function HomePageContent(): JSX.Element {
   );
 }
 
-export default HomePageContent;
+export default MainPageContent;
