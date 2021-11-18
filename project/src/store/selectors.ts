@@ -22,4 +22,4 @@ export const getActiveTabName = (state: RootStateTypes): string => (
 
 export const getPromoData = (state: RootStateTypes): PromoStateTypes => (
   state[NameSpace.Promo]
-)
+);

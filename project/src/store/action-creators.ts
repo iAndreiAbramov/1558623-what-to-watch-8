@@ -21,7 +21,7 @@ export const setAuthStatusAction = createAction(
 export const setPromoMovieAction = createAction(
   ActionType.SetPromoMovie,
   (promoMovie) => ({
-    payload: promoMovie
+    payload: promoMovie,
   }),
 );
 

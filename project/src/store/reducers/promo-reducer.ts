@@ -17,7 +17,7 @@ const initialState: PromoStateTypes = {
   released: '',
   genre: '',
   isFavorite: false,
-}
+};
 
 export const promoReducer = createReducer(initialState, ((builder) => {
   builder

@@ -21,10 +21,10 @@ export const getPromoAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
     await api.get(APIRoute.Promo)
       .then(({ data }: { data: FilmDataTypesBack }) => {
-          const adaptedData: FilmDataTypesFront = adaptFilmDataToFront(data);
-          const { name, posterImage, backgroundImage, released, genre, isFavorite } = adaptedData;
-          dispatch(setPromoMovieAction({ name, posterImage, backgroundImage, released, genre, isFavorite }));
-        });
+        const adaptedData: FilmDataTypesFront = adaptFilmDataToFront(data);
+        const { name, posterImage, backgroundImage, released, genre, isFavorite } = adaptedData;
+        dispatch(setPromoMovieAction({ name, posterImage, backgroundImage, released, genre, isFavorite }));
+      });
   }
 );
 
