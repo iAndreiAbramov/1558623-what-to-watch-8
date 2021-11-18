@@ -27,3 +27,7 @@ export const getPromoData = (state: RootStateTypes): PromoStateTypes => (
 export const getActiveTabName = (state: RootStateTypes): TabName => (
   state[NameSpace.Film].activeTabName
 );
+
+export const getCurrentFilmData = (state: RootStateTypes): FilmDataTypesFront => (
+  state[NameSpace.Film].currentFilmData
+);

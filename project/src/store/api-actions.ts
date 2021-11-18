@@ -2,7 +2,13 @@ import { adaptFilmDataToFront, adaptFilmsDataToFront, adaptUserDataToFront } fro
 import { APIRoute, AppRoute, AuthorizationStatus, HttpResponseStatus } from '../const';
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
-import { setAuthStatusAction, setCurrentUserAction, setFilmsDataAction, setPromoMovieAction } from './action-creators';
+import {
+  setAuthStatusAction,
+  setCurrentFilmData,
+  setCurrentUserAction,
+  setFilmsDataAction,
+  setPromoMovieAction
+} from './action-creators';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
 import { FilmDataTypesBack, FilmDataTypesFront } from '../types/film-data-types';
@@ -14,6 +20,16 @@ export const getFilmsAction = (): ThunkActionResult => (
         dispatch(setFilmsDataAction(adaptFilmsDataToFront(data)));
       });
     //todo: добавить обработку ошибки
+  }
+);
+
+export const getCurrentFilmDataAction = (id: string): ThunkActionResult => (
+  async (dispatch, _getState, api): Promise<void> => {
+    await api.get(`${ APIRoute.Films }/${ id }`)
+      .then(({ data }) => {
+        dispatch(setCurrentFilmData(adaptFilmDataToFront(data)));
+      });
+    // todo: Добавить обработку ошибки
   }
 );
 

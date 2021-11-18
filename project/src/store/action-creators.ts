@@ -7,6 +7,7 @@ export enum ActionType {
   SetFilmsData = 'main/setFilmsData',
   SetActiveFilter = 'main/setActiveFilter',
   SetPromoMovie = 'promo/setPromoMovie',
+  SetCurrentFilmData = 'film/setCurrentFilmData',
   SetActiveTab = 'film/setActiveTab',
   SetAuthStatus = 'user/setAuthStatus',
   SetCurrentUser = 'user/setCurrentUser',
@@ -44,6 +45,13 @@ export const setActiveFilterAction = createAction(
   ActionType.SetActiveFilter,
   (activeTabName: string) => ({
     payload: activeTabName,
+  }),
+);
+
+export const setCurrentFilmData = createAction(
+  ActionType.SetCurrentFilmData,
+  (filmData: FilmDataTypesFront) => ({
+    payload: filmData,
   }),
 );
 

@@ -45,13 +45,13 @@ export const DEFAULT_FILM_DATA = {
   videoLink: '',
   previewVideoLink: '',
   description: '',
-  rating: '',
-  scoresCount: '',
+  rating: 0,
+  scoresCount: 0,
   director: '',
   starring: [''],
   runTime: 0,
   genre: '',
-  released: 0,
+  released: '',
   isFavorite: false,
 };
 
