@@ -1,10 +1,11 @@
-import { adaptFilmsDataToFront, adaptUserDataToFront } from '../utils/adapters';
-import { APIRoute, AuthorizationStatus, HttpResponseStatus } from '../const';
+import { adaptFilmDataToFront, adaptFilmsDataToFront, adaptUserDataToFront } from '../utils/adapters';
+import { APIRoute, AppRoute, AuthorizationStatus, HttpResponseStatus } from '../const';
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
-import { setAuthStatus, setCurrentUser, setFilmsDataAction } from './action-creators';
+import { setAuthStatusAction, setCurrentUserAction, setFilmsDataAction, setPromoMovieAction } from './action-creators';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
+import { FilmDataTypesBack, FilmDataTypesFront } from '../types/film-data-types';
 
 export const getFilmsAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
@@ -16,16 +17,27 @@ export const getFilmsAction = (): ThunkActionResult => (
   }
 );
 
+export const getPromoAction = (): ThunkActionResult => (
+  async (dispatch, _getState, api): Promise<void> => {
+    await api.get(APIRoute.Promo)
+      .then(({ data }: { data: FilmDataTypesBack }) => {
+          const adaptedData: FilmDataTypesFront = adaptFilmDataToFront(data);
+          const { name, posterImage, backgroundImage, released, genre, isFavorite } = adaptedData;
+          dispatch(setPromoMovieAction({ name, posterImage, backgroundImage, released, genre, isFavorite }));
+        });
+  }
+);
+
 export const checkAuthStatusAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
     await api.get(APIRoute.Login)
       .then((response) => {
         response
         && response.status !== HttpResponseStatus.UnAuthorized
-        && dispatch(setAuthStatus(AuthorizationStatus.Auth));
+        && dispatch(setAuthStatusAction(AuthorizationStatus.Auth));
       })
       .catch(() => {
-        dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+        dispatch(setAuthStatusAction(AuthorizationStatus.NoAuth));
       });
   }
 );
@@ -37,8 +49,10 @@ export const requireLoginAction = (loginData: UserAuthorizationTypes): ThunkActi
         const adaptedData = adaptUserDataToFront(data);
         setToken(data.token);
         setAvatar(adaptedData.avatarUrl);
-        dispatch(setAuthStatus(AuthorizationStatus.Auth));
-        dispatch(setCurrentUser(adaptedData));
+        dispatch(setAuthStatusAction(AuthorizationStatus.Auth));
+        dispatch(setCurrentUserAction(adaptedData));
+        window.history.replaceState(null, '', AppRoute.Main);
+        window.history.back();
       });
     //todo: Добавить обработку ошибки
   }
@@ -50,7 +64,7 @@ export const requireLogoutAction = (): ThunkActionResult => (
       .then(() => {
         dropToken();
         dropAvatar();
-        dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+        dispatch(setAuthStatusAction(AuthorizationStatus.NoAuth));
       });
     //todo: добавить обработку ошибки
   }

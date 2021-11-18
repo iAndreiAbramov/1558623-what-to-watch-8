@@ -14,7 +14,7 @@ export type FilmDataTypesBack = {
   starring: string[],
   ['run_time']: number,
   genre: string,
-  released: number,
+  released: string,
   ['is_favorite']: boolean,
 }
 
@@ -34,7 +34,7 @@ export type FilmDataTypesFront = {
   starring: string[],
   runTime: number,
   genre: string,
-  released: number,
+  released: string,
   isFavorite: boolean,
 }
 

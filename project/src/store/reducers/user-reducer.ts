@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus, DEFAULT_USER } from '../../const';
-import { setAuthStatus, setCurrentUser } from '../action-creators';
+import { setAuthStatusAction, setCurrentUserAction } from '../action-creators';
 import { UserDataTypesFront } from '../../types/user-data-types';
 
 export type UserStateTypes = {
@@ -15,10 +15,10 @@ const initialState: UserStateTypes = {
 
 export const userReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(setAuthStatus, (state, action) => {
+    .addCase(setAuthStatusAction, (state, action) => {
       state.authorization = action.payload;
     })
-    .addCase(setCurrentUser, (state, action) => {
+    .addCase(setCurrentUserAction, (state, action) => {
       state.currentUser = action.payload;
     });
 });

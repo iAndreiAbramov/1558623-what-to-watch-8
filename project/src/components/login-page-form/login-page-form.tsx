@@ -23,7 +23,6 @@ function LoginPageForm() {
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(requireLoginAction({ email, password }));
-    navigate(AppRoute.Main);
   };
 
   return (

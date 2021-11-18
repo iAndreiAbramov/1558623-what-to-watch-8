@@ -11,5 +11,6 @@ export const filterFilmsByGenre = (filmsList: FilmDataTypesFront[], genre: strin
   if (genre === ALL_GENRES_TAB_NAME) {
     return filmsList;
   }
+
   return filmsList.filter((film) => film.genre === genre);
 };

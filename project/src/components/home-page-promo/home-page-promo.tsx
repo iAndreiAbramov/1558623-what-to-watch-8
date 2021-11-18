@@ -1,11 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { getPromoData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
 
 function HomePagePromo() {
+  const promoData = useSelector(getPromoData);
+  const { name, posterImage, backgroundImage, released, genre, isFavorite } = promoData;
+  const myListIcon = isFavorite
+    ? '#in-list'
+    : '#add';
+
   return (
     <section className="film-card">
       <div className="film-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <img src={ backgroundImage } alt={ name } />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -15,14 +23,15 @@ function HomePagePromo() {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={ posterImage } alt={ `${ name } poster` } width="218"
+              height="327" />
           </div>
 
           <div className="film-card__desc">
-            <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+            <h2 className="film-card__title">{ name }</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">Drama</span>
-              <span className="film-card__year">2014</span>
+              <span className="film-card__genre">{ genre }</span>
+              <span className="film-card__year">{ released }</span>
             </p>
 
             <div className="film-card__buttons">
@@ -32,9 +41,11 @@ function HomePagePromo() {
                 </svg>
                 <span>Play</span>
               </button>
+
+              {/*{//todo: Добавление в избранное по клику}*/}
               <button className="btn btn--list film-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add" />
+                  <use xlinkHref={ myListIcon } />
                 </svg>
                 <span>My list</span>
               </button>

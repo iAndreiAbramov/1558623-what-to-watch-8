@@ -24,6 +24,7 @@ export enum HttpResponseStatus {
 export enum NameSpace {
   User = 'USER',
   Film = 'FILM',
+  Promo = 'PROMO',
 }
 
 export enum AuthorizationStatus {
