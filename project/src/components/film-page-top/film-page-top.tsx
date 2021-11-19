@@ -53,7 +53,12 @@ function FilmPageTop(): JSX.Element {
               <span>My list</span>
             </button>
 
-            <Link to={ `${ AppRoute.Film }/${ id }/review` } className="btn film-card__button">Add review</Link>
+            <Link
+              to={ `${ AppRoute.Film }/${ id }/review` }
+              className="btn film-card__button"
+            >
+              Add review
+            </Link>
           </div>
         </div>
       </div>

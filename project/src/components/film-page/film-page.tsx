@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getActiveTabName, getCurrentFilmData } from '../../store/selectors';
-import { getCurrentFilmDataAction } from '../../store/api-actions';
+import { FetchStatus, TabName } from '../../const';
+import { getActiveTabName, getCurrentFilmData, getFilmGetStatus } from '../../store/selectors';
+import { getCurrentFilmDataAction, getSimilarFilmsAction } from '../../store/api-actions';
 import FilmPageSimilar from '../film-page-similar/film-page-similar';
 import FilmPageDetails from '../film-page-details/film-page-details';
 import FilmPageOverview from '../film-page-overview/film-page-overview';
@@ -11,12 +12,13 @@ import FilmPageReviews from '../film-page-reviews/film-page-reviews';
 import FilmPageTop from '../film-page-top/film-page-top';
 import HiddenComponent from '../hidden-component/hidden-component';
 import PageFooter from '../page-footer/page-footer';
-import { TabName } from '../../const';
+import SpinnerBig from '../spinner-big/spinner-big';
 
 function FilmPage(): JSX.Element {
   const activeTabName = useSelector(getActiveTabName);
   const { backgroundColor } = useSelector(getCurrentFilmData);
   const { id } = useSelector(getCurrentFilmData);
+  const filmGetStatus = useSelector(getFilmGetStatus);
   const dispatch = useDispatch();
   const locationId = useParams().id;
 
@@ -34,30 +36,42 @@ function FilmPage(): JSX.Element {
 
   useEffect(() => {
     if (!id && locationId) {
-      dispatch(getCurrentFilmDataAction(locationId))
+      dispatch(getCurrentFilmDataAction(locationId));
+      dispatch(getSimilarFilmsAction(locationId));
     }
   });
 
   return (
     <>
-      <HiddenComponent />
+      {
+        filmGetStatus === FetchStatus.InProgress
+        &&
+        <SpinnerBig />
+      }
 
-      <section className="film-card film-card--full" style={ { backgroundColor: backgroundColor } }>
-        <FilmPageTop />
-        <div className="film-card__wrap film-card__translate-top">
-          <div className="film-card__info">
-            <FilmPagePoster />
-            <div className="film-card__desc">
-              { content }
+      {
+        filmGetStatus === FetchStatus.Success
+        &&
+        <>
+          <HiddenComponent />
+          <section className="film-card film-card--full" style={ { backgroundColor: backgroundColor } }>
+            <FilmPageTop />
+            <div className="film-card__wrap film-card__translate-top">
+              <div className="film-card__info">
+                <FilmPagePoster />
+                <div className="film-card__desc">
+                  { content }
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <div className="page-content">
-        <FilmPageSimilar />
-        <PageFooter />
-      </div>
+          <div className="page-content">
+            <FilmPageSimilar />
+            <PageFooter />
+          </div>
+        </>
+      }
     </>
   );
 }

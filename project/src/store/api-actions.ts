@@ -7,7 +7,7 @@ import {
   setCurrentFilmDataAction,
   setCurrentUserAction,
   setFavoriteFilmsAction,
-  setFavoritesGetStatusAction,
+  setFavoritesGetStatusAction, setFilmGetStatusAction,
   setFilmsDataAction,
   setPostStatusAction,
   setPromoIsFavoriteAction,
@@ -83,9 +83,11 @@ export const getFilmsAction = (): ThunkActionResult => (
 
 export const getCurrentFilmDataAction = (id: string): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
+    dispatch(setFilmGetStatusAction(FetchStatus.InProgress));
     await api.get(`${ APIRoute.Films }/${ id }`)
       .then(({ data }) => {
         dispatch(setCurrentFilmDataAction(adaptFilmDataToFront(data)));
+        dispatch(setFilmGetStatusAction(FetchStatus.Success));
       });
     // todo: Добавить обработку ошибки
   }
