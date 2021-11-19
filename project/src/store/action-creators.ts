@@ -15,6 +15,11 @@ export enum ActionType {
   SetAuthStatus = 'user/setAuthStatus',
   SetCurrentUser = 'user/setCurrentUser',
   SetPostStatus = 'status/setPostStatus',
+  SetPromoGetStatus = 'status/setPromoGetStatus',
+  SetFilmsGetStatus = 'status/setFilmsGetStatus',
+  SetFilmGetStatus = 'status/setFilmGetStatus',
+  SetCommentsGetStatus = 'status/setCommentsGetStatus',
+  SetFavoritesGetStatus = 'status/setFavoritesGetStatus',
 }
 
 export const setAuthStatusAction = createAction(
@@ -84,5 +89,40 @@ export const setPostStatusAction = createAction(
   ActionType.SetPostStatus,
   (postStatus) => ({
     payload: postStatus,
+  }),
+);
+
+export const setPromoGetStatusAction = createAction(
+  ActionType.SetPromoGetStatus,
+  (status) => ({
+    payload: status,
+  }),
+);
+
+export const setFilmsGetStatusAction = createAction(
+  ActionType.SetFilmsGetStatus,
+  (status) => ({
+    payload: status,
+  }),
+);
+
+export const setFilmGetStatusAction = createAction(
+  ActionType.SetFilmGetStatus,
+  (status) => ({
+    payload: status,
+  }),
+);
+
+export const setCommentsGetStatusAction = createAction(
+  ActionType.SetCommentsGetStatus,
+  (status) => ({
+    payload: status,
+  }),
+);
+
+export const setFavoritesGetStatusAction = createAction(
+  ActionType.SetFavoritesGetStatus,
+  (status) => ({
+    payload: status,
   }),
 );

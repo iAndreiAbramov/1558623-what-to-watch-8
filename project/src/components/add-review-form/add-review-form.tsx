@@ -1,5 +1,5 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import { INITIAL_RATING, PostStatus, REVIEW_MAX_LENGTH, REVIEW_MIN_LENGTH, StarRating } from '../../const';
+import { INITIAL_RATING, FetchStatus, REVIEW_MAX_LENGTH, REVIEW_MIN_LENGTH, StarRating } from '../../const';
 import { useDispatch, useSelector } from 'react-redux';
 import { postReviewAction } from '../../store/api-actions';
 import { getPostStatus } from '../../store/selectors';
@@ -14,15 +14,15 @@ function AddReviewForm(props: { id: string }) {
   const [rating, setRating] = useState(INITIAL_RATING);
 
   useEffect(() => {
-    if (postStatus === PostStatus.InProgress) {
+    if (postStatus === FetchStatus.InProgress) {
       setIsSubmitDisabled(true);
       setIsInputDisabled(true);
     }
-    if (postStatus === PostStatus.Error) {
+    if (postStatus === FetchStatus.Error) {
       setIsSubmitDisabled(false);
       setIsInputDisabled(false);
     }
-    if (postStatus === PostStatus.Success) {
+    if (postStatus === FetchStatus.Success) {
       setIsSubmitDisabled(false);
       setIsInputDisabled(false);
       setComment('');

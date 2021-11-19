@@ -1,5 +1,5 @@
 import { adaptFilmDataToFront, adaptFilmsDataToFront, adaptUserDataToFront } from '../utils/adapters';
-import { APIRoute, AppRoute, AuthorizationStatus, HttpResponseStatus, PostStatus } from '../const';
+import { APIRoute, AppRoute, AuthorizationStatus, HttpResponseStatus, FetchStatus } from '../const';
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
 import {
@@ -46,17 +46,17 @@ export const getCurrentFilmReviewsAction = (id: string): ThunkActionResult => (
 
 export const postReviewAction = (review: ReviewPostTypes): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
-    dispatch(setPostStatusAction(PostStatus.InProgress));
+    dispatch(setPostStatusAction(FetchStatus.InProgress));
     const { id, rating, comment } = review;
     await api.post(`${ APIRoute.Comments }/${ id }`, { rating, comment })
       .then(() => {
-        dispatch(setPostStatusAction(PostStatus.Success));
+        dispatch(setPostStatusAction(FetchStatus.Success));
       })
       .catch(() => {
-        dispatch(setPostStatusAction(PostStatus.Error));
+        dispatch(setPostStatusAction(FetchStatus.Error));
       })
       .finally(() => {
-        dispatch(setPostStatusAction(PostStatus.Undefined));
+        dispatch(setPostStatusAction(FetchStatus.Undefined));
       });
   }
 );

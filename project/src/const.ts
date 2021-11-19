@@ -36,7 +36,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum PostStatus {
+export enum FetchStatus {
   Undefined = 'UNDEFINED',
   InProgress = 'IN_PROGRESS',
   Success = 'SUCCESS',

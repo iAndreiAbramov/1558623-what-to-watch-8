@@ -1,9 +1,10 @@
-import { AuthorizationStatus, NameSpace, PostStatus, TabName } from '../const';
+import { AuthorizationStatus, NameSpace, FetchStatus, TabName } from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
 import { PromoStateTypes } from './reducers/promo-reducer';
 import { RootStateTypes } from './reducers/root-reducer';
 import { UserDataTypesFront } from '../types/user-data-types';
 import { ReviewTypes } from '../types/review-types';
+import { setPromoGetStatusAction } from './action-creators';
 
 export const getAuthStatus = (state: RootStateTypes): AuthorizationStatus => (
   state[NameSpace.User].authorization
@@ -41,6 +42,26 @@ export const getSimilarFilms = (state: RootStateTypes): FilmDataTypesFront[] => 
   state[NameSpace.Film].similarFilms
 );
 
-export const getPostStatus = (state: RootStateTypes): PostStatus => (
+export const getPostStatus = (state: RootStateTypes): FetchStatus => (
   state[NameSpace.Status].postStatus
+);
+
+export const getPromoGetStatus = (state: RootStateTypes): FetchStatus =>(
+  state[NameSpace.Status].promoGetStatus
+);
+
+export const getFilmsGetStatus = (state: RootStateTypes): FetchStatus =>(
+  state[NameSpace.Status].filmsGetStatus
+);
+
+export const getFilmGetStatus = (state: RootStateTypes): FetchStatus =>(
+  state[NameSpace.Status].filmGetStatus
+);
+
+export const getCommentsGetStatus = (state: RootStateTypes): FetchStatus =>(
+  state[NameSpace.Status].commentsGetStatus
+);
+
+export const getFavoritesGetStatus = (state: RootStateTypes): FetchStatus =>(
+  state[NameSpace.Status].favoritesGetStatus
 );
