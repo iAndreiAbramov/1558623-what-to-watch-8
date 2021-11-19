@@ -28,7 +28,7 @@ function App(): JSX.Element {
       </Route>
       <Route path={ AppRoute.Player } element={ <PlayerPage /> } />
       <Route
-        path={ AppRoute.AddReview }
+        path={ `${ AppRoute.Film }/:id/review` }
         element={
           <PrivateRoute>
             <AddReviewPage />

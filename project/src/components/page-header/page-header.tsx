@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 import { getAuthStatus, getCurrentUser } from '../../store/selectors';
 import PageHeaderLogo from '../page-header-logo/page-header-logo';
 import PageHeaderTitle from '../page-header-title/page-header-title';
@@ -19,7 +20,13 @@ function PageHeader(): JSX.Element {
       <PageHeaderLogo />
       {
         location.pathname === AppRoute.MyList
-        && <PageHeaderTitle titleText={ titleText } />
+        &&
+        <PageHeaderTitle titleText={ titleText } />
+      }
+      {
+        location.pathname.includes('review')
+        &&
+        <Breadcrumbs />
       }
       {
         authorization === AuthorizationStatus.Auth

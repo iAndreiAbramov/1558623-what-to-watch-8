@@ -19,6 +19,7 @@ export enum APIRoute {
 
 export enum HttpResponseStatus {
   UnAuthorized = 401,
+  Ok = 200,
 }
 
 export enum NameSpace {
@@ -26,13 +27,20 @@ export enum NameSpace {
   Main = 'MAIN',
   Promo = 'PROMO',
   Film = 'FILM',
+  Status = 'STATUS',
 }
 
 export enum AuthorizationStatus {
   Auth = 'AUTHORIZED',
   NoAuth = 'NOT_AUTHORIZED',
-  //todo: Этот статус должен устанавливаться по умолчанию
   Unknown = 'UNKNOWN',
+}
+
+export enum PostStatus {
+  Undefined = 'UNDEFINED',
+  InProgress = 'IN_PROGRESS',
+  Success = 'SUCCESS',
+  Error = 'Error',
 }
 
 export const DEFAULT_FILM_DATA = {
@@ -92,3 +100,20 @@ export const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', '
 export const NUMBER_OF_COLUMNS = 2;
 
 export const SIMILAR_FILMS_NUMBER = 4;
+
+export enum StarRating {
+  One = 1,
+  Two = 2,
+  Three = 3,
+  Four = 4,
+  Five = 5,
+  Six = 6,
+  Seven = 7,
+  Eight = 8,
+  Nine = 9,
+  Ten = 10,
+}
+
+export const REVIEW_MIN_LENGTH = 50;
+export const REVIEW_MAX_LENGTH = 400;
+export const INITIAL_RATING = 8;

@@ -1,10 +1,12 @@
 import React from 'react';
-import PageHeader from '../page-header/page-header';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { AppRoute } from '../../const';
 import { getCurrentFilmData } from '../../store/selectors';
+import PageHeader from '../page-header/page-header';
 
 function FilmPageTop(): JSX.Element {
-  const { backgroundImage, name, genre, released } = useSelector(getCurrentFilmData);
+  const { backgroundImage, name, genre, released, id } = useSelector(getCurrentFilmData);
 
   return (
     <div className="film-card__hero">
@@ -37,7 +39,7 @@ function FilmPageTop(): JSX.Element {
               </svg>
               <span>My list</span>
             </button>
-            <a href="add-review.html" className="btn film-card__button">Add review</a>
+            <Link to={ `${ AppRoute.Film }/${ id }/review` } className="btn film-card__button">Add review</Link>
           </div>
         </div>
       </div>

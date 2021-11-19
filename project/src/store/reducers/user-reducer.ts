@@ -9,7 +9,7 @@ export type UserStateTypes = {
 };
 
 const initialState: UserStateTypes = {
-  authorization: AuthorizationStatus.NoAuth,
+  authorization: AuthorizationStatus.Unknown,
   currentUser: DEFAULT_USER,
 };
 

@@ -1,17 +1,18 @@
 import { adaptFilmDataToFront, adaptFilmsDataToFront, adaptUserDataToFront } from '../utils/adapters';
-import { APIRoute, AppRoute, AuthorizationStatus, HttpResponseStatus } from '../const';
+import { APIRoute, AppRoute, AuthorizationStatus, HttpResponseStatus, PostStatus } from '../const';
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
 import {
-  setAuthStatusAction, setCurrentFilmReviews,
-  setCurrentFilmData,
+  setAuthStatusAction, setReviewsAction,
+  setCurrentFilmDataAction,
   setCurrentUserAction,
   setFilmsDataAction,
-  setPromoMovieAction, setSimilarFilms
+  setPromoMovieAction, setSimilarFilmsAction, setPostStatusAction
 } from './action-creators';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
 import { FilmDataTypesBack, FilmDataTypesFront } from '../types/film-data-types';
+import { ReviewPostTypes } from '../types/review-types';
 
 export const getFilmsAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
@@ -27,7 +28,7 @@ export const getCurrentFilmDataAction = (id: string): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
     await api.get(`${ APIRoute.Films }/${ id }`)
       .then(({ data }) => {
-        dispatch(setCurrentFilmData(adaptFilmDataToFront(data)));
+        dispatch(setCurrentFilmDataAction(adaptFilmDataToFront(data)));
       });
     // todo: Добавить обработку ошибки
   }
@@ -37,9 +38,26 @@ export const getCurrentFilmReviewsAction = (id: string): ThunkActionResult => (
   async (dispatch, _getState, api) => {
     await api.get(`${ APIRoute.Comments }/${ id }`)
       .then(({ data }) => {
-        dispatch(setCurrentFilmReviews(data));
+        dispatch(setReviewsAction(data));
       });
     // todo: Добавить обработку ошибки
+  }
+);
+
+export const postReviewAction = (review: ReviewPostTypes): ThunkActionResult => (
+  async (dispatch, _getState, api): Promise<void> => {
+    dispatch(setPostStatusAction(PostStatus.InProgress));
+    const { id, rating, comment } = review;
+    await api.post(`${ APIRoute.Comments }/${ id }`, { rating, comment })
+      .then(() => {
+        dispatch(setPostStatusAction(PostStatus.Success));
+      })
+      .catch(() => {
+        dispatch(setPostStatusAction(PostStatus.Error));
+      })
+      .finally(() => {
+        dispatch(setPostStatusAction(PostStatus.Undefined));
+      });
   }
 );
 
@@ -47,7 +65,7 @@ export const getSimilarFilmsAction = (id: string): ThunkActionResult => (
   async (dispatch, _getState, api) => {
     await api.get(`${ APIRoute.Films }/${ id }/similar`)
       .then(({ data }) => {
-        dispatch(setSimilarFilms(adaptFilmsDataToFront(data)));
+        dispatch(setSimilarFilmsAction(adaptFilmsDataToFront(data)));
       });
     // todo: Добавить обработку ошибки
   }

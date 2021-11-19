@@ -1,9 +1,9 @@
-import { AuthorizationStatus, NameSpace, TabName } from '../const';
+import { AuthorizationStatus, NameSpace, PostStatus, TabName } from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
 import { PromoStateTypes } from './reducers/promo-reducer';
 import { RootStateTypes } from './reducers/root-reducer';
 import { UserDataTypesFront } from '../types/user-data-types';
-import { CommentTypes } from '../types/comment-types';
+import { ReviewTypes } from '../types/review-types';
 
 export const getAuthStatus = (state: RootStateTypes): AuthorizationStatus => (
   state[NameSpace.User].authorization
@@ -33,10 +33,14 @@ export const getCurrentFilmData = (state: RootStateTypes): FilmDataTypesFront =>
   state[NameSpace.Film].currentFilmData
 );
 
-export const getCurrentFilmReviews = (state: RootStateTypes): CommentTypes[] => (
+export const getCurrentFilmReviews = (state: RootStateTypes): ReviewTypes[] => (
   state[NameSpace.Film].currentFilmReviews
 );
 
 export const getSimilarFilms = (state: RootStateTypes): FilmDataTypesFront[] => (
   state[NameSpace.Film].similarFilms
+);
+
+export const getPostStatus = (state: RootStateTypes): PostStatus => (
+  state[NameSpace.Status].postStatus
 );
