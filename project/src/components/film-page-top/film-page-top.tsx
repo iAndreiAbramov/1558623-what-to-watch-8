@@ -1,12 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppRoute } from '../../const';
 import { getCurrentFilmData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
+import { postFilmIsFavoriteAction } from '../../store/api-actions';
 
 function FilmPageTop(): JSX.Element {
-  const { backgroundImage, name, genre, released, id } = useSelector(getCurrentFilmData);
+  const dispatch = useDispatch();
+  const { backgroundImage, name, genre, released, id, isFavorite } = useSelector(getCurrentFilmData);
+  const myListIcon = isFavorite ? '#in-list' : '#add';
+  const isFavoritePostNumber = isFavorite ? 0 : 1;
+
+  const handleMyListClick = (): void => {
+    dispatch(postFilmIsFavoriteAction(id, isFavoritePostNumber));
+  };
 
   return (
     <div className="film-card__hero">
@@ -33,12 +41,18 @@ function FilmPageTop(): JSX.Element {
               </svg>
               <span>Play</span>
             </button>
-            <button className="btn btn--list film-card__button" type="button">
+
+            <button
+              onClick={ handleMyListClick }
+              className="btn btn--list film-card__button"
+              type="button"
+            >
               <svg viewBox="0 0 19 20" width="19" height="20">
-                <use xlinkHref="#add" />
+                <use xlinkHref={ myListIcon } />
               </svg>
               <span>My list</span>
             </button>
+
             <Link to={ `${ AppRoute.Film }/${ id }/review` } className="btn film-card__button">Add review</Link>
           </div>
         </div>

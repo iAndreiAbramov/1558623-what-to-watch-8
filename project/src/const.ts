@@ -28,6 +28,7 @@ export enum NameSpace {
   Promo = 'PROMO',
   Film = 'FILM',
   Status = 'STATUS',
+  Favorites = 'FAVORITES',
 }
 
 export enum AuthorizationStatus {

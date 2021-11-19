@@ -1,18 +1,75 @@
 import { adaptFilmDataToFront, adaptFilmsDataToFront, adaptUserDataToFront } from '../utils/adapters';
-import { APIRoute, AppRoute, AuthorizationStatus, HttpResponseStatus, FetchStatus } from '../const';
+import { APIRoute, AppRoute, AuthorizationStatus, FetchStatus, HttpResponseStatus } from '../const';
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
 import {
-  setAuthStatusAction, setReviewsAction,
+  setAuthStatusAction,
   setCurrentFilmDataAction,
   setCurrentUserAction,
+  setFavoriteFilmsAction,
+  setFavoritesGetStatusAction,
   setFilmsDataAction,
-  setPromoMovieAction, setSimilarFilmsAction, setPostStatusAction
+  setPostStatusAction,
+  setPromoIsFavoriteAction,
+  setPromoMovieAction,
+  setReviewsAction,
+  setSimilarFilmsAction
 } from './action-creators';
+import { FilmDataTypesBack } from '../types/film-data-types';
+import { ReviewPostTypes } from '../types/review-types';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
-import { FilmDataTypesBack, FilmDataTypesFront } from '../types/film-data-types';
-import { ReviewPostTypes } from '../types/review-types';
+
+export const getPromoAction = (): ThunkActionResult => (
+  async (dispatch, _getState, api): Promise<void> => {
+    await api.get(APIRoute.Promo)
+      .then(({ data }: { data: FilmDataTypesBack }) => {
+        dispatch(setPromoMovieAction(adaptFilmDataToFront(data)));
+      });
+  }
+);
+
+export const postPromoIsFavoriteAction = (id: string, status: number): ThunkActionResult => (
+  async (dispatch, _getState, api): Promise<void> => {
+    dispatch(setPostStatusAction(FetchStatus.InProgress));
+    await api.post(`${ APIRoute.Favorite }/${ id }/${ status }`)
+      .then(({ data }) => {
+        dispatch(setPromoIsFavoriteAction(adaptFilmDataToFront(data).isFavorite));
+        dispatch(setPostStatusAction(FetchStatus.Success));
+      })
+      .then(() => {
+        dispatch(getFavoritesAction());
+      })
+      .catch(() => {
+        dispatch(setPostStatusAction(FetchStatus.Error));
+        //todo: Уведомление об ошибке и редирект на страницу авторизации
+      })
+      .finally(() => {
+        dispatch(setPostStatusAction(FetchStatus.Undefined));
+      });
+  }
+);
+
+export const postFilmIsFavoriteAction = (id: string, status: number): ThunkActionResult => (
+  async (dispatch, _getState, api): Promise<void> => {
+    dispatch(setPostStatusAction(FetchStatus.InProgress));
+    await api.post(`${ APIRoute.Favorite }/${ id }/${ status }`)
+      .then(({ data }) => {
+        dispatch(setCurrentFilmDataAction(adaptFilmDataToFront(data)));
+        dispatch(setPostStatusAction(FetchStatus.Success));
+      })
+      .then(() => {
+        dispatch(getFavoritesAction());
+      })
+      .catch(() => {
+        dispatch(setPostStatusAction(FetchStatus.Error));
+        //todo: Уведомление об ошибке и редирект на страницу авторизации
+      })
+      .finally(() => {
+        dispatch(setPostStatusAction(FetchStatus.Undefined));
+      });
+  }
+);
 
 export const getFilmsAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
@@ -71,13 +128,19 @@ export const getSimilarFilmsAction = (id: string): ThunkActionResult => (
   }
 );
 
-export const getPromoAction = (): ThunkActionResult => (
-  async (dispatch, _getState, api): Promise<void> => {
-    await api.get(APIRoute.Promo)
-      .then(({ data }: { data: FilmDataTypesBack }) => {
-        const adaptedData: FilmDataTypesFront = adaptFilmDataToFront(data);
-        const { name, posterImage, backgroundImage, released, genre, isFavorite } = adaptedData;
-        dispatch(setPromoMovieAction({ name, posterImage, backgroundImage, released, genre, isFavorite }));
+export const getFavoritesAction = (): ThunkActionResult => (
+  async (dispatch, _getState, api) => {
+    dispatch(setFavoritesGetStatusAction(FetchStatus.InProgress));
+    await api.get(APIRoute.Favorite)
+      .then(({ data }) => {
+        dispatch(setFavoriteFilmsAction(adaptFilmsDataToFront(data)));
+        dispatch(setFavoritesGetStatusAction(FetchStatus.Success));
+      })
+      .catch(() => {
+        dispatch(setFavoritesGetStatusAction(FetchStatus.Error));
+      })
+      .finally(() => {
+        dispatch(setFavoritesGetStatusAction(FetchStatus.Undefined));
       });
   }
 );

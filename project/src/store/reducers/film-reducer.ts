@@ -1,11 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { ReviewTypes } from '../../types/review-types';
 import { DEFAULT_FILM_DATA, TabName } from '../../const';
-import { setActiveTabAction, setReviewsAction, setCurrentFilmDataAction, setSimilarFilmsAction } from '../action-creators';
 import { FilmDataTypesFront } from '../../types/film-data-types';
+import {
+  setActiveTabAction,
+  setReviewsAction,
+  setCurrentFilmDataAction,
+  setSimilarFilmsAction,
+} from '../action-creators';
+import { ReviewTypes } from '../../types/review-types';
 
 export type FilmStateTypes = {
-  activeTabName: TabName,
+  activeTabName: string,
   currentFilmData: FilmDataTypesFront,
   currentFilmReviews: ReviewTypes[],
   similarFilms: FilmDataTypesFront[],
@@ -31,5 +36,5 @@ export const filmReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSimilarFilmsAction, (state, action) => {
       state.similarFilms = action.payload;
-    });
+    })
 });

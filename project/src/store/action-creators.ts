@@ -1,17 +1,19 @@
 import { createAction } from '@reduxjs/toolkit';
-import { AuthorizationStatus } from '../const';
+import { AuthorizationStatus, FetchStatus, TabName } from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
-import { UserDataTypesFront } from '../types/user-data-types';
 import { ReviewTypes } from '../types/review-types';
+import { UserDataTypesFront } from '../types/user-data-types';
 
 export enum ActionType {
   SetFilmsData = 'main/setFilmsData',
   SetActiveFilter = 'main/setActiveFilter',
   SetPromoMovie = 'promo/setPromoMovie',
+  SetPromoIsFavorite = 'promo/setPromoIsFavorite',
   SetCurrentFilmData = 'film/setCurrentFilmData',
   SetActiveTab = 'film/setActiveTab',
   SetCurrentFilmReviews = 'film/setCurrentFilmReviews',
   SetSimilarFilms = 'film/setSimilarFilms',
+  SetFavoriteFilms = 'favorite/setFavoriteFilms',
   SetAuthStatus = 'user/setAuthStatus',
   SetCurrentUser = 'user/setCurrentUser',
   SetPostStatus = 'status/setPostStatus',
@@ -31,8 +33,15 @@ export const setAuthStatusAction = createAction(
 
 export const setPromoMovieAction = createAction(
   ActionType.SetPromoMovie,
-  (promoMovie) => ({
+  (promoMovie: FilmDataTypesFront) => ({
     payload: promoMovie,
+  }),
+);
+
+export const setPromoIsFavoriteAction = createAction(
+  ActionType.SetPromoIsFavorite,
+  (status: boolean) => ({
+    payload: status,
   }),
 );
 
@@ -66,7 +75,7 @@ export const setCurrentFilmDataAction = createAction(
 
 export const setActiveTabAction = createAction(
   ActionType.SetActiveTab,
-  (activeTabName) => ({
+  (activeTabName: string) => ({
     payload: activeTabName,
   }),
 );
@@ -85,44 +94,51 @@ export const setSimilarFilmsAction = createAction(
   }),
 );
 
+export const setFavoriteFilmsAction = createAction(
+  ActionType.SetFavoriteFilms,
+  (favoriteFilms: FilmDataTypesFront[]) => ({
+    payload: favoriteFilms,
+  }),
+);
+
 export const setPostStatusAction = createAction(
   ActionType.SetPostStatus,
-  (postStatus) => ({
+  (postStatus: FetchStatus) => ({
     payload: postStatus,
   }),
 );
 
 export const setPromoGetStatusAction = createAction(
   ActionType.SetPromoGetStatus,
-  (status) => ({
+  (status: FetchStatus) => ({
     payload: status,
   }),
 );
 
 export const setFilmsGetStatusAction = createAction(
   ActionType.SetFilmsGetStatus,
-  (status) => ({
+  (status: FetchStatus) => ({
     payload: status,
   }),
 );
 
 export const setFilmGetStatusAction = createAction(
   ActionType.SetFilmGetStatus,
-  (status) => ({
+  (status: FetchStatus) => ({
     payload: status,
   }),
 );
 
 export const setCommentsGetStatusAction = createAction(
   ActionType.SetCommentsGetStatus,
-  (status) => ({
+  (status: FetchStatus) => ({
     payload: status,
   }),
 );
 
 export const setFavoritesGetStatusAction = createAction(
   ActionType.SetFavoritesGetStatus,
-  (status) => ({
+  (status: FetchStatus) => ({
     payload: status,
   }),
 );

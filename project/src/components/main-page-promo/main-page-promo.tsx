@@ -1,14 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getPromoData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
+import { postPromoIsFavoriteAction } from '../../store/api-actions';
 
 function MainPagePromo(): JSX.Element {
+  const dispatch = useDispatch();
   const promoData = useSelector(getPromoData);
-  const { name, posterImage, backgroundImage, released, genre, isFavorite } = promoData;
-  const myListIcon = isFavorite
-    ? '#in-list'
-    : '#add';
+  const { id, name, posterImage, backgroundImage, released, genre, isFavorite } = promoData;
+  const myListIcon = isFavorite ? '#in-list' : '#add';
+
+  const isFavoritePostNumber = isFavorite ? 0 : 1;
+
+  const handleMyListClick = (): void => {
+    dispatch(postPromoIsFavoriteAction(id, isFavoritePostNumber));
+  };
 
   return (
     <section className="film-card">
@@ -46,8 +52,11 @@ function MainPagePromo(): JSX.Element {
                 <span>Play</span>
               </button>
 
-              {/*{//todo: Добавление в избранное по клику}*/}
-              <button className="btn btn--list film-card__button" type="button">
+              <button
+                onClick={ handleMyListClick }
+                className="btn btn--list film-card__button"
+                type="button"
+              >
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref={ myListIcon } />
                 </svg>

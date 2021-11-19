@@ -26,7 +26,7 @@ export const getPromoData = (state: RootStateTypes): PromoStateTypes => (
   state[NameSpace.Promo]
 );
 
-export const getActiveTabName = (state: RootStateTypes): TabName => (
+export const getActiveTabName = (state: RootStateTypes): string => (
   state[NameSpace.Film].activeTabName
 );
 
@@ -40,6 +40,10 @@ export const getCurrentFilmReviews = (state: RootStateTypes): ReviewTypes[] => (
 
 export const getSimilarFilms = (state: RootStateTypes): FilmDataTypesFront[] => (
   state[NameSpace.Film].similarFilms
+);
+
+export const getFavoriteFilms = (state: RootStateTypes): FilmDataTypesFront[] => (
+  state[NameSpace.Favorites].favoriteFilms
 );
 
 export const getPostStatus = (state: RootStateTypes): FetchStatus => (
