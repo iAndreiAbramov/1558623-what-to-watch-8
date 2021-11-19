@@ -18,12 +18,12 @@ export type StatusStateTypes = {
 }
 
 const initialState: StatusStateTypes = {
-  postStatus: FetchStatus.Undefined,
-  promoGetStatus: FetchStatus.Undefined,
-  filmsGetStatus: FetchStatus.Undefined,
-  filmGetStatus: FetchStatus.Undefined,
-  commentsGetStatus: FetchStatus.Undefined,
-  favoritesGetStatus: FetchStatus.Undefined,
+  postStatus: FetchStatus.Success,
+  promoGetStatus: FetchStatus.Success,
+  filmsGetStatus: FetchStatus.Success,
+  filmGetStatus: FetchStatus.Success,
+  commentsGetStatus: FetchStatus.Success,
+  favoritesGetStatus: FetchStatus.Success,
 }
 
 export const statusReducer = createReducer(initialState, (builder) => {

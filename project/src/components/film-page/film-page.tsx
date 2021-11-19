@@ -48,7 +48,6 @@ function FilmPage(): JSX.Element {
         &&
         <SpinnerBig />
       }
-
       {
         filmGetStatus === FetchStatus.Success
         &&

@@ -38,7 +38,6 @@ export enum AuthorizationStatus {
 }
 
 export enum FetchStatus {
-  Undefined = 'UNDEFINED',
   InProgress = 'IN_PROGRESS',
   Success = 'SUCCESS',
   Error = 'Error',

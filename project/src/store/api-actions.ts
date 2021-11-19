@@ -3,13 +3,13 @@ import { APIRoute, AppRoute, AuthorizationStatus, FetchStatus, HttpResponseStatu
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
 import {
-  setAuthStatusAction,
+  setAuthStatusAction, setCommentsGetStatusAction,
   setCurrentFilmDataAction,
   setCurrentUserAction,
   setFavoriteFilmsAction,
   setFavoritesGetStatusAction, setFilmGetStatusAction,
-  setFilmsDataAction,
-  setPostStatusAction,
+  setFilmsDataAction, setFilmsGetStatusAction,
+  setPostStatusAction, setPromoGetStatusAction,
   setPromoIsFavoriteAction,
   setPromoMovieAction,
   setReviewsAction,
@@ -22,10 +22,13 @@ import { UserAuthorizationTypes } from '../types/user-data-types';
 
 export const getPromoAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
+    dispatch(setPromoGetStatusAction(FetchStatus.InProgress));
     await api.get(APIRoute.Promo)
       .then(({ data }: { data: FilmDataTypesBack }) => {
         dispatch(setPromoMovieAction(adaptFilmDataToFront(data)));
+        dispatch(setPromoGetStatusAction(FetchStatus.Success));
       });
+    //todo: добавить обработку ошибки
   }
 );
 
@@ -45,7 +48,7 @@ export const postPromoIsFavoriteAction = (id: string, status: number): ThunkActi
         //todo: Уведомление об ошибке и редирект на страницу авторизации
       })
       .finally(() => {
-        dispatch(setPostStatusAction(FetchStatus.Undefined));
+        dispatch(setPostStatusAction(FetchStatus.Success));
       });
   }
 );
@@ -66,16 +69,18 @@ export const postFilmIsFavoriteAction = (id: string, status: number): ThunkActio
         //todo: Уведомление об ошибке и редирект на страницу авторизации
       })
       .finally(() => {
-        dispatch(setPostStatusAction(FetchStatus.Undefined));
+        dispatch(setPostStatusAction(FetchStatus.Success));
       });
   }
 );
 
 export const getFilmsAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
+    dispatch(setFilmsGetStatusAction(FetchStatus.InProgress));
     await api.get(APIRoute.Films)
       .then(({ data }) => {
         dispatch(setFilmsDataAction(adaptFilmsDataToFront(data)));
+        dispatch(setFilmsGetStatusAction(FetchStatus.Success));
       });
     //todo: добавить обработку ошибки
   }
@@ -95,9 +100,11 @@ export const getCurrentFilmDataAction = (id: string): ThunkActionResult => (
 
 export const getCurrentFilmReviewsAction = (id: string): ThunkActionResult => (
   async (dispatch, _getState, api) => {
+    dispatch(setCommentsGetStatusAction(FetchStatus.InProgress));
     await api.get(`${ APIRoute.Comments }/${ id }`)
       .then(({ data }) => {
         dispatch(setReviewsAction(data));
+        dispatch(setCommentsGetStatusAction(FetchStatus.Success));
       });
     // todo: Добавить обработку ошибки
   }
@@ -115,7 +122,7 @@ export const postReviewAction = (review: ReviewPostTypes): ThunkActionResult => 
         dispatch(setPostStatusAction(FetchStatus.Error));
       })
       .finally(() => {
-        dispatch(setPostStatusAction(FetchStatus.Undefined));
+        dispatch(setPostStatusAction(FetchStatus.Success));
       });
   }
 );
@@ -142,7 +149,7 @@ export const getFavoritesAction = (): ThunkActionResult => (
         dispatch(setFavoritesGetStatusAction(FetchStatus.Error));
       })
       .finally(() => {
-        dispatch(setFavoritesGetStatusAction(FetchStatus.Undefined));
+        dispatch(setFavoritesGetStatusAction(FetchStatus.Success));
       });
   }
 );

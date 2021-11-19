@@ -1,10 +1,10 @@
 import React from 'react';
-import './spinner-big.css';
+import './spinner-small.css';
 
-function SpinnerBig() {
+function SpinnerSmall() {
   return (
-    <div className="overlay-big">
-      <div className="spinner-big-wrapper">
+    <div className="overlay-small">
+      <div className="spinner-small-wrapper">
         <img
           width="200"
           height="200"
@@ -16,4 +16,4 @@ function SpinnerBig() {
   );
 }
 
-export default SpinnerBig;
+export default SpinnerSmall;
