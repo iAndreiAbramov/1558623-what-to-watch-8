@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { FetchStatus } from '../../const';
 import {
+  setCommentPostStatusAction,
   setCommentsGetStatusAction, setFavoritesGetStatusAction,
   setFilmGetStatusAction,
   setFilmsGetStatusAction,
@@ -10,6 +11,7 @@ import {
 
 export type StatusStateTypes = {
   postStatus: FetchStatus,
+  commentPostStatus: FetchStatus,
   promoGetStatus: FetchStatus,
   filmsGetStatus: FetchStatus,
   filmGetStatus: FetchStatus,
@@ -19,6 +21,7 @@ export type StatusStateTypes = {
 
 const initialState: StatusStateTypes = {
   postStatus: FetchStatus.Success,
+  commentPostStatus: FetchStatus.Undefined,
   promoGetStatus: FetchStatus.Success,
   filmsGetStatus: FetchStatus.Success,
   filmGetStatus: FetchStatus.Success,
@@ -30,6 +33,9 @@ export const statusReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(setPostStatusAction, (state, action) => {
       state.postStatus = action.payload;
+    })
+    .addCase(setCommentPostStatusAction, (state, action) => {
+      state.commentPostStatus = action.payload;
     })
     .addCase(setPromoGetStatusAction, (state, action) => {
       state.promoGetStatus = action.payload;

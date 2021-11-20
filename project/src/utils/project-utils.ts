@@ -1,5 +1,7 @@
-import { ALL_GENRES_TAB_NAME, MAX_GENRES_NUMBER, MONTHS, Rating } from '../const';
+import { ALL_GENRES_TAB_NAME, MAX_GENRES_NUMBER, MONTHS, NotificationMessage, Rating } from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
+import { ReactText } from 'react';
+import { toast } from 'react-toastify';
 
 const MINUTES_IN_HOUR = 60;
 
@@ -50,3 +52,33 @@ export const formatDateForComment = (date: string): string => {
 
   return `${ month } ${ day }, ${ year }`;
 }
+
+export const notifySuccess = (message: NotificationMessage): ReactText => toast.success(message, {
+  position: 'top-right',
+  autoClose: 2000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+});
+
+export const notifyError = (message: NotificationMessage): ReactText => toast.error(message, {
+  position: 'top-right',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+});
+
+export const notifyInfo = (message: NotificationMessage): ReactText => toast.info(message, {
+  position: 'top-right',
+  autoClose: 2000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+});

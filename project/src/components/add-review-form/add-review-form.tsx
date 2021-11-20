@@ -1,8 +1,8 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import { INITIAL_RATING, FetchStatus, REVIEW_MAX_LENGTH, REVIEW_MIN_LENGTH, StarRating } from '../../const';
+import { FetchStatus, INITIAL_RATING, REVIEW_MAX_LENGTH, REVIEW_MIN_LENGTH, StarRating } from '../../const';
 import { useDispatch, useSelector } from 'react-redux';
 import { postReviewAction } from '../../store/api-actions';
-import { getPostStatus } from '../../store/selectors';
+import { getCommentPostStatus } from '../../store/selectors';
 
 type AddReviewFormTypes = {
   id: string,
@@ -11,7 +11,7 @@ type AddReviewFormTypes = {
 
 function AddReviewForm(props: AddReviewFormTypes) {
   const dispatch = useDispatch();
-  const postStatus = useSelector(getPostStatus);
+  const postStatus = useSelector(getCommentPostStatus);
   const { id, backgroundColor } = props;
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const [isInputDisabled, setIsInputDisabled] = useState(false);

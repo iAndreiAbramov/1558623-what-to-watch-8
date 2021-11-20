@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import App from './components/app/app';
 import { AuthorizationStatus } from './const';
 import { checkAuthStatusAction, getFilmsAction, getPromoAction } from './store/api-actions';
@@ -17,7 +19,7 @@ export const api = createApi(() => (
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware ({
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     thunk: {
       extraArgument: api,
     },
@@ -32,6 +34,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={ store }>
       <BrowserRouter>
+        <ToastContainer />
         <App />
       </BrowserRouter>
     </Provider>

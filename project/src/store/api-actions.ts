@@ -1,15 +1,26 @@
 import { adaptFilmDataToFront, adaptFilmsDataToFront, adaptUserDataToFront } from '../utils/adapters';
-import { APIRoute, AppRoute, AuthorizationStatus, FetchStatus, HttpResponseStatus } from '../const';
+import {
+  APIRoute,
+  AppRoute,
+  AuthorizationStatus,
+  FetchStatus,
+  HttpResponseStatus,
+  NotificationMessage
+} from '../const';
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
 import {
-  setAuthStatusAction, setCommentsGetStatusAction,
+  setAuthStatusAction,
+  setCommentsGetStatusAction,
   setCurrentFilmDataAction,
   setCurrentUserAction,
   setFavoriteFilmsAction,
-  setFavoritesGetStatusAction, setFilmGetStatusAction,
-  setFilmsDataAction, setFilmsGetStatusAction,
-  setPostStatusAction, setPromoGetStatusAction,
+  setFavoritesGetStatusAction,
+  setFilmGetStatusAction,
+  setFilmsDataAction,
+  setFilmsGetStatusAction,
+  setPostStatusAction,
+  setPromoGetStatusAction,
   setPromoIsFavoriteAction,
   setPromoMovieAction,
   setReviewsAction,
@@ -19,6 +30,7 @@ import { FilmDataTypesBack } from '../types/film-data-types';
 import { ReviewPostTypes } from '../types/review-types';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
+import { notifyError } from '../utils/project-utils';
 
 export const getPromoAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
@@ -179,8 +191,10 @@ export const requireLoginAction = (loginData: UserAuthorizationTypes): ThunkActi
         dispatch(setCurrentUserAction(adaptedData));
         window.history.replaceState(null, '', AppRoute.Main);
         window.history.back();
+      })
+      .catch(() => {
+        notifyError(NotificationMessage.AuthError);
       });
-    //todo: Добавить обработку ошибки
   }
 );
 

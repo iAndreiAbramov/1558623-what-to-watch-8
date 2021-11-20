@@ -1,19 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppRoute } from '../../const';
-import { getCurrentFilmData } from '../../store/selectors';
+import { AppRoute, AuthorizationStatus, FetchStatus } from '../../const';
+import { getAuthStatus, getCurrentFilmData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
 import { postFilmIsFavoriteAction } from '../../store/api-actions';
+import { setCommentPostStatusAction } from '../../store/action-creators';
 
 function FilmPageTop(): JSX.Element {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { backgroundImage, name, genre, released, id, isFavorite } = useSelector(getCurrentFilmData);
+  const authorization = useSelector(getAuthStatus);
   const myListIcon = isFavorite ? '#in-list' : '#add';
   const isFavoritePostNumber = isFavorite ? 0 : 1;
 
   const handleMyListClick = (): void => {
+    if (authorization !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    }
     dispatch(postFilmIsFavoriteAction(id, isFavoritePostNumber));
+  };
+
+  const handleAddReviewClick = (): void => {
+    dispatch(setCommentPostStatusAction(FetchStatus.Undefined));
   };
 
   return (
@@ -54,6 +64,7 @@ function FilmPageTop(): JSX.Element {
             </button>
 
             <Link
+              onClick={ handleAddReviewClick }
               to={ `${ AppRoute.Film }/${ id }/review` }
               className="btn film-card__button"
             >

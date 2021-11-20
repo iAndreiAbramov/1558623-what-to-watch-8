@@ -38,6 +38,7 @@ export enum AuthorizationStatus {
 }
 
 export enum FetchStatus {
+  Undefined = 'UNDEFINED',
   InProgress = 'IN_PROGRESS',
   Success = 'SUCCESS',
   Error = 'Error',
@@ -117,3 +118,24 @@ export enum StarRating {
 export const REVIEW_MIN_LENGTH = 50;
 export const REVIEW_MAX_LENGTH = 400;
 export const INITIAL_RATING = 8;
+
+export enum NotificationMessage {
+  PostSuccess = 'Your comment successfully posted!',
+  PostError = 'Sorry, your comment wasn\'t posted!',
+  AuthError = 'Authorization failed. Please enter correct email and password.',
+  ConnectionError = 'Sorry, action can\'t be performed. Please check your network connection.',
+  Unauthorized = 'Please sign in to perform this action.',
+  SignIn = 'Sign in to get more functions',
+}
+
+export enum LoginPageMessage {
+  Email = 'Please enter a valid email address',
+  Password = 'Password should contain one letter and one digit',
+  Initial = 'Please enter your email and password',
+  Valid = 'Email and password are valid',
+}
+
+export enum Outline {
+  Valid = 'none',
+  InValid = '3px solid #a8421e',
+}

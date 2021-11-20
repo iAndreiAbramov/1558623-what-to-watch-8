@@ -46,8 +46,13 @@ export const getFavoriteFilms = (state: RootStateTypes): FilmDataTypesFront[] =>
   state[NameSpace.Favorites].favoriteFilms
 );
 
+//todo: Нужен ли этот селектор
 export const getPostStatus = (state: RootStateTypes): FetchStatus => (
   state[NameSpace.Status].postStatus
+);
+
+export const getCommentPostStatus = (state: RootStateTypes): FetchStatus => (
+  state[NameSpace.Status].commentPostStatus
 );
 
 export const getPromoGetStatus = (state: RootStateTypes): FetchStatus =>(

@@ -1,18 +1,25 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPromoData } from '../../store/selectors';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { getAuthStatus, getPromoData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
 import { postPromoIsFavoriteAction } from '../../store/api-actions';
 
 function MainPagePromo(): JSX.Element {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const promoData = useSelector(getPromoData);
+  const authorization = useSelector(getAuthStatus);
   const { id, name, posterImage, backgroundImage, released, genre, isFavorite } = promoData;
   const myListIcon = isFavorite ? '#in-list' : '#add';
 
   const isFavoritePostNumber = isFavorite ? 0 : 1;
 
-  const handleMyListClick = (): void => {
+  const handleMyListClick = () => {
+    if (authorization !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    }
     dispatch(postPromoIsFavoriteAction(id, isFavoritePostNumber));
   };
 
