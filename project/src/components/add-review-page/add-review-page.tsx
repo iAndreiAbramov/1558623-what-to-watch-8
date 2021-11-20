@@ -6,12 +6,15 @@ import PageHeader from '../page-header/page-header';
 import AddReviewForm from '../add-review-form/add-review-form';
 
 function AddReviewPage(): JSX.Element {
-  const { id, name, backgroundImage, posterImage } = useSelector(getCurrentFilmData);
+  const { id, name, backgroundImage, posterImage, backgroundColor } = useSelector(getCurrentFilmData);
   return (
     <>
       <HiddenComponent />
 
-      <section className="film-card film-card--full">
+      <section
+        style={ { backgroundColor: backgroundColor } }
+        className="film-card film-card--full"
+      >
         <div className="film-card__header">
           <div className="film-card__bg">
             <img src={ backgroundImage } alt={ name } />
@@ -33,6 +36,7 @@ function AddReviewPage(): JSX.Element {
 
         <AddReviewForm
           id={ id }
+          backgroundColor={ backgroundColor }
         />
       </section>
     </>

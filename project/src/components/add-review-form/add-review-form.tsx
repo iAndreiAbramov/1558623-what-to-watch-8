@@ -4,10 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postReviewAction } from '../../store/api-actions';
 import { getPostStatus } from '../../store/selectors';
 
-function AddReviewForm(props: { id: string }) {
+type AddReviewFormTypes = {
+  id: string,
+  backgroundColor: string,
+}
+
+function AddReviewForm(props: AddReviewFormTypes) {
   const dispatch = useDispatch();
   const postStatus = useSelector(getPostStatus);
-  const { id } = props;
+  const { id, backgroundColor } = props;
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
   const [isInputDisabled, setIsInputDisabled] = useState(false);
   const [comment, setComment] = useState('');
@@ -185,6 +190,7 @@ function AddReviewForm(props: { id: string }) {
 
         <div className="add-review__text">
               <textarea
+                style={ { backgroundColor: backgroundColor, filter: 'brightness(1.3)' } }
                 value={ comment }
                 onChange={ handleReviewInput }
                 disabled={ isInputDisabled }
@@ -193,8 +199,12 @@ function AddReviewForm(props: { id: string }) {
                 id="review-text"
                 placeholder="Review text"
               />
-          <div className="add-review__submit">
+          <div
+            style={ { backgroundColor: backgroundColor, filter: 'brightness(1.3)' } }
+            className="add-review__submit"
+          >
             <button
+              style={ { color: backgroundColor, filter: 'brightness(0.3)' } }
               className="add-review__btn"
               type="submit"
               disabled={ isSubmitDisabled }
