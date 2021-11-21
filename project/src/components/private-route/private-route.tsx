@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { getAuthStatus } from '../../store/selectors';
@@ -9,11 +9,10 @@ type PrivateRouteTypes = {
 };
 
 function PrivateRoute({ children }: PrivateRouteTypes): JSX.Element {
-  const location = useLocation();
   const authorization = useSelector(getAuthStatus);
 
   if (authorization !== AuthorizationStatus.Auth) {
-    return <Navigate to={ AppRoute.Login } state={ { from: location } } />;
+    return <Navigate to={ AppRoute.Login } />;
   }
 
   return children;

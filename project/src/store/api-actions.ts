@@ -25,7 +25,6 @@ import { ReviewPostTypes } from '../types/review-types';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
 import { notifyError, notifyInfo, notifySuccess } from '../utils/project-utils';
-import browserHistory from '../services/browser-history';
 
 export const getPromoAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
@@ -186,8 +185,7 @@ export const requireLoginAction = (loginData: UserAuthorizationTypes): ThunkActi
         setAvatar(adaptedData.avatarUrl);
         dispatch(setAuthStatusAction(AuthorizationStatus.Auth));
         dispatch(setCurrentUserAction(adaptedData));
-        // window.history.replaceState(null, '', AppRoute.Main);
-        window.history.forward();
+        window.location.assign(AppRoute.Main);
       })
       .catch(() => {
         notifyError(NotificationMessage.AuthError);

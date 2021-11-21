@@ -5,12 +5,13 @@ import PageFooter from '../page-footer/page-footer';
 import PageHeaderLogin from '../page-header-login/page-header-login';
 import { useSelector } from 'react-redux';
 import { getAuthStatus } from '../../store/selectors';
-import { AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { Navigate } from 'react-router-dom';
 
 function LoginPage(): JSX.Element {
   const authorization = useSelector(getAuthStatus);
   if (authorization === AuthorizationStatus.Auth) {
-    window.history.back();
+    return <Navigate to={ AppRoute.Main } />;
   }
 
   return (
