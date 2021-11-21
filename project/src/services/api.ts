@@ -19,6 +19,9 @@ export const createApi = (onUnauthorized: () => void): AxiosInstance => {
       }
       return request;
     },
+    (error) => {
+      return Promise.reject(error);
+    },
   );
 
   api.interceptors.response.use(

@@ -113,8 +113,10 @@ export const getCurrentFilmReviewsAction = (id: string): ThunkActionResult => (
       .then(({ data }) => {
         dispatch(setReviewsAction(data));
         dispatch(setCommentsGetStatusAction(FetchStatus.Success));
+      })
+      .catch(() => {
+        dispatch(setCommentsGetStatusAction(FetchStatus.Error));
       });
-    // todo: Добавить обработку ошибки
   }
 );
 

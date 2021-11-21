@@ -20,7 +20,7 @@ function FilmPageTab(props: { name: string }): JSX.Element {
   const handleTabClick = () => {
     dispatch(setActiveTabAction(name));
     if (name === TabName.Reviews) {
-      dispatch(getCurrentFilmReviewsAction(id))
+      dispatch(getCurrentFilmReviewsAction(id));
     }
   }
 
