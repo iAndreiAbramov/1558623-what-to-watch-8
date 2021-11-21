@@ -1,8 +1,8 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import { FetchStatus, INITIAL_RATING, REVIEW_MAX_LENGTH, REVIEW_MIN_LENGTH, StarRating } from '../../const';
 import { useDispatch, useSelector } from 'react-redux';
-import { postReviewAction } from '../../store/api-actions';
+import { FetchStatus, INITIAL_RATING, REVIEW_MAX_LENGTH, REVIEW_MIN_LENGTH, StarRating } from '../../const';
 import { getCommentPostStatus } from '../../store/selectors';
+import { postReviewAction } from '../../store/api-actions';
 
 type AddReviewFormTypes = {
   id: string,
@@ -19,21 +19,18 @@ function AddReviewForm(props: AddReviewFormTypes) {
   const [rating, setRating] = useState(INITIAL_RATING);
 
   useEffect(() => {
-    if (postStatus === FetchStatus.InProgress) {
-      setIsSubmitDisabled(true);
-      setIsInputDisabled(true);
-    }
     if (postStatus === FetchStatus.Error) {
       setIsSubmitDisabled(false);
       setIsInputDisabled(false);
     }
     if (postStatus === FetchStatus.Success) {
+      console.log('success');
       setIsSubmitDisabled(false);
       setIsInputDisabled(false);
       setComment('');
       setRating(INITIAL_RATING);
     }
-  }, [postStatus]);
+  });
 
   const handleReviewInput = (evt: FormEvent<HTMLTextAreaElement>) => {
     setComment(evt.currentTarget.value);
@@ -55,6 +52,8 @@ function AddReviewForm(props: AddReviewFormTypes) {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    setIsSubmitDisabled(true);
+    setIsInputDisabled(true);
     dispatch(postReviewAction({ id, comment, rating }));
   }
 

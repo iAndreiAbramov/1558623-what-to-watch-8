@@ -1,16 +1,10 @@
 import { adaptFilmDataToFront, adaptFilmsDataToFront, adaptUserDataToFront } from '../utils/adapters';
-import {
-  APIRoute,
-  AppRoute,
-  AuthorizationStatus,
-  FetchStatus,
-  HttpResponseStatus,
-  NotificationMessage
-} from '../const';
+import { APIRoute, AppRoute, AuthorizationStatus, FetchStatus, NotificationMessage } from '../const';
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
 import {
   setAuthStatusAction,
+  setCommentPostStatusAction,
   setCommentsGetStatusAction,
   setCurrentFilmDataAction,
   setCurrentUserAction,
@@ -30,7 +24,8 @@ import { FilmDataTypesBack } from '../types/film-data-types';
 import { ReviewPostTypes } from '../types/review-types';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
-import { notifyError } from '../utils/project-utils';
+import { notifyError, notifyInfo, notifySuccess } from '../utils/project-utils';
+import browserHistory from '../services/browser-history';
 
 export const getPromoAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
@@ -57,7 +52,6 @@ export const postPromoIsFavoriteAction = (id: string, status: number): ThunkActi
       })
       .catch(() => {
         dispatch(setPostStatusAction(FetchStatus.Error));
-        //todo: Уведомление об ошибке и редирект на страницу авторизации
       })
       .finally(() => {
         dispatch(setPostStatusAction(FetchStatus.Success));
@@ -72,13 +66,13 @@ export const postFilmIsFavoriteAction = (id: string, status: number): ThunkActio
       .then(({ data }) => {
         dispatch(setCurrentFilmDataAction(adaptFilmDataToFront(data)));
         dispatch(setPostStatusAction(FetchStatus.Success));
+        notifyError(NotificationMessage.Unauthorized);
       })
       .then(() => {
         dispatch(getFavoritesAction());
       })
       .catch(() => {
         dispatch(setPostStatusAction(FetchStatus.Error));
-        //todo: Уведомление об ошибке и редирект на страницу авторизации
       })
       .finally(() => {
         dispatch(setPostStatusAction(FetchStatus.Success));
@@ -105,8 +99,11 @@ export const getCurrentFilmDataAction = (id: string): ThunkActionResult => (
       .then(({ data }) => {
         dispatch(setCurrentFilmDataAction(adaptFilmDataToFront(data)));
         dispatch(setFilmGetStatusAction(FetchStatus.Success));
+      })
+      .catch(() => {
+        dispatch(setFilmGetStatusAction(FetchStatus.Error));
+        notifyError(NotificationMessage.ConnectionError);
       });
-    // todo: Добавить обработку ошибки
   }
 );
 
@@ -124,17 +121,18 @@ export const getCurrentFilmReviewsAction = (id: string): ThunkActionResult => (
 
 export const postReviewAction = (review: ReviewPostTypes): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
-    dispatch(setPostStatusAction(FetchStatus.InProgress));
     const { id, rating, comment } = review;
     await api.post(`${ APIRoute.Comments }/${ id }`, { rating, comment })
       .then(() => {
-        dispatch(setPostStatusAction(FetchStatus.Success));
+        dispatch(setCommentPostStatusAction(FetchStatus.Success));
+        notifySuccess(NotificationMessage.PostSuccess);
       })
       .catch(() => {
-        dispatch(setPostStatusAction(FetchStatus.Error));
+        dispatch(setCommentPostStatusAction(FetchStatus.Error));
+        notifyError(NotificationMessage.PostError);
       })
       .finally(() => {
-        dispatch(setPostStatusAction(FetchStatus.Success));
+        dispatch(setCommentPostStatusAction(FetchStatus.Undefined));
       });
   }
 );
@@ -169,13 +167,12 @@ export const getFavoritesAction = (): ThunkActionResult => (
 export const checkAuthStatusAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
     await api.get(APIRoute.Login)
-      .then((response) => {
-        response
-        && response.status !== HttpResponseStatus.UnAuthorized
-        && dispatch(setAuthStatusAction(AuthorizationStatus.Auth));
+      .then(() => {
+        dispatch(setAuthStatusAction(AuthorizationStatus.Auth));
       })
       .catch(() => {
         dispatch(setAuthStatusAction(AuthorizationStatus.NoAuth));
+        notifyInfo(NotificationMessage.SignIn);
       });
   }
 );
@@ -189,8 +186,8 @@ export const requireLoginAction = (loginData: UserAuthorizationTypes): ThunkActi
         setAvatar(adaptedData.avatarUrl);
         dispatch(setAuthStatusAction(AuthorizationStatus.Auth));
         dispatch(setCurrentUserAction(adaptedData));
-        window.history.replaceState(null, '', AppRoute.Main);
-        window.history.back();
+        // window.history.replaceState(null, '', AppRoute.Main);
+        window.history.forward();
       })
       .catch(() => {
         notifyError(NotificationMessage.AuthError);

@@ -41,7 +41,7 @@ function LoginPageForm() {
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
-    dispatch(requireLoginAction({ email, password }));
+    dispatch(requireLoginAction({ email, password }))
   };
 
   useEffect(() => {

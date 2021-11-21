@@ -1,10 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, NotificationMessage } from '../../const';
 import { getAuthStatus, getPromoData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
 import { postPromoIsFavoriteAction } from '../../store/api-actions';
+import { notifyError } from '../../utils/project-utils';
 
 function MainPagePromo(): JSX.Element {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function MainPagePromo(): JSX.Element {
 
   const handleMyListClick = () => {
     if (authorization !== AuthorizationStatus.Auth) {
+      notifyError(NotificationMessage.Unauthorized);
       navigate(AppRoute.Login);
     }
     dispatch(postPromoIsFavoriteAction(id, isFavoritePostNumber));

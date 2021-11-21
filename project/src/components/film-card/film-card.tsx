@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppRoute, TabName } from '../../const';
 import { FilmCardTypes } from '../../types/film-data-types';
-import { getCurrentFilmDataAction, getSimilarFilmsAction } from '../../store/api-actions';
 import { setActiveTabAction } from '../../store/action-creators';
 
 function FilmCard(props: FilmCardTypes): JSX.Element {
@@ -11,9 +10,7 @@ function FilmCard(props: FilmCardTypes): JSX.Element {
   const { name, posterImage, id } = props;
 
   const handleLinkClick = () => {
-    dispatch(getCurrentFilmDataAction(id));
     dispatch(setActiveTabAction(TabName.Overview));
-    dispatch(getSimilarFilmsAction(id));
   };
 
   return (

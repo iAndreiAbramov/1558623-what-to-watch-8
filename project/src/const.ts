@@ -129,7 +129,7 @@ export enum NotificationMessage {
 }
 
 export enum LoginPageMessage {
-  Email = 'Please enter a valid email address',
+  Email = 'Please enter valid email address',
   Password = 'Password should contain one letter and one digit',
   Initial = 'Please enter your email and password',
   Valid = 'Email and password are valid',

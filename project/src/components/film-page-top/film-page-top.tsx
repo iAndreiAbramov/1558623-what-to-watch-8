@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppRoute, AuthorizationStatus, FetchStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, FetchStatus, NotificationMessage } from '../../const';
 import { getAuthStatus, getCurrentFilmData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
 import { postFilmIsFavoriteAction } from '../../store/api-actions';
 import { setCommentPostStatusAction } from '../../store/action-creators';
+import { notifyError } from '../../utils/project-utils';
 
 function FilmPageTop(): JSX.Element {
   const dispatch = useDispatch();
@@ -17,12 +18,16 @@ function FilmPageTop(): JSX.Element {
 
   const handleMyListClick = (): void => {
     if (authorization !== AuthorizationStatus.Auth) {
+      notifyError(NotificationMessage.Unauthorized);
       navigate(AppRoute.Login);
     }
     dispatch(postFilmIsFavoriteAction(id, isFavoritePostNumber));
   };
 
   const handleAddReviewClick = (): void => {
+    if (authorization !== AuthorizationStatus.Auth) {
+      notifyError(NotificationMessage.Unauthorized);
+    }
     dispatch(setCommentPostStatusAction(FetchStatus.Undefined));
   };
 

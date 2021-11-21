@@ -36,5 +36,5 @@ export const filmReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSimilarFilmsAction, (state, action) => {
       state.similarFilms = action.payload;
-    })
+    });
 });
