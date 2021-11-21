@@ -7,6 +7,7 @@ import HiddenComponent from '../hidden-component/hidden-component';
 import PageFooter from '../page-footer/page-footer';
 import PageHeader from '../page-header/page-header';
 import SpinnerSmall from '../spinner-small/spinner-small';
+import ErrorMessageSmall from '../error-message-small/error-message-small';
 
 function MyListPage(): JSX.Element {
   const favoritesList = useSelector(getFavoriteFilms);
@@ -30,6 +31,11 @@ function MyListPage(): JSX.Element {
             favoritesGetStatus === FetchStatus.Success
             &&
             <FilmsList filmsList={ favoritesList } />
+          }
+          {
+            favoritesGetStatus === FetchStatus.Error
+            &&
+            <ErrorMessageSmall />
           }
 
         </section>

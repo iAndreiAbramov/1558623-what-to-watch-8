@@ -3,6 +3,8 @@ import { setPromoIsFavoriteAction, setPromoMovieAction } from '../action-creator
 
 export type PromoStateTypes = {
   id: string,
+  videoLink: string,
+  runTime: number,
   name: string,
   posterImage: string,
   backgroundImage: string,
@@ -13,6 +15,8 @@ export type PromoStateTypes = {
 
 const initialState: PromoStateTypes = {
   id: '',
+  videoLink: '',
+  runTime: 0,
   name: '',
   posterImage: '',
   backgroundImage: '',
@@ -24,8 +28,10 @@ const initialState: PromoStateTypes = {
 export const promoReducer = createReducer(initialState, ((builder) => {
   builder
     .addCase(setPromoMovieAction, (state, action) => {
-      const { id, name, posterImage, backgroundImage, released, genre, isFavorite } = action.payload;
+      const { id, videoLink, runTime, name, posterImage, backgroundImage, released, genre, isFavorite } = action.payload;
       state.id = id;
+      state.videoLink = videoLink;
+      state.runTime = runTime;
       state.name = name;
       state.posterImage = posterImage;
       state.backgroundImage = backgroundImage;

@@ -7,18 +7,18 @@ import PageHeader from '../page-header/page-header';
 import { postFilmIsFavoriteAction } from '../../store/api-actions';
 import { setCommentPostStatusAction } from '../../store/action-creators';
 import { notifyError } from '../../utils/project-utils';
+import PlayButton from '../play-button/play-button';
 
 function FilmPageTop(): JSX.Element {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { backgroundImage, name, genre, released, id, isFavorite } = useSelector(getCurrentFilmData);
+  const { id, posterImage, videoLink, runTime, backgroundImage, name, genre, released, isFavorite } = useSelector(getCurrentFilmData);
   const authorization = useSelector(getAuthStatus);
   const myListIcon = isFavorite ? '#in-list' : '#add';
   const isFavoritePostNumber = isFavorite ? 0 : 1;
 
   const handleMyListClick = (): void => {
     if (authorization !== AuthorizationStatus.Auth) {
-      notifyError(NotificationMessage.Unauthorized);
       navigate(AppRoute.Login);
     }
     dispatch(postFilmIsFavoriteAction(id, isFavoritePostNumber));
@@ -50,12 +50,12 @@ function FilmPageTop(): JSX.Element {
           </p>
 
           <div className="film-card__buttons">
-            <button className="btn btn--play film-card__button" type="button">
-              <svg viewBox="0 0 19 19" width="19" height="19">
-                <use xlinkHref="#play-s" />
-              </svg>
-              <span>Play</span>
-            </button>
+            <PlayButton
+              id={ id }
+              posterImage={ posterImage }
+              videoLink={ videoLink }
+              runTime={ runTime }
+            />
 
             <button
               onClick={ handleMyListClick }

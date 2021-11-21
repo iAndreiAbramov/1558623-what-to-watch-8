@@ -3,7 +3,6 @@ export enum AppRoute {
   Login = '/login',
   MyList = '/mylist',
   Film = '/films',
-  AddReview = '/films/:id/review',
   Player = '/player/:id',
   NotFound = '*',
 }
@@ -19,7 +18,6 @@ export enum APIRoute {
 
 export enum HttpResponseStatus {
   UnAuthorized = 401,
-  Ok = 200,
 }
 
 export enum NameSpace {
@@ -29,6 +27,7 @@ export enum NameSpace {
   Film = 'FILM',
   Status = 'STATUS',
   Favorites = 'FAVORITES',
+  Player='PLAYER',
 }
 
 export enum AuthorizationStatus {

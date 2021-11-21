@@ -5,6 +5,8 @@ import { RootStateTypes } from './reducers/root-reducer';
 import { UserDataTypesFront } from '../types/user-data-types';
 import { ReviewTypes } from '../types/review-types';
 import { setPromoGetStatusAction } from './action-creators';
+import { PlayerStateTypes } from './reducers/player-reducer';
+import { PlayerDataTypes } from '../types/player-data-types';
 
 export const getAuthStatus = (state: RootStateTypes): AuthorizationStatus => (
   state[NameSpace.User].authorization
@@ -46,11 +48,6 @@ export const getFavoriteFilms = (state: RootStateTypes): FilmDataTypesFront[] =>
   state[NameSpace.Favorites].favoriteFilms
 );
 
-//todo: Нужен ли этот селектор
-export const getPostStatus = (state: RootStateTypes): FetchStatus => (
-  state[NameSpace.Status].postStatus
-);
-
 export const getCommentPostStatus = (state: RootStateTypes): FetchStatus => (
   state[NameSpace.Status].commentPostStatus
 );
@@ -67,10 +64,18 @@ export const getFilmGetStatus = (state: RootStateTypes): FetchStatus =>(
   state[NameSpace.Status].filmGetStatus
 );
 
+export const getSimilarGetStatus = (state: RootStateTypes): FetchStatus =>(
+  state[NameSpace.Status].similarGetStatus
+);
+
 export const getCommentsGetStatus = (state: RootStateTypes): FetchStatus =>(
   state[NameSpace.Status].commentsGetStatus
 );
 
 export const getFavoritesGetStatus = (state: RootStateTypes): FetchStatus =>(
   state[NameSpace.Status].favoritesGetStatus
+);
+
+export const getPlayerData= (state: RootStateTypes): PlayerDataTypes =>(
+  state[NameSpace.Player].playerData
 );

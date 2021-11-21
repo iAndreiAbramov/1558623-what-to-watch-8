@@ -3,6 +3,7 @@ import { AuthorizationStatus, FetchStatus, TabName } from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
 import { ReviewTypes } from '../types/review-types';
 import { UserDataTypesFront } from '../types/user-data-types';
+import { PlayerStateTypes } from './reducers/player-reducer';
 
 export enum ActionType {
   SetFilmsData = 'main/setFilmsData',
@@ -21,8 +22,10 @@ export enum ActionType {
   SetPromoGetStatus = 'status/setPromoGetStatus',
   SetFilmsGetStatus = 'status/setFilmsGetStatus',
   SetFilmGetStatus = 'status/setFilmGetStatus',
+  SetSimilarGetStatus = 'status/setSimilarGetStatus',
   SetCommentsGetStatus = 'status/setCommentsGetStatus',
   SetFavoritesGetStatus = 'status/setFavoritesGetStatus',
+  SetPlayerData = 'player/setPlayerData',
 }
 
 export const setAuthStatusAction = createAction(
@@ -95,6 +98,13 @@ export const setSimilarFilmsAction = createAction(
   }),
 );
 
+export const setSimilarGetStatusAction = createAction(
+  ActionType.SetSimilarGetStatus,
+  (getStatus: FetchStatus) => ({
+    payload: getStatus,
+  }),
+);
+
 export const setFavoriteFilmsAction = createAction(
   ActionType.SetFavoriteFilms,
   (favoriteFilms: FilmDataTypesFront[]) => ({
@@ -147,5 +157,12 @@ export const setFavoritesGetStatusAction = createAction(
   ActionType.SetFavoritesGetStatus,
   (status: FetchStatus) => ({
     payload: status,
+  }),
+);
+
+export const setPlayerDataAction = createAction(
+  ActionType.SetPlayerData,
+  (movieData: PlayerStateTypes) => ({
+    payload: movieData,
   }),
 );

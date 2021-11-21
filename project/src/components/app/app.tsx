@@ -7,8 +7,8 @@ import MainPage from '../main-page/main-page';
 import LoginPage from '../login-page/login-page';
 import MyListPage from '../my-list-page/my-list-page';
 import NotFoundPage from '../not-found-page/not-found-page';
-import PlayerPage from '../player-page/playerPage';
 import PrivateRoute from '../private-route/private-route';
+import VideoPlayerPage from '../video-player-page/video-player-page';
 
 function App(): JSX.Element {
   return (
@@ -26,7 +26,7 @@ function App(): JSX.Element {
       <Route path={ AppRoute.Film }>
         <Route path=':id' element={ <FilmPage /> } />
       </Route>
-      <Route path={ AppRoute.Player } element={ <PlayerPage /> } />
+      <Route path={ AppRoute.Player } element={ <VideoPlayerPage /> } />
       <Route
         path={ `${ AppRoute.Film }/:id/review` }
         element={

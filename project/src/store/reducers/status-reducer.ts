@@ -6,7 +6,7 @@ import {
   setFilmGetStatusAction,
   setFilmsGetStatusAction,
   setPostStatusAction,
-  setPromoGetStatusAction
+  setPromoGetStatusAction, setSimilarGetStatusAction
 } from '../action-creators';
 
 export type StatusStateTypes = {
@@ -15,6 +15,7 @@ export type StatusStateTypes = {
   promoGetStatus: FetchStatus,
   filmsGetStatus: FetchStatus,
   filmGetStatus: FetchStatus,
+  similarGetStatus: FetchStatus,
   commentsGetStatus: FetchStatus,
   favoritesGetStatus: FetchStatus,
 }
@@ -25,6 +26,7 @@ const initialState: StatusStateTypes = {
   promoGetStatus: FetchStatus.Success,
   filmsGetStatus: FetchStatus.Success,
   filmGetStatus: FetchStatus.Success,
+  similarGetStatus: FetchStatus.Success,
   commentsGetStatus: FetchStatus.Success,
   favoritesGetStatus: FetchStatus.Success,
 }
@@ -45,6 +47,9 @@ export const statusReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmGetStatusAction, (state, action) => {
       state.filmGetStatus = action.payload;
+    })
+    .addCase(setSimilarGetStatusAction, (state, action) => {
+      state.similarGetStatus = action.payload;
     })
     .addCase(setCommentsGetStatusAction, (state, action) => {
       state.commentsGetStatus = action.payload;

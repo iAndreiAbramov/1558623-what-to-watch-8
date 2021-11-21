@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ErrorMessageSmall from '../error-message-small/error-message-small';
 import FilmPageReview from '../film-page-review/film-page-review';
 import { getCommentsGetStatus, getCurrentFilmReviews } from '../../store/selectors';
 import { FetchStatus, NUMBER_OF_COLUMNS } from '../../const';
 import SpinnerSmall from '../spinner-small/spinner-small';
-import ErrorMessageSmall from '../error-message-small/error-message-small';
 
 function FilmPageReviewsList(): JSX.Element {
   const currentFilmReviews = useSelector(getCurrentFilmReviews);

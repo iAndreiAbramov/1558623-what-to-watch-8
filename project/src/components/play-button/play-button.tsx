@@ -1,0 +1,32 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AppRoute } from '../../const';
+import { PlayerDataTypes } from '../../types/player-data-types';
+import { setPlayerDataAction } from '../../store/action-creators';
+
+function PlayButton(props: PlayerDataTypes): JSX.Element {
+  const dispatch = useDispatch();
+  const { id, videoLink, runTime, posterImage } = props;
+  const playerData = { id, videoLink, runTime, posterImage };
+
+  const handleClick = () => {
+    dispatch(setPlayerDataAction({ playerData }));
+  }
+
+  return (
+    <Link
+      onClick={ handleClick }
+      to={ AppRoute.Player }
+      className="btn btn--play film-card__button"
+      type="button"
+    >
+      <svg viewBox="0 0 19 19" width="19" height="19">
+        <use xlinkHref="#play-s" />
+      </svg>
+      <span>Play</span>
+    </Link>
+  );
+}
+
+export default PlayButton;

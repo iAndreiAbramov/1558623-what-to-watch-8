@@ -16,7 +16,7 @@ import SpinnerBig from '../spinner-big/spinner-big';
 
 function FilmPage(): JSX.Element {
   const activeTabName = useSelector(getActiveTabName);
-  const { id, backgroundColor } = useSelector(getCurrentFilmData);
+  const { backgroundColor } = useSelector(getCurrentFilmData);
   const filmGetStatus = useSelector(getFilmGetStatus);
   const dispatch = useDispatch();
   const locationId = useParams().id;
@@ -34,19 +34,11 @@ function FilmPage(): JSX.Element {
   }
 
   useEffect(() => {
-    if (!id && locationId) {
-      dispatch(getCurrentFilmDataAction(locationId));
-      dispatch(getSimilarFilmsAction(locationId));
-    }
-  }, [id]);
-
-  useEffect(() => {
     if (locationId) {
       dispatch(getCurrentFilmDataAction(locationId));
       dispatch(getSimilarFilmsAction(locationId));
     }
   }, [locationId]);
-
 
   return (
     <>

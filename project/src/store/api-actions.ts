@@ -2,6 +2,7 @@ import { adaptFilmDataToFront, adaptFilmsDataToFront, adaptUserDataToFront } fro
 import { APIRoute, AppRoute, AuthorizationStatus, FetchStatus, NotificationMessage } from '../const';
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
+import { notifyError, notifyInfo, notifySuccess } from '../utils/project-utils';
 import {
   setAuthStatusAction,
   setCommentPostStatusAction,
@@ -18,13 +19,12 @@ import {
   setPromoIsFavoriteAction,
   setPromoMovieAction,
   setReviewsAction,
-  setSimilarFilmsAction
+  setSimilarFilmsAction, setSimilarGetStatusAction
 } from './action-creators';
 import { FilmDataTypesBack } from '../types/film-data-types';
 import { ReviewPostTypes } from '../types/review-types';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
-import { notifyError, notifyInfo, notifySuccess } from '../utils/project-utils';
 
 export const getPromoAction = (): ThunkActionResult => (
   async (dispatch, _getState, api): Promise<void> => {
@@ -33,8 +33,10 @@ export const getPromoAction = (): ThunkActionResult => (
       .then(({ data }: { data: FilmDataTypesBack }) => {
         dispatch(setPromoMovieAction(adaptFilmDataToFront(data)));
         dispatch(setPromoGetStatusAction(FetchStatus.Success));
+      })
+      .catch(() => {
+        dispatch(setPromoGetStatusAction(FetchStatus.Error));
       });
-    //todo: добавить обработку ошибки
   }
 );
 
@@ -51,6 +53,7 @@ export const postPromoIsFavoriteAction = (id: string, status: number): ThunkActi
       })
       .catch(() => {
         dispatch(setPostStatusAction(FetchStatus.Error));
+        notifyError(NotificationMessage.Unauthorized);
       })
       .finally(() => {
         dispatch(setPostStatusAction(FetchStatus.Success));
@@ -65,13 +68,13 @@ export const postFilmIsFavoriteAction = (id: string, status: number): ThunkActio
       .then(({ data }) => {
         dispatch(setCurrentFilmDataAction(adaptFilmDataToFront(data)));
         dispatch(setPostStatusAction(FetchStatus.Success));
-        notifyError(NotificationMessage.Unauthorized);
       })
       .then(() => {
         dispatch(getFavoritesAction());
       })
       .catch(() => {
         dispatch(setPostStatusAction(FetchStatus.Error));
+        notifyError(NotificationMessage.Unauthorized);
       })
       .finally(() => {
         dispatch(setPostStatusAction(FetchStatus.Success));
@@ -86,8 +89,10 @@ export const getFilmsAction = (): ThunkActionResult => (
       .then(({ data }) => {
         dispatch(setFilmsDataAction(adaptFilmsDataToFront(data)));
         dispatch(setFilmsGetStatusAction(FetchStatus.Success));
+      })
+      .catch(() => {
+        dispatch(setFilmsGetStatusAction(FetchStatus.Error));
       });
-    //todo: добавить обработку ошибки
   }
 );
 
@@ -142,9 +147,12 @@ export const getSimilarFilmsAction = (id: string): ThunkActionResult => (
   async (dispatch, _getState, api) => {
     await api.get(`${ APIRoute.Films }/${ id }/similar`)
       .then(({ data }) => {
+        dispatch(setSimilarGetStatusAction(FetchStatus.Success));
         dispatch(setSimilarFilmsAction(adaptFilmsDataToFront(data)));
+      })
+      .catch(() => {
+        dispatch(setSimilarGetStatusAction(FetchStatus.Error));
       });
-    // todo: Добавить обработку ошибки
   }
 );
 
@@ -158,9 +166,6 @@ export const getFavoritesAction = (): ThunkActionResult => (
       })
       .catch(() => {
         dispatch(setFavoritesGetStatusAction(FetchStatus.Error));
-      })
-      .finally(() => {
-        dispatch(setFavoritesGetStatusAction(FetchStatus.Success));
       });
   }
 );
@@ -202,7 +207,9 @@ export const requireLogoutAction = (): ThunkActionResult => (
         dropToken();
         dropAvatar();
         dispatch(setAuthStatusAction(AuthorizationStatus.NoAuth));
+      })
+      .catch(() => {
+        notifyError(NotificationMessage.ConnectionError);
       });
-    //todo: добавить обработку ошибки
   }
 );
