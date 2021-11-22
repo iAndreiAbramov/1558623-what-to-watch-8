@@ -34,8 +34,8 @@ export const getFormattedRunTime = (minutes: number): string => {
 export const formatRemainingTime = (seconds: number): string => {
   const minutes = Math.floor(seconds / SECONDS_IN_MINUTE);
   const hours = Math.floor(seconds / (MINUTES_IN_HOUR * SECONDS_IN_MINUTE));
-  const min = minutes - hours * MINUTES_IN_HOUR;
-  const sec = seconds - minutes * SECONDS_IN_MINUTE;
+  const min = (minutes - hours * MINUTES_IN_HOUR).toString().padStart(2, '0');
+  const sec = (seconds - minutes * SECONDS_IN_MINUTE).toString().padStart(2, '0');
 
   return minutes > MINUTES_IN_HOUR ? `-${ hours }:${ min }` : `-${ min }:${ sec }`;
 }

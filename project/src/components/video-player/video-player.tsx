@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getPlayerData } from '../../store/selectors';
 import SpinnerSmall from '../spinner-small/spinner-small';
-import { INITIAL_PROGRESS, PERCENT_CAP, PROGRESS_UPDATE_INTERVAL, SECONDS_IN_MINUTE } from '../../const';
+import { INITIAL_PROGRESS, PERCENT_CAP } from '../../const';
 import { formatRemainingTime } from '../../utils/project-utils';
 
 function VideoPlayer(): JSX.Element {
@@ -69,7 +69,6 @@ function VideoPlayer(): JSX.Element {
             <progress className="player__progress" value={ progress } max="100" />
             <div className="player__toggler" style={ { left: `${ progress }%` } }>Toggler</div>
           </div>
-          {/*//todo: формат времени*/ }
           <div className="player__time-value">{ formatRemainingTime(remainingTime) }</div>
         </div>
 
