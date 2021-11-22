@@ -3,47 +3,40 @@ import { useSelector } from 'react-redux';
 import { getPlayerData } from '../../store/selectors';
 import SpinnerSmall from '../spinner-small/spinner-small';
 import { INITIAL_PROGRESS, PERCENT_CAP, PROGRESS_UPDATE_INTERVAL, SECONDS_IN_MINUTE } from '../../const';
+import { formatRemainingTime } from '../../utils/project-utils';
 
 function VideoPlayer(): JSX.Element {
-  const { posterImage, videoLink, runTime } = useSelector(getPlayerData);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(INITIAL_PROGRESS);
-  const playPauseIcon = isPlaying ? '#pause' : '#play-s';
-
   const videoRef = useRef<HTMLVideoElement | null>(null);
   let video = videoRef.current;
+
+  const { posterImage, videoLink } = useSelector(getPlayerData);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(INITIAL_PROGRESS);
+  const [remainingTime, setRemainingTime] = useState<number>(0);
+  const playPauseIcon = isPlaying ? '#pause' : '#play-s';
 
   useEffect(() => {
     if (!video) {
       return;
     }
-    if (isPlaying) {
-      video.play();
-      return;
-    }
-    video.pause();
+    isPlaying ? video.play() : video.pause();
   }, [isPlaying]);
 
-  useEffect(() => {
-    if (video?.currentTime) {
-      console.log(video.currentTime);
-    }
-  });
-
-  const handleExitClick = () => {
+  const handleExitClick = (): void => {
     window.history.back();
   };
 
-  const handlePlayClick = () => setIsPlaying(!isPlaying);
+  const handlePlayClick = (): void => setIsPlaying(!isPlaying);
 
-  const handleFullScreen = () => video?.requestFullscreen();
+  const handleFullScreen = (): Promise<void> | undefined => video?.requestFullscreen();
 
-  const handleProgressUpdate = setInterval(() => {
+  const handleProgressUpdate = (): void => {
     if (video?.currentTime) {
-      setProgress((video?.currentTime / (runTime * SECONDS_IN_MINUTE)) * PERCENT_CAP);
+      setProgress((video?.currentTime / (video.duration)) * PERCENT_CAP);
+      setRemainingTime(Math.round(video.duration - video.currentTime));
     }
-  }, PROGRESS_UPDATE_INTERVAL);
+  };
 
   return (
     <div className="player">
@@ -59,6 +52,7 @@ function VideoPlayer(): JSX.Element {
         autoPlay={ false }
         muted={ false }
         preload="none"
+        onTimeUpdate={ handleProgressUpdate }
       />
 
       <button
@@ -76,7 +70,7 @@ function VideoPlayer(): JSX.Element {
             <div className="player__toggler" style={ { left: `${ progress }%` } }>Toggler</div>
           </div>
           {/*//todo: формат времени*/ }
-          <div className="player__time-value">{ runTime }</div>
+          <div className="player__time-value">{ formatRemainingTime(remainingTime) }</div>
         </div>
 
         <div className="player__controls-row">

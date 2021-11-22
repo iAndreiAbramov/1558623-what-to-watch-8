@@ -1,9 +1,14 @@
-import { ALL_GENRES_TAB_NAME, MAX_GENRES_NUMBER, MONTHS, NotificationMessage, Rating } from '../const';
+import {
+  ALL_GENRES_TAB_NAME,
+  MAX_GENRES_NUMBER, MINUTES_IN_HOUR,
+  MONTHS,
+  NotificationMessage,
+  Rating,
+  SECONDS_IN_MINUTE
+} from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
 import { ReactText } from 'react';
 import { toast } from 'react-toastify';
-
-const MINUTES_IN_HOUR = 60;
 
 export const getGenres = (filmsList: FilmDataTypesFront[]): string[] => {
   const genresFromList = Array.from(new Set(filmsList.map((item) => item.genre)));
@@ -22,7 +27,17 @@ export const filterFilmsByGenre = (filmsList: FilmDataTypesFront[], genre: strin
 export const getFormattedRunTime = (minutes: number): string => {
   const hours = Math.floor(minutes / MINUTES_IN_HOUR);
   const min = minutes - hours * MINUTES_IN_HOUR;
+
   return `${ hours }h ${ min }m`;
+}
+
+export const formatRemainingTime = (seconds: number): string => {
+  const minutes = Math.floor(seconds / SECONDS_IN_MINUTE);
+  const hours = Math.floor(seconds / (MINUTES_IN_HOUR * SECONDS_IN_MINUTE));
+  const min = minutes - hours * MINUTES_IN_HOUR;
+  const sec = seconds - minutes * SECONDS_IN_MINUTE;
+
+  return minutes > MINUTES_IN_HOUR ? `-${ hours }:${ min }` : `-${ min }:${ sec }`;
 }
 
 export const getGradeFromRating = (rating: number): Rating => {
