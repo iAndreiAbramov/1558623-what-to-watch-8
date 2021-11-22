@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть»
 
 * Студент: [Андрей Абрамов](https://up.htmlacademy.ru/react/8/user/1558623).
-* Наставник: `Неизвестно`.
+* Наставник: [Михаил Кислый](https://htmlacademy.ru/profile/smart-grizzly).
 
 ---
 

@@ -54,10 +54,7 @@ function MainPagePromo(): JSX.Element {
 
             <div className="film-card__buttons">
               <PlayButton
-                id={ id }
-                posterImage={ posterImage }
                 videoLink={ videoLink }
-                runTime={ runTime }
               />
               <button
                 onClick={ handleMyListClick }

@@ -8,10 +8,7 @@ export type PlayerStateTypes = {
 
 const initialState: PlayerStateTypes = {
   playerData: {
-    id: '',
-    posterImage: '',
     videoLink: '',
-    runTime: 0,
   },
 };
 

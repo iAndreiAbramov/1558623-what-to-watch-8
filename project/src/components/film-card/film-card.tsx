@@ -31,7 +31,7 @@ function FilmCard(props: FilmCardTypes): JSX.Element {
     article.current?.addEventListener('mouseleave', () => {
       clearTimeout(timeout);
       setIsPlaying(false);
-    });
+    }, { once: true });
   };
 
   return (

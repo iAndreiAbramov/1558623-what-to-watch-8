@@ -1,17 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getPlayerData } from '../../store/selectors';
-import SpinnerSmall from '../spinner-small/spinner-small';
 import { INITIAL_PROGRESS, PERCENT_CAP } from '../../const';
 import { formatRemainingTime } from '../../utils/project-utils';
+import SpinnerBig from '../spinner-big/spinner-big';
 
 function VideoPlayer(): JSX.Element {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   let video = videoRef.current;
-
-  const { posterImage, videoLink } = useSelector(getPlayerData);
+  const { videoLink } = useSelector(getPlayerData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [progress, setProgress] = useState<number>(INITIAL_PROGRESS);
   const [remainingTime, setRemainingTime] = useState<number>(0);
   const playPauseIcon = isPlaying ? '#pause' : '#play-s';
@@ -41,18 +40,20 @@ function VideoPlayer(): JSX.Element {
   return (
     <div className="player">
       {
-        isLoading && <SpinnerSmall />
+        isLoading && <SpinnerBig />
       }
 
       <video
         ref={ videoRef }
         src={ videoLink }
         className="player__video"
-        poster={ posterImage }
-        autoPlay={ false }
-        muted={ false }
+        // poster={ posterImage }
+        autoPlay={ true }
+        muted={ true }
         preload="none"
         onTimeUpdate={ handleProgressUpdate }
+        onLoadStart={ () => setIsLoading(true) }
+        onLoadedData={ () => setIsLoading(false) }
       />
 
       <button

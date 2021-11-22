@@ -7,8 +7,8 @@ import { setPlayerDataAction } from '../../store/action-creators';
 
 function PlayButton(props: PlayerDataTypes): JSX.Element {
   const dispatch = useDispatch();
-  const { id, videoLink, runTime, posterImage } = props;
-  const playerData = { id, videoLink, runTime, posterImage };
+  const { videoLink } = props;
+  const playerData = { videoLink };
 
   const handleClick = () => {
     dispatch(setPlayerDataAction({ playerData }));
