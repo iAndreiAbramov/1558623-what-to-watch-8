@@ -138,3 +138,8 @@ export enum Outline {
   Valid = 'none',
   InValid = '3px solid #a8421e',
 }
+
+export const SECONDS_IN_MINUTE = 60;
+export const PERCENT_CAP = 100;
+export const INITIAL_PROGRESS = 0;
+export const PROGRESS_UPDATE_INTERVAL = 1000;
