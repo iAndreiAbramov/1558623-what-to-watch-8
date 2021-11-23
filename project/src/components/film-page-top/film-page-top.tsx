@@ -1,27 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { useSelector } from 'react-redux';
+import { AuthorizationStatus } from '../../const';
 import ButtonAddReview from '../button-add-review/button-add-review';
+import ButtonMyList from '../button-my-list/button-my-list';
 import ButtonPlay from '../button-play/button-play';
 import { getAuthStatus, getCurrentFilmData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
-import { postFilmIsFavoriteAction } from '../../store/api-actions';
 
 function FilmPageTop(): JSX.Element {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { id, videoLink, backgroundImage, name, genre, released, isFavorite } = useSelector(getCurrentFilmData);
   const authorization = useSelector(getAuthStatus);
-  const myListIcon = isFavorite ? '#in-list' : '#add';
-  const isFavoritePostNumber = isFavorite ? 0 : 1;
-
-  const handleMyListClick = (): void => {
-    if (authorization !== AuthorizationStatus.Auth) {
-      navigate(AppRoute.Login);
-    }
-    dispatch(postFilmIsFavoriteAction(id, isFavoritePostNumber));
-  };
+  const { id, videoLink, backgroundImage, name, genre, released, isFavorite } = useSelector(getCurrentFilmData);
 
   return (
     <div className="film-card__hero">
@@ -45,18 +33,10 @@ function FilmPageTop(): JSX.Element {
             <ButtonPlay
               videoLink={ videoLink }
             />
-
-            <button
-              onClick={ handleMyListClick }
-              className="btn btn--list film-card__button"
-              type="button"
-            >
-              <svg viewBox="0 0 19 20" width="19" height="20">
-                <use xlinkHref={ myListIcon } />
-              </svg>
-              <span>My list</span>
-            </button>
-
+            <ButtonMyList
+              id={ id }
+              isFavorite={ isFavorite }
+            />
             {
               authorization === AuthorizationStatus.Auth
               &&

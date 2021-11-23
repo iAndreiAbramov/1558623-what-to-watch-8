@@ -1,28 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { useSelector } from 'react-redux';
+import ButtonMyList from '../button-my-list/button-my-list';
 import ButtonPlay from '../button-play/button-play';
-import { getAuthStatus, getPromoData } from '../../store/selectors';
+import { getPromoData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
-import { postPromoIsFavoriteAction } from '../../store/api-actions';
 
 function MainPagePromo(): JSX.Element {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const promoData = useSelector(getPromoData);
-  const authorization = useSelector(getAuthStatus);
   const { id, videoLink, name, posterImage, backgroundImage, released, genre, isFavorite } = promoData;
-  const myListIcon = isFavorite ? '#in-list' : '#add';
-
-  const isFavoritePostNumber = isFavorite ? 0 : 1;
-
-  const handleMyListClick = () => {
-    if (authorization !== AuthorizationStatus.Auth) {
-      navigate(AppRoute.Login);
-    }
-    dispatch(postPromoIsFavoriteAction(id, isFavoritePostNumber));
-  };
 
   return (
     <section className="film-card">
@@ -56,16 +41,10 @@ function MainPagePromo(): JSX.Element {
               <ButtonPlay
                 videoLink={ videoLink }
               />
-              <button
-                onClick={ handleMyListClick }
-                className="btn btn--list film-card__button"
-                type="button"
-              >
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref={ myListIcon } />
-                </svg>
-                <span>My list</span>
-              </button>
+              <ButtonMyList
+                id={ id }
+                isFavorite={ isFavorite }
+              />
             </div>
           </div>
         </div>
