@@ -20,7 +20,7 @@ function VideoPlayer(): JSX.Element {
       return;
     }
     isPlaying ? video.play() : video.pause();
-  }, [isPlaying]);
+  }, [isPlaying, video]);
 
   const handleExitClick = (): void => {
     window.history.back();

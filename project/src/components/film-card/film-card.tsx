@@ -14,13 +14,17 @@ function FilmCard(props: FilmCardTypes): JSX.Element {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
+    if (!video) {
+      return;
+    }
     if (isPlaying) {
       video?.play();
-    } else if (video) {
+    }
+    if (!isPlaying) {
       video.pause();
       video.currentTime = 0;
     }
-  }, [isPlaying]);
+  }, [isPlaying, video]);
 
   const handleLinkClick = (): void => {
     dispatch(setActiveTabAction(TabName.Overview));

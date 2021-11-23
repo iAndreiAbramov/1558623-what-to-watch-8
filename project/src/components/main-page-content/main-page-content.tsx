@@ -20,7 +20,7 @@ function MainPageContent(): JSX.Element {
   useEffect(() => {
     setFilteredList(filterFilmsByGenre(filmsData, activeTabName));
     setRenderCount(INITIAL_FILMS_COUNT);
-  }, [activeTabName]);
+  }, [filmsData, activeTabName]);
 
   useEffect(() => {
     setRenderList(filteredList.slice(0, renderCount));
@@ -30,7 +30,7 @@ function MainPageContent(): JSX.Element {
     if (filteredList.length === 0) {
       setFilteredList(filterFilmsByGenre(filmsData, activeTabName));
     }
-  });
+  }, [filteredList.length, activeTabName, filmsData]);
 
   const handleMoreButtonClick = () => {
     let counterStep = FILMS_INCREMENT_STEP;

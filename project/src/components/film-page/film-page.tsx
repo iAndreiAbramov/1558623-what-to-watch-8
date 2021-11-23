@@ -38,7 +38,7 @@ function FilmPage(): JSX.Element {
       dispatch(getCurrentFilmDataAction(locationId));
       dispatch(getSimilarFilmsAction(locationId));
     }
-  }, [locationId]);
+  }, [locationId, dispatch]);
 
   return (
     <>
