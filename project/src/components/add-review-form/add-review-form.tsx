@@ -17,6 +17,7 @@ function AddReviewForm(props: AddReviewFormTypes): JSX.Element {
   const [isInputDisabled, setIsInputDisabled] = useState(false);
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(INITIAL_RATING);
+  const [starsTouched, setStarsTouched] = useState(false);
 
   useEffect(() => {
     if (postStatus === FetchStatus.Error) {
@@ -26,12 +27,15 @@ function AddReviewForm(props: AddReviewFormTypes): JSX.Element {
   }, [postStatus]);
 
   useEffect(() => {
-    if (comment.length >= REVIEW_MIN_LENGTH && comment.length <= REVIEW_MAX_LENGTH) {
+    if (comment.length >= REVIEW_MIN_LENGTH
+      && comment.length <= REVIEW_MAX_LENGTH
+      && starsTouched
+    ) {
       setIsSubmitDisabled(false);
     } else {
       setIsSubmitDisabled(true);
     }
-  }, [comment]);
+  }, [comment, starsTouched]);
 
   const handleReviewInput = (evt: FormEvent<HTMLTextAreaElement>) => {
     setComment(evt.currentTarget.value);
@@ -39,6 +43,7 @@ function AddReviewForm(props: AddReviewFormTypes): JSX.Element {
 
   const handleRatingInput = (evt: FormEvent<HTMLInputElement>) => {
     setRating(Number(evt.currentTarget.value));
+    setStarsTouched(true);
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
