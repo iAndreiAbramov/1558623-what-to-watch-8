@@ -52,4 +52,4 @@ function PageHeaderUserAuth(props: { avatarUrl: string }): JSX.Element {
   );
 }
 
-export default PageHeaderUserAuth;
+export default React.memo(PageHeaderUserAuth);

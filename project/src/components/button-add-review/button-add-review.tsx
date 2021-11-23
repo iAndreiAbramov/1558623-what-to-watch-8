@@ -29,4 +29,4 @@ function ButtonAddReview(props: {id: string}): JSX.Element {
   );
 }
 
-export default ButtonAddReview;
+export default React.memo(ButtonAddReview);

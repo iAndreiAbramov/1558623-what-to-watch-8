@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FilmDataTypesFront } from '../../types/film-data-types';
 import { FILMS_INCREMENT_STEP, INITIAL_FILMS_COUNT } from '../../const';
@@ -32,13 +32,13 @@ function MainPageContent(): JSX.Element {
     }
   }, [filteredList.length, activeTabName, filmsData]);
 
-  const handleMoreButtonClick = () => {
+  const handleMoreButtonClick = useCallback(() => {
     let counterStep = FILMS_INCREMENT_STEP;
     if (counterStep > filteredList.length - renderCount) {
       counterStep = filteredList.length - renderCount;
     }
     setRenderCount((prev) => prev + counterStep);
-  };
+  }, [filteredList.length, renderCount]);
 
   return (
     <div className="page-content">

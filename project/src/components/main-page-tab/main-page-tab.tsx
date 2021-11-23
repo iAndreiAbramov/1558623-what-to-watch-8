@@ -17,12 +17,16 @@ function MainPageTab(props: HomePageTabTypes): JSX.Element {
     ? 'catalog__genres-item catalog__genres-item--active'
     : 'catalog__genres-item';
 
+  const handleTabClick = () => {
+    dispatch(setActiveFilterAction(name));
+  };
+
   return (
     <li className={ className }>
       <Link
         to={ AppRoute.Main }
         className="catalog__genres-link"
-        onClick={() => dispatch(setActiveFilterAction(name)) }
+        onClick={ handleTabClick }
       >
         { name }
       </Link>

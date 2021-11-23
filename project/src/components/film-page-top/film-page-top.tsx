@@ -6,6 +6,7 @@ import ButtonMyList from '../button-my-list/button-my-list';
 import ButtonPlay from '../button-play/button-play';
 import { getAuthStatus, getCurrentFilmData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
+import PosterBackground from '../poster-background/poster-background';
 
 function FilmPageTop(): JSX.Element {
   const authorization = useSelector(getAuthStatus);
@@ -13,9 +14,10 @@ function FilmPageTop(): JSX.Element {
 
   return (
     <div className="film-card__hero">
-      <div className="film-card__bg">
-        <img src={ backgroundImage } alt="The Grand Budapest Hotel" />
-      </div>
+      <PosterBackground
+        backgroundImage={ backgroundImage }
+        name={ name }
+      />
 
       <h1 className="visually-hidden">WTW</h1>
 

@@ -17,4 +17,4 @@ function FilmPagePoster(): JSX.Element {
   );
 }
 
-export default FilmPagePoster;
+export default React.memo(FilmPagePoster);

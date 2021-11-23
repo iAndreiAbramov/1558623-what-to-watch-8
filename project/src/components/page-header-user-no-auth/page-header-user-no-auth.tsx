@@ -10,4 +10,4 @@ function PageHeaderUserNoAuth(): JSX.Element {
   );
 }
 
-export default PageHeaderUserNoAuth;
+export default React.memo(PageHeaderUserNoAuth);

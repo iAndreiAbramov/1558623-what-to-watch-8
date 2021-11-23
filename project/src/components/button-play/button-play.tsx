@@ -29,4 +29,4 @@ function ButtonPlay(props: PlayerDataTypes): JSX.Element {
   );
 }
 
-export default ButtonPlay;
+export default React.memo(ButtonPlay);

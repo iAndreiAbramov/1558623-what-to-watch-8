@@ -14,13 +14,13 @@ function FilmCard(props: FilmCardTypes): JSX.Element {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!video) {
+    if (!videoRef || !video) {
       return;
     }
     if (isPlaying) {
       video?.play();
     }
-    if (!isPlaying) {
+    if (!isPlaying && video) {
       video.pause();
       video.currentTime = 0;
     }
@@ -33,6 +33,10 @@ function FilmCard(props: FilmCardTypes): JSX.Element {
   const handleMouseEnter = () => {
     const timeout = setTimeout(() => setIsPlaying(true), VIDEO_START_DELAY);
     article.current?.addEventListener('mouseleave', () => {
+      clearTimeout(timeout);
+      setIsPlaying(false);
+    }, { once: true });
+    article.current?.addEventListener('click', () => {
       clearTimeout(timeout);
       setIsPlaying(false);
     }, { once: true });

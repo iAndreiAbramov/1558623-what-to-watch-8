@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, PageTitle } from '../../const';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 import { getAuthStatus, getCurrentUser } from '../../store/selectors';
 import PageHeaderLogo from '../page-header-logo/page-header-logo';
@@ -13,7 +13,9 @@ function PageHeader(): JSX.Element {
   const authorization = useSelector(getAuthStatus);
   const { avatarUrl } = useSelector(getCurrentUser);
   const location = useLocation();
-  const titleText = location.pathname === AppRoute.MyList ? 'My list' : 'Sign in';
+  const titleText = location.pathname === AppRoute.MyList
+    ? PageTitle.MyList
+    : PageTitle.Login;
 
   return (
     <header className="page-header user-page__head">
@@ -37,4 +39,4 @@ function PageHeader(): JSX.Element {
   );
 }
 
-export default PageHeader;
+export default React.memo(PageHeader);

@@ -7,4 +7,4 @@ function PageHeaderTitle(props: { titleText: string }): JSX.Element {
   );
 }
 
-export default PageHeaderTitle;
+export default React.memo(PageHeaderTitle);

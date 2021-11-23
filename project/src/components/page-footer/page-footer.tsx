@@ -20,4 +20,4 @@ function PageFooter(): JSX.Element {
   );
 }
 
-export default PageFooter;
+export default React.memo(PageFooter);

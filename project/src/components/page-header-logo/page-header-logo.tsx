@@ -14,4 +14,4 @@ function PageHeaderLogo(): JSX.Element {
   );
 }
 
-export default PageHeaderLogo;
+export default React.memo(PageHeaderLogo);

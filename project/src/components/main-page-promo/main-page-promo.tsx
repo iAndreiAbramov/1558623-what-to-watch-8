@@ -4,6 +4,7 @@ import ButtonMyList from '../button-my-list/button-my-list';
 import ButtonPlay from '../button-play/button-play';
 import { getPromoData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
+import PosterBackground from '../poster-background/poster-background';
 
 function MainPagePromo(): JSX.Element {
   const promoData = useSelector(getPromoData);
@@ -11,9 +12,10 @@ function MainPagePromo(): JSX.Element {
 
   return (
     <section className="film-card">
-      <div className="film-card__bg">
-        <img src={ backgroundImage } alt={ name } />
-      </div>
+      <PosterBackground
+        backgroundImage={ backgroundImage }
+        name={ name }
+      />
 
       <h1 className="visually-hidden">WTW</h1>
 

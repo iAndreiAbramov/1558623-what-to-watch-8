@@ -98,6 +98,11 @@ export enum MyListIcon {
   NotFavorite = '#add',
 }
 
+export enum PageTitle {
+  Login = 'Sign in',
+  MyList = 'My List',
+}
+
 export const RATING_DIGITS = 1;
 
 export const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
