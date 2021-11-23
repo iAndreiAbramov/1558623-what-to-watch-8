@@ -1,12 +1,10 @@
-import { AuthorizationStatus, NameSpace, FetchStatus, TabName } from '../const';
+import { AuthorizationStatus, FetchStatus, NameSpace } from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
+import { PlayerDataTypes } from '../types/player-data-types';
 import { PromoStateTypes } from './reducers/promo-reducer';
 import { RootStateTypes } from './reducers/root-reducer';
-import { UserDataTypesFront } from '../types/user-data-types';
 import { ReviewTypes } from '../types/review-types';
-import { setPromoGetStatusAction } from './action-creators';
-import { PlayerStateTypes } from './reducers/player-reducer';
-import { PlayerDataTypes } from '../types/player-data-types';
+import { UserDataTypesFront } from '../types/user-data-types';
 
 export const getAuthStatus = (state: RootStateTypes): AuthorizationStatus => (
   state[NameSpace.User].authorization

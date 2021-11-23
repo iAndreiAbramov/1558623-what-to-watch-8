@@ -22,7 +22,7 @@ function LoginPageForm() {
     if ((/[a-z0-9]+@[a-z0-9]+/gi).test(email)) {
       setMessage(LoginPageMessage.Initial);
     } else {
-      setMessage(LoginPageMessage.Email)
+      setMessage(LoginPageMessage.Email);
     }
   };
 
@@ -41,7 +41,7 @@ function LoginPageForm() {
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
-    dispatch(requireLoginAction({ email, password }))
+    dispatch(requireLoginAction({ email, password }));
   };
 
   useEffect(() => {

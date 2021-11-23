@@ -22,7 +22,7 @@ function FilmPageTab(props: { name: string }): JSX.Element {
     if (name === TabName.Reviews) {
       dispatch(getCurrentFilmReviewsAction(id));
     }
-  }
+  };
 
   return (
     <li className={ tabClassName }>

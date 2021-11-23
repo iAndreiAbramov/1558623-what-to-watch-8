@@ -2,9 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import ButtonPlay from '../button-play/button-play';
 import { getAuthStatus, getPromoData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
-import PlayButton from '../play-button/play-button';
 import { postPromoIsFavoriteAction } from '../../store/api-actions';
 
 function MainPagePromo(): JSX.Element {
@@ -12,7 +12,7 @@ function MainPagePromo(): JSX.Element {
   const navigate = useNavigate();
   const promoData = useSelector(getPromoData);
   const authorization = useSelector(getAuthStatus);
-  const { id, videoLink, runTime, name, posterImage, backgroundImage, released, genre, isFavorite } = promoData;
+  const { id, videoLink, name, posterImage, backgroundImage, released, genre, isFavorite } = promoData;
   const myListIcon = isFavorite ? '#in-list' : '#add';
 
   const isFavoritePostNumber = isFavorite ? 0 : 1;
@@ -53,7 +53,7 @@ function MainPagePromo(): JSX.Element {
             </p>
 
             <div className="film-card__buttons">
-              <PlayButton
+              <ButtonPlay
                 videoLink={ videoLink }
               />
               <button

@@ -5,14 +5,14 @@ import { AppRoute } from '../../const';
 import { PlayerDataTypes } from '../../types/player-data-types';
 import { setPlayerDataAction } from '../../store/action-creators';
 
-function PlayButton(props: PlayerDataTypes): JSX.Element {
+function ButtonPlay(props: PlayerDataTypes): JSX.Element {
   const dispatch = useDispatch();
   const { videoLink } = props;
   const playerData = { videoLink };
 
   const handleClick = () => {
     dispatch(setPlayerDataAction({ playerData }));
-  }
+  };
 
   return (
     <Link
@@ -29,4 +29,4 @@ function PlayButton(props: PlayerDataTypes): JSX.Element {
   );
 }
 
-export default PlayButton;
+export default ButtonPlay;

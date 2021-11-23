@@ -5,7 +5,7 @@ import {
   setActiveTabAction,
   setReviewsAction,
   setCurrentFilmDataAction,
-  setSimilarFilmsAction,
+  setSimilarFilmsAction
 } from '../action-creators';
 import { ReviewTypes } from '../../types/review-types';
 
@@ -21,7 +21,7 @@ const initialState: FilmStateTypes = {
   currentFilmData: DEFAULT_FILM_DATA,
   currentFilmReviews: [],
   similarFilms: [],
-}
+};
 
 export const filmReducer = createReducer(initialState, (builder) => {
   builder

@@ -1,6 +1,6 @@
 import React from 'react';
-import { RATING_DIGITS } from '../../const';
 import { formatDateForComment } from '../../utils/project-utils';
+import { RATING_DIGITS } from '../../const';
 
 type FilmPageReviewTypes = {
   userName: string,

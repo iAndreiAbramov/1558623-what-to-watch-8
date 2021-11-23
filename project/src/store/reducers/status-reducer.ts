@@ -29,7 +29,7 @@ const initialState: StatusStateTypes = {
   similarGetStatus: FetchStatus.Success,
   commentsGetStatus: FetchStatus.Success,
   favoritesGetStatus: FetchStatus.Success,
-}
+};
 
 export const statusReducer = createReducer(initialState, (builder) => {
   builder

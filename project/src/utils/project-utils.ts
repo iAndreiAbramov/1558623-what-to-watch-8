@@ -29,19 +29,20 @@ export const getFormattedRunTime = (minutes: number): string => {
   const min = minutes - hours * MINUTES_IN_HOUR;
 
   return `${ hours }h ${ min }m`;
-}
+};
 
 export const formatRemainingTime = (seconds: number): string => {
   const minutes = Math.floor(seconds / SECONDS_IN_MINUTE);
-  const hours = Math.floor(seconds / (MINUTES_IN_HOUR * SECONDS_IN_MINUTE));
-  const min = (minutes - hours * MINUTES_IN_HOUR).toString().padStart(2, '0');
+  const hoursNumber = Math.floor(seconds / (MINUTES_IN_HOUR * SECONDS_IN_MINUTE));
+  const hours = hoursNumber.toString().padStart(2, '0');
+  const min = (minutes - hoursNumber * MINUTES_IN_HOUR).toString().padStart(2, '0');
   const sec = (seconds - minutes * SECONDS_IN_MINUTE).toString().padStart(2, '0');
 
-  return minutes > MINUTES_IN_HOUR ? `-${ hours }:${ min }` : `-${ min }:${ sec }`;
-}
+  return minutes > MINUTES_IN_HOUR ? `-${ hours }:${ min }:${ sec }` : `-${ min }:${ sec }`;
+};
 
 export const getGradeFromRating = (rating: number): Rating => {
-  if (rating >= 10) {
+  if (rating === 10) {
     return Rating.Awesome;
   }
   if (rating >= 8) {
@@ -57,7 +58,7 @@ export const getGradeFromRating = (rating: number): Rating => {
     return Rating.Bad;
   }
   return Rating.Undefined;
-}
+};
 
 export const formatDateForComment = (date: string): string => {
   const commentDate = new Date(date);
@@ -66,7 +67,7 @@ export const formatDateForComment = (date: string): string => {
   const year = commentDate.getFullYear();
 
   return `${ month } ${ day }, ${ year }`;
-}
+};
 
 export const notifySuccess = (message: NotificationMessage): ReactText => toast.success(message, {
   position: 'top-right',

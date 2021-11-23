@@ -24,7 +24,6 @@ function AddReviewForm(props: AddReviewFormTypes) {
       setIsInputDisabled(false);
     }
     if (postStatus === FetchStatus.Success) {
-      console.log('success');
       setIsSubmitDisabled(false);
       setIsInputDisabled(false);
       setComment('');
@@ -32,22 +31,20 @@ function AddReviewForm(props: AddReviewFormTypes) {
     }
   });
 
-  const handleReviewInput = (evt: FormEvent<HTMLTextAreaElement>) => {
-    setComment(evt.currentTarget.value);
+  useEffect(() => {
     if (comment.length >= REVIEW_MIN_LENGTH && comment.length <= REVIEW_MAX_LENGTH) {
       setIsSubmitDisabled(false);
     } else {
       setIsSubmitDisabled(true);
     }
+  }, [comment]);
+
+  const handleReviewInput = (evt: FormEvent<HTMLTextAreaElement>) => {
+    setComment(evt.currentTarget.value);
   };
 
   const handleRatingInput = (evt: FormEvent<HTMLInputElement>) => {
     setRating(Number(evt.currentTarget.value));
-    if (comment.length >= REVIEW_MIN_LENGTH && comment.length <= REVIEW_MAX_LENGTH) {
-      setIsSubmitDisabled(false);
-    } else {
-      setIsSubmitDisabled(true);
-    }
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -55,7 +52,7 @@ function AddReviewForm(props: AddReviewFormTypes) {
     setIsSubmitDisabled(true);
     setIsInputDisabled(true);
     dispatch(postReviewAction({ id, comment, rating }));
-  }
+  };
 
   return (
     <div className="add-review">
@@ -188,16 +185,16 @@ function AddReviewForm(props: AddReviewFormTypes) {
         </div>
 
         <div className="add-review__text">
-              <textarea
-                style={ { backgroundColor: backgroundColor, filter: 'brightness(1.3)' } }
-                value={ comment }
-                onChange={ handleReviewInput }
-                disabled={ isInputDisabled }
-                className="add-review__textarea"
-                name="review-text"
-                id="review-text"
-                placeholder="Review text"
-              />
+          <textarea
+            style={ { backgroundColor: backgroundColor, filter: 'brightness(1.3)' } }
+            value={ comment }
+            onChange={ handleReviewInput }
+            disabled={ isInputDisabled }
+            className="add-review__textarea"
+            name="review-text"
+            id="review-text"
+            placeholder="Review text"
+          />
           <div
             style={ { backgroundColor: backgroundColor, filter: 'brightness(1.3)' } }
             className="add-review__submit"

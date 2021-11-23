@@ -28,7 +28,8 @@ function Breadcrumbs() {
           <Link
             to={ `${ AppRoute.Film }/${ id }` }
             onClick={ handleLinkClick }
-            className="breadcrumbs__link">
+            className="breadcrumbs__link"
+          >
             { name }
           </Link>
         </li>

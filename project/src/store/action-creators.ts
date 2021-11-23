@@ -1,9 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
-import { AuthorizationStatus, FetchStatus, TabName } from '../const';
+import { AuthorizationStatus, FetchStatus } from '../const';
 import { FilmDataTypesFront } from '../types/film-data-types';
+import { PlayerStateTypes } from './reducers/player-reducer';
 import { ReviewTypes } from '../types/review-types';
 import { UserDataTypesFront } from '../types/user-data-types';
-import { PlayerStateTypes } from './reducers/player-reducer';
 
 export enum ActionType {
   SetFilmsData = 'main/setFilmsData',

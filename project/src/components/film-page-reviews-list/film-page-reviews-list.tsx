@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ErrorMessageSmall from '../error-message-small/error-message-small';
-import FilmPageReview from '../film-page-review/film-page-review';
-import { getCommentsGetStatus, getCurrentFilmReviews } from '../../store/selectors';
 import { FetchStatus, NUMBER_OF_COLUMNS } from '../../const';
+import { getCommentsGetStatus, getCurrentFilmReviews } from '../../store/selectors';
+import FilmPageReview from '../film-page-review/film-page-review';
 import SpinnerSmall from '../spinner-small/spinner-small';
 
 function FilmPageReviewsList(): JSX.Element {

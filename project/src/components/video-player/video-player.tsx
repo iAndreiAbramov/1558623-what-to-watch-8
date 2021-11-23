@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { formatRemainingTime } from '../../utils/project-utils';
 import { getPlayerData } from '../../store/selectors';
 import { INITIAL_PROGRESS, PERCENT_CAP } from '../../const';
-import { formatRemainingTime } from '../../utils/project-utils';
 import SpinnerBig from '../spinner-big/spinner-big';
 
 function VideoPlayer(): JSX.Element {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  let video = videoRef.current;
+  const video = videoRef.current;
   const { videoLink } = useSelector(getPlayerData);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -47,9 +47,7 @@ function VideoPlayer(): JSX.Element {
         ref={ videoRef }
         src={ videoLink }
         className="player__video"
-        // poster={ posterImage }
-        autoPlay={ true }
-        muted={ true }
+        autoPlay
         preload="none"
         onTimeUpdate={ handleProgressUpdate }
         onLoadStart={ () => setIsLoading(true) }

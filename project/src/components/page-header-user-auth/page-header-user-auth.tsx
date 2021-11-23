@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getFavoritesAction, requireLogoutAction } from '../../store/api-actions';
-import { getAvatar } from '../../services/avatar';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { AppRoute } from '../../const';
-import { getFavoriteFilms } from '../../store/selectors';
+import { getAvatar } from '../../services/avatar';
+import { getFavoritesAction, requireLogoutAction } from '../../store/api-actions';
 
 function PageHeaderUserAuth(props: { avatarUrl: string }): JSX.Element {
   const dispatch = useDispatch();
@@ -23,6 +22,10 @@ function PageHeaderUserAuth(props: { avatarUrl: string }): JSX.Element {
     dispatch(getFavoritesAction());
   };
 
+  const handleLogoutClick = () => {
+    dispatch(requireLogoutAction());
+  };
+
   return (
     <ul className="user-block">
       <li className="user-block__item">
@@ -38,7 +41,7 @@ function PageHeaderUserAuth(props: { avatarUrl: string }): JSX.Element {
       <li className="user-block__item">
         <a
           className="user-block__link"
-          onClick={ () => dispatch(requireLogoutAction()) }
+          onClick={ handleLogoutClick }
         >
           Sign out
         </a>

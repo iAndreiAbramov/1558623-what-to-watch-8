@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ErrorMessageSmall from '../error-message-small/error-message-small';
 import FilmsList from '../films-list/films-list';
 import { FetchStatus } from '../../const';
 import { getFavoriteFilms, getFavoritesGetStatus } from '../../store/selectors';
@@ -7,7 +8,6 @@ import HiddenComponent from '../hidden-component/hidden-component';
 import PageFooter from '../page-footer/page-footer';
 import PageHeader from '../page-header/page-header';
 import SpinnerSmall from '../spinner-small/spinner-small';
-import ErrorMessageSmall from '../error-message-small/error-message-small';
 
 function MyListPage(): JSX.Element {
   const favoritesList = useSelector(getFavoriteFilms);

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import AddReviewForm from '../add-review-form/add-review-form';
 import { getCurrentFilmData } from '../../store/selectors';
 import HiddenComponent from '../hidden-component/hidden-component';
 import PageHeader from '../page-header/page-header';
-import AddReviewForm from '../add-review-form/add-review-form';
 
 function AddReviewPage(): JSX.Element {
   const { id, name, backgroundImage, posterImage, backgroundColor } = useSelector(getCurrentFilmData);

@@ -8,7 +8,8 @@ function FilmPageTabs(): JSX.Element {
       key={ name }
       name={ name }
     />
-  ))
+  ));
+
   return (
     <nav className="film-nav film-card__nav">
       <ul className="film-nav__list">

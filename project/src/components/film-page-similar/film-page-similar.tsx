@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ErrorMessageSmall from '../error-message-small/error-message-small';
+import { FetchStatus, SIMILAR_FILMS_NUMBER } from '../../const';
 import FilmCard from '../film-card/film-card';
 import { getSimilarFilms, getSimilarGetStatus } from '../../store/selectors';
-import { FetchStatus, SIMILAR_FILMS_NUMBER } from '../../const';
-import ErrorMessageSmall from '../error-message-small/error-message-small';
 
 function FilmPageSimilar(): JSX.Element {
   const similarFilmsData = useSelector(getSimilarFilms);
@@ -12,18 +12,18 @@ function FilmPageSimilar(): JSX.Element {
   const similarFilms = similarFilmsData
     .slice(0, SIMILAR_FILMS_NUMBER)
     .map((film) => {
-    const { name, posterImage, id, previewVideoLink, previewImage } = film;
-    return (
-      <FilmCard
-        key={ id }
-        id={ id }
-        name={ name }
-        posterImage={ posterImage }
-        previewVideoLink={ previewVideoLink }
-        previewImage={ previewImage }
-      />
-    )
-  });
+      const { name, posterImage, id, previewVideoLink, previewImage } = film;
+      return (
+        <FilmCard
+          key={ id }
+          id={ id }
+          name={ name }
+          posterImage={ posterImage }
+          previewVideoLink={ previewVideoLink }
+          previewImage={ previewImage }
+        />
+      );
+    });
 
   return (
     <section className="catalog catalog--like-this">

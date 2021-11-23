@@ -1,18 +1,17 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppRoute, AuthorizationStatus, FetchStatus, NotificationMessage } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import ButtonAddReview from '../button-add-review/button-add-review';
+import ButtonPlay from '../button-play/button-play';
 import { getAuthStatus, getCurrentFilmData } from '../../store/selectors';
 import PageHeader from '../page-header/page-header';
 import { postFilmIsFavoriteAction } from '../../store/api-actions';
-import { setCommentPostStatusAction } from '../../store/action-creators';
-import { notifyError } from '../../utils/project-utils';
-import PlayButton from '../play-button/play-button';
 
 function FilmPageTop(): JSX.Element {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id, posterImage, videoLink, runTime, backgroundImage, name, genre, released, isFavorite } = useSelector(getCurrentFilmData);
+  const { id, videoLink, backgroundImage, name, genre, released, isFavorite } = useSelector(getCurrentFilmData);
   const authorization = useSelector(getAuthStatus);
   const myListIcon = isFavorite ? '#in-list' : '#add';
   const isFavoritePostNumber = isFavorite ? 0 : 1;
@@ -22,13 +21,6 @@ function FilmPageTop(): JSX.Element {
       navigate(AppRoute.Login);
     }
     dispatch(postFilmIsFavoriteAction(id, isFavoritePostNumber));
-  };
-
-  const handleAddReviewClick = (): void => {
-    if (authorization !== AuthorizationStatus.Auth) {
-      notifyError(NotificationMessage.Unauthorized);
-    }
-    dispatch(setCommentPostStatusAction(FetchStatus.Undefined));
   };
 
   return (
@@ -50,7 +42,7 @@ function FilmPageTop(): JSX.Element {
           </p>
 
           <div className="film-card__buttons">
-            <PlayButton
+            <ButtonPlay
               videoLink={ videoLink }
             />
 
@@ -65,13 +57,11 @@ function FilmPageTop(): JSX.Element {
               <span>My list</span>
             </button>
 
-            <Link
-              onClick={ handleAddReviewClick }
-              to={ `${ AppRoute.Film }/${ id }/review` }
-              className="btn film-card__button"
-            >
-              Add review
-            </Link>
+            {
+              authorization === AuthorizationStatus.Auth
+              &&
+              <ButtonAddReview id={ id } />
+            }
           </div>
         </div>
       </div>

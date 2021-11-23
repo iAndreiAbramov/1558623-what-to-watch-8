@@ -2,6 +2,7 @@ import { adaptFilmDataToFront, adaptFilmsDataToFront, adaptUserDataToFront } fro
 import { APIRoute, AppRoute, AuthorizationStatus, FetchStatus, NotificationMessage } from '../const';
 import { dropAvatar, setAvatar } from '../services/avatar';
 import { dropToken, setToken } from '../services/token';
+import { FilmDataTypesBack } from '../types/film-data-types';
 import { notifyError, notifyInfo, notifySuccess } from '../utils/project-utils';
 import {
   setAuthStatusAction,
@@ -21,7 +22,6 @@ import {
   setReviewsAction,
   setSimilarFilmsAction, setSimilarGetStatusAction
 } from './action-creators';
-import { FilmDataTypesBack } from '../types/film-data-types';
 import { ReviewPostTypes } from '../types/review-types';
 import { ThunkActionResult } from '../types/action-types';
 import { UserAuthorizationTypes } from '../types/user-data-types';
@@ -132,6 +132,7 @@ export const postReviewAction = (review: ReviewPostTypes): ThunkActionResult => 
       .then(() => {
         dispatch(setCommentPostStatusAction(FetchStatus.Success));
         notifySuccess(NotificationMessage.PostSuccess);
+        window.history.back();
       })
       .catch(() => {
         dispatch(setCommentPostStatusAction(FetchStatus.Error));
