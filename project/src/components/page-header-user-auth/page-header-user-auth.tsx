@@ -7,6 +7,7 @@ import { getFavoritesAction, requireLogoutAction } from '../../store/api-actions
 
 function PageHeaderUserAuth(props: { avatarUrl: string }): JSX.Element {
   const dispatch = useDispatch();
+  const location = window.location.pathname;
   const { avatarUrl } = props;
   const [avatar, setAvatar] = useState(avatarUrl);
 
@@ -39,12 +40,13 @@ function PageHeaderUserAuth(props: { avatarUrl: string }): JSX.Element {
         </div>
       </li>
       <li className="user-block__item">
-        <a
+        <Link
+          to={ location }
           className="user-block__link"
           onClick={ handleLogoutClick }
         >
           Sign out
-        </a>
+        </Link>
       </li>
     </ul>
   );

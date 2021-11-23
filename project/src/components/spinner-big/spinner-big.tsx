@@ -1,7 +1,7 @@
 import React from 'react';
 import './spinner-big.css';
 
-function SpinnerBig() {
+function SpinnerBig(): JSX.Element {
   return (
     <div className="overlay-big">
       <div className="spinner-big-wrapper">

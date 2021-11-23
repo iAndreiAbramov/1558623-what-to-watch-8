@@ -19,13 +19,12 @@ function MainPage(): JSX.Element {
   return (
     <>
       {
-        promoGetStatus === FetchStatus.InProgress
-        || filmsGetStatus === FetchStatus.InProgress
-        && <SpinnerBig />
+        (promoGetStatus === FetchStatus.InProgress || filmsGetStatus === FetchStatus.InProgress)
+        &&
+        <SpinnerBig />
       }
       {
-        promoGetStatus === FetchStatus.Success
-        && filmsGetStatus === FetchStatus.Success
+        (promoGetStatus === FetchStatus.Success && filmsGetStatus === FetchStatus.Success)
         &&
         <>
           <HiddenComponent />

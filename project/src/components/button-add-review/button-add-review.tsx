@@ -6,7 +6,7 @@ import { getAuthStatus } from '../../store/selectors';
 import { notifyError } from '../../utils/project-utils';
 import { setCommentPostStatusAction } from '../../store/action-creators';
 
-function ButtonAddReview(props: {id: string}) {
+function ButtonAddReview(props: {id: string}): JSX.Element {
   const dispatch = useDispatch();
   const authorization = useSelector(getAuthStatus);
   const { id } = props;
@@ -17,6 +17,7 @@ function ButtonAddReview(props: {id: string}) {
     }
     dispatch(setCommentPostStatusAction(FetchStatus.Undefined));
   };
+
   return (
     <Link
       onClick={ handleAddReviewClick }

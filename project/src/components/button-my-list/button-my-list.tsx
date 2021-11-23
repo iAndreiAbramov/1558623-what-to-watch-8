@@ -10,7 +10,7 @@ type ButtonMyListTypes = {
   isFavorite: boolean,
 }
 
-function ButtonMyList(props: ButtonMyListTypes) {
+function ButtonMyList(props: ButtonMyListTypes): JSX.Element {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authorization = useSelector(getAuthStatus);

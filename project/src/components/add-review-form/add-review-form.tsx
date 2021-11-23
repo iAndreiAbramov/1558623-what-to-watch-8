@@ -9,7 +9,7 @@ type AddReviewFormTypes = {
   backgroundColor: string,
 }
 
-function AddReviewForm(props: AddReviewFormTypes) {
+function AddReviewForm(props: AddReviewFormTypes): JSX.Element {
   const dispatch = useDispatch();
   const postStatus = useSelector(getCommentPostStatus);
   const { id, backgroundColor } = props;
@@ -23,13 +23,7 @@ function AddReviewForm(props: AddReviewFormTypes) {
       setIsSubmitDisabled(false);
       setIsInputDisabled(false);
     }
-    if (postStatus === FetchStatus.Success) {
-      setIsSubmitDisabled(false);
-      setIsInputDisabled(false);
-      setComment('');
-      setRating(INITIAL_RATING);
-    }
-  });
+  }, [postStatus]);
 
   useEffect(() => {
     if (comment.length >= REVIEW_MIN_LENGTH && comment.length <= REVIEW_MAX_LENGTH) {

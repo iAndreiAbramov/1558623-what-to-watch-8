@@ -6,7 +6,7 @@ import { getCurrentFilmData } from '../../store/selectors';
 import { getCurrentFilmDataAction } from '../../store/api-actions';
 import { setActiveTabAction } from '../../store/action-creators';
 
-function Breadcrumbs() {
+function Breadcrumbs(): JSX.Element {
   const dispatch = useDispatch();
   const { name, id } = useSelector(getCurrentFilmData);
   const locationId = useParams().id;
@@ -34,7 +34,7 @@ function Breadcrumbs() {
           </Link>
         </li>
         <li className="breadcrumbs__item">
-          <a className="breadcrumbs__link">Add review</a>
+          <span className="breadcrumbs__link">Add review</span>
         </li>
       </ul>
     </nav>

@@ -4,14 +4,14 @@ import LoginPageFormError from '../login-page-form-error/login-page-form-error';
 import { LoginPageMessage, Outline } from '../../const';
 import { requireLoginAction } from '../../store/api-actions';
 
-function LoginPageForm() {
+function LoginPageForm(): JSX.Element {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [emailOutline, setEmailOutline] = useState(Outline.Valid);
-  const [password, setPassword] = useState('');
-  const [passwordOutline, setPasswordOutline] = useState(Outline.Valid);
-  const [message, setMessage] = useState(LoginPageMessage.Initial);
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+  const [email, setEmail] = useState<string>('');
+  const [emailOutline, setEmailOutline] = useState<string>(Outline.Valid);
+  const [password, setPassword] = useState<string>('');
+  const [passwordOutline, setPasswordOutline] = useState<string>(Outline.Valid);
+  const [message, setMessage] = useState<LoginPageMessage>(LoginPageMessage.Initial);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true);
 
   const handleEmailInput = (evt: FormEvent<HTMLInputElement>): void => {
     evt.preventDefault();

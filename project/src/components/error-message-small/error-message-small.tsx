@@ -1,7 +1,7 @@
 import React from 'react';
 import './error-message-small.css';
 
-function ErrorMessageSmall() {
+function ErrorMessageSmall(): JSX.Element {
   return (
     <p className="error-message-small">
       An error occurred during data loading.
