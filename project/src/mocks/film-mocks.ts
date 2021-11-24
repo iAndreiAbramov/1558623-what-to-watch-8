@@ -15,7 +15,7 @@ export const filmFrontMockOne: FilmDataTypesFront = {
   director: 'director-1',
   starring: ['star-11', 'star-12', 'star-13'],
   runTime: 101,
-  genre: 'genre-1',
+  genre: 'A-genre',
   released: '2010',
   isFavorite: false,
 };
@@ -35,7 +35,7 @@ export const filmFrontMockTwo: FilmDataTypesFront = {
   director: 'director-2',
   starring: ['star-21', 'star-22', 'star-23'],
   runTime: 102,
-  genre: 'genre-2',
+  genre: 'B-genre',
   released: '2011',
   isFavorite: true,
 };
@@ -55,12 +55,16 @@ export const filmFrontMockThree: FilmDataTypesFront = {
   director: 'director-3',
   starring: ['star-31', 'star-32', 'star-33'],
   runTime: 103,
-  genre: 'genre-3',
+  genre: 'C-genre',
   released: '2013',
   isFavorite: false,
 };
 
-export const filmsFrontMock: FilmDataTypesFront[]  = [filmFrontMockOne, filmFrontMockTwo, filmFrontMockThree];
+export const filmsFrontMock: FilmDataTypesFront[]  = [
+  filmFrontMockThree,
+  filmFrontMockTwo,
+  filmFrontMockOne,
+];
 
 export const filmBackMockOne: FilmDataTypesBack = {
   id: '1',
@@ -77,7 +81,7 @@ export const filmBackMockOne: FilmDataTypesBack = {
   director: 'director-1',
   starring: ['star-11', 'star-12', 'star-13'],
   ['run_time']: 101,
-  genre: 'genre-1',
+  genre: 'A-genre',
   released: '2010',
   ['is_favorite']: false,
 };
@@ -97,7 +101,7 @@ export const filmBackMockTwo: FilmDataTypesBack = {
   director: 'director-2',
   starring: ['star-21', 'star-22', 'star-23'],
   ['run_time']: 102,
-  genre: 'genre-2',
+  genre: 'B-genre',
   released: '2011',
   ['is_favorite']: true,
 };
@@ -117,9 +121,13 @@ export const filmBackMockThree: FilmDataTypesBack = {
   director: 'director-3',
   starring: ['star-31', 'star-32', 'star-33'],
   ['run_time']: 103,
-  genre: 'genre-3',
+  genre: 'C-genre',
   released: '2013',
   ['is_favorite']: false,
 };
 
-export const filmsBackMock: FilmDataTypesBack[] = [filmBackMockOne, filmBackMockTwo, filmBackMockThree];
+export const filmsBackMock: FilmDataTypesBack[] = [
+  filmBackMockThree,
+  filmBackMockTwo,
+  filmBackMockOne,
+];
