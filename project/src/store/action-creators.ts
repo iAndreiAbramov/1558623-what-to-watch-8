@@ -26,6 +26,7 @@ export enum ActionType {
   SetCommentsGetStatus = 'status/setCommentsGetStatus',
   SetFavoritesGetStatus = 'status/setFavoritesGetStatus',
   SetPlayerData = 'player/setPlayerData',
+  Unknown = 'test/unknown',
 }
 
 export const setAuthStatusAction = createAction(
