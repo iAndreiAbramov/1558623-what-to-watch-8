@@ -82,7 +82,7 @@ export enum TabName {
   Reviews = 'Reviews',
 }
 
-export const TabNames: string[] = ['Overview', 'Details', 'Reviews'];
+export const tabNames: string[] = ['Overview', 'Details', 'Reviews'];
 
 export enum Rating {
   Awesome = 'Awesome',

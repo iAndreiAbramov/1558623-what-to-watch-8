@@ -27,7 +27,8 @@ function AddReviewForm(props: AddReviewFormTypes): JSX.Element {
   }, [postStatus]);
 
   useEffect(() => {
-    if (comment.length >= REVIEW_MIN_LENGTH
+    if (
+      comment.length >= REVIEW_MIN_LENGTH
       && comment.length <= REVIEW_MAX_LENGTH
       && starsTouched
     ) {

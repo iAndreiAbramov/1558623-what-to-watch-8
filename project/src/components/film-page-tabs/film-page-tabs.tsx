@@ -1,9 +1,9 @@
 import React from 'react';
 import FilmPageTab from '../film-page-tab/film-page-tab';
-import { TabNames } from '../../const';
+import { tabNames } from '../../const';
 
 function FilmPageTabs(): JSX.Element {
-  const tabs = TabNames.map((name) => (
+  const tabs = tabNames.map((name) => (
     <FilmPageTab
       key={ name }
       name={ name }
