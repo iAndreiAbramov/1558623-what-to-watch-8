@@ -1,5 +1,5 @@
-import { createReducer } from '@reduxjs/toolkit';
 import { ALL_GENRES_TAB_NAME } from '../../const';
+import { createReducer } from '@reduxjs/toolkit';
 import { FilmDataTypesFront } from '../../types/film-data-types';
 import { setActiveFilterAction, setFilmsDataAction } from '../action-creators';
 

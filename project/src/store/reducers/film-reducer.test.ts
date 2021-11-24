@@ -1,14 +1,8 @@
-import {
-  ActionType,
-  setActiveTabAction,
-  setCurrentFilmDataAction,
-  setReviewsAction,
-  setSimilarFilmsAction
-} from '../action-creators';
+import { ActionType } from '../action-creators';
+import { commentsMocks } from '../../mocks/comments-mocks';
 import { DEFAULT_FILM_DATA, TabName } from '../../const';
 import { filmFrontMockOne, filmsFrontMock } from '../../mocks/film-mocks';
 import { filmReducer, FilmStateTypes } from './film-reducer';
-import { commentsMocks } from '../../mocks/comments-mocks';
 
 describe('Reducer filmReducer', () => {
   const initialState: FilmStateTypes = {
@@ -37,7 +31,7 @@ describe('Reducer filmReducer', () => {
     expect(filmReducer(
       initialState,
       {
-        type: setActiveTabAction,
+        type: ActionType.SetActiveTab,
         payload: TabName.Reviews,
       },
     )).toEqual(expectedState);
@@ -52,7 +46,7 @@ describe('Reducer filmReducer', () => {
     expect(filmReducer(
       initialState,
       {
-        type: setCurrentFilmDataAction,
+        type: ActionType.SetCurrentFilmData,
         payload: filmFrontMockOne,
       },
     )).toEqual(expectedState);
@@ -67,7 +61,7 @@ describe('Reducer filmReducer', () => {
     expect(filmReducer(
       initialState,
       {
-        type: setReviewsAction,
+        type: ActionType.SetCurrentFilmReviews,
         payload: commentsMocks,
       },
     )).toEqual(expectedState);
@@ -82,7 +76,7 @@ describe('Reducer filmReducer', () => {
     expect(filmReducer(
       initialState,
       {
-        type: setSimilarFilmsAction,
+        type: ActionType.SetSimilarFilms,
         payload: filmsFrontMock,
       },
     )).toEqual(expectedState);

@@ -1,5 +1,5 @@
-import { favoritesReducer } from './favorites-reducer';
 import { ActionType } from '../action-creators';
+import { favoritesReducer } from './favorites-reducer';
 import { filmsFrontMock } from '../../mocks/film-mocks';
 
 describe('Reducer favoritesReducer', () => {
