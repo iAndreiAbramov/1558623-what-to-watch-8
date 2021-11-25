@@ -41,7 +41,7 @@ function MainPageContent(): JSX.Element {
   }, [filteredList.length, renderCount]);
 
   return (
-    <div className="page-content">
+    <div className="page-content" data-testid="main-page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <MainPageTabs tabsList={ tabsList } />

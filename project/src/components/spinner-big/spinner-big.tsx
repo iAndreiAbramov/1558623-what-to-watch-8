@@ -3,7 +3,7 @@ import './spinner-big.css';
 
 function SpinnerBig(): JSX.Element {
   return (
-    <div className="overlay-big">
+    <div className="overlay-big" data-testid="spinner-big">
       <div className="spinner-big-wrapper">
         <img
           width="200"
