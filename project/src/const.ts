@@ -18,6 +18,9 @@ export enum APIRoute {
 
 export enum HttpResponseStatus {
   UnAuthorized = 401,
+  Error = 400,
+  Ok = 200,
+  NoContent = 204,
 }
 
 export enum NameSpace {

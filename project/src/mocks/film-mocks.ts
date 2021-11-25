@@ -86,6 +86,26 @@ export const filmBackMockOne: FilmDataTypesBack = {
   ['is_favorite']: false,
 };
 
+export const filmBackMockOneFavorite: FilmDataTypesBack = {
+  id: '1',
+  name: 'name-1',
+  ['poster_image']: 'poster-1',
+  ['preview_image']: 'preview-image-1',
+  ['background_image']: 'background-image-1',
+  ['background_color']: 'background-color-1',
+  ['video_link']: 'video-link-1',
+  ['preview_video_link']: 'preview-video-link-1',
+  description: 'description-1',
+  rating: 8.1,
+  ['scores_count']: 1001,
+  director: 'director-1',
+  starring: ['star-11', 'star-12', 'star-13'],
+  ['run_time']: 101,
+  genre: 'A-genre',
+  released: '2010',
+  ['is_favorite']: true,
+};
+
 export const filmBackMockTwo: FilmDataTypesBack = {
   id: '2',
   name: 'name-2',
