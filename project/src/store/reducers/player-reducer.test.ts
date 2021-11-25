@@ -18,7 +18,7 @@ describe('Reducer playerReducer', () => {
     )).toEqual(initialState);
   });
 
-  it('should update state correctly if action type is "setPlayerDataAction"', () => {
+  it('should update state correctly if action type is "setPlayerData"', () => {
     const expectedState = Object.assign(
       {},
       initialState,

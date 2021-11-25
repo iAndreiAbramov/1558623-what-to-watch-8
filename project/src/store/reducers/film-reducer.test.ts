@@ -22,7 +22,7 @@ describe('Reducer filmReducer', () => {
     )).toEqual(initialState);
   });
 
-  it('should not update store correctly if action type is "setActiveTabAction', () => {
+  it('should not update store correctly if action type is "setActiveTab', () => {
     const expectedState: FilmStateTypes = Object.assign(
       {},
       initialState,
@@ -37,7 +37,7 @@ describe('Reducer filmReducer', () => {
     )).toEqual(expectedState);
   });
 
-  it('should not update store correctly if action type is "setCurrentFilmDataAction', () => {
+  it('should not update store correctly if action type is "setCurrentFilmData', () => {
     const expectedState: FilmStateTypes = Object.assign(
       {},
       initialState,
@@ -52,7 +52,7 @@ describe('Reducer filmReducer', () => {
     )).toEqual(expectedState);
   });
 
-  it('should not update store correctly if action type is "setReviewsAction', () => {
+  it('should not update store correctly if action type is "setReviews', () => {
     const expectedState: FilmStateTypes = Object.assign(
       {},
       initialState,
@@ -67,7 +67,7 @@ describe('Reducer filmReducer', () => {
     )).toEqual(expectedState);
   });
 
-  it('should not update store correctly if action type is "setSimilarFilmsAction', () => {
+  it('should not update store correctly if action type is "setSimilarFilms', () => {
     const expectedState: FilmStateTypes = Object.assign(
       {},
       initialState,

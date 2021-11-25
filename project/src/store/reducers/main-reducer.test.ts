@@ -1,5 +1,5 @@
 import { ActionType } from '../action-creators';
-import { ALL_GENRES_TAB_NAME, TabName } from '../../const';
+import { ALL_GENRES_TAB_NAME } from '../../const';
 import { filmsFrontMock } from '../../mocks/film-mocks';
 import { mainReducer, MainStateTypes } from './main-reducer';
 
@@ -19,7 +19,7 @@ describe('Reducer mainReducer', () => {
     )).toEqual(initialState);
   });
 
-  it('should update state correctly if action type is setFilmsDataAction', () => {
+  it('should update state correctly if action type is setFilmsData', () => {
     const expectedState: MainStateTypes = Object.assign(
       {},
       initialState,
@@ -34,7 +34,7 @@ describe('Reducer mainReducer', () => {
     )).toEqual(expectedState);
   });
 
-  it('should update state correctly if action type is setActiveFilterAction', () => {
+  it('should update state correctly if action type is setActiveFilter', () => {
     const expectedState: MainStateTypes = Object.assign(
       {},
       initialState,
