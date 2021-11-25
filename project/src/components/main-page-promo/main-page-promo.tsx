@@ -11,7 +11,7 @@ function MainPagePromo(): JSX.Element {
   const { id, videoLink, name, posterImage, backgroundImage, released, genre, isFavorite } = promoData;
 
   return (
-    <section className="film-card">
+    <section className="film-card" data-testid="main-promo">
       <PosterBackground
         backgroundImage={ backgroundImage }
         name={ name }
