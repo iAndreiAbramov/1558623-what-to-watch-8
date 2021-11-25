@@ -32,13 +32,13 @@ function VideoPlayer(): JSX.Element {
 
   const handleProgressUpdate = (): void => {
     if (video?.currentTime) {
-      setProgress((video?.currentTime / (video.duration)) * PERCENT_CAP);
+      setProgress((video.currentTime / (video.duration)) * PERCENT_CAP);
       setRemainingTime(Math.round(video.duration - video.currentTime));
     }
   };
 
   return (
-    <div className="player">
+    <div className="player" data-testid="video-player">
       {
         isLoading && <SpinnerBig />
       }
