@@ -50,7 +50,7 @@ describe('Reducer promoReducer', () => {
     const expectedState = Object.assign(
       {},
       initialState,
-      { isFavorite: true},
+      { isFavorite: true },
     );
 
     expect(promoReducer(
