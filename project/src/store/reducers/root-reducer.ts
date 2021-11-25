@@ -9,9 +9,9 @@ import { statusReducer, StatusStateTypes } from './status-reducer';
 import { userReducer, UserStateTypes } from './user-reducer';
 
 export type RootStateTypes = {
-  [NameSpace.Film]: FilmStateTypes,
   [NameSpace.Main]: MainStateTypes,
   [NameSpace.Promo]: PromoStateTypes,
+  [NameSpace.Film]: FilmStateTypes,
   [NameSpace.User]: UserStateTypes,
   [NameSpace.Status]: StatusStateTypes,
   [NameSpace.Favorites]: FavoritesStateTypes,
@@ -19,9 +19,9 @@ export type RootStateTypes = {
 };
 
 export const rootReducer = combineReducers({
-  [NameSpace.Film]: filmReducer,
   [NameSpace.Main]: mainReducer,
   [NameSpace.Promo]: promoReducer,
+  [NameSpace.Film]: filmReducer,
   [NameSpace.User]: userReducer,
   [NameSpace.Status]: statusReducer,
   [NameSpace.Favorites]: favoritesReducer,
