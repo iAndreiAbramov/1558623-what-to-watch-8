@@ -7,7 +7,7 @@ function PageHeaderLogin(): JSX.Element {
   const titleText = PageTitle.Login;
 
   return (
-    <header className="page-header user-page__head">
+    <header className="page-header user-page__head" data-testid="page-header-login">
       <PageHeaderLogo />
       <PageHeaderTitle titleText={ titleText } />
     </header>

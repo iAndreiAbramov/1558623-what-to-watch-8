@@ -3,9 +3,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
+import { FetchStatus, NameSpace } from '../../const';
 import { mockStoreWithAuth } from '../../mocks/store-mocks';
 import MyListContent from './my-list-content';
-import { FetchStatus, NameSpace } from '../../const';
 
 describe('Component MyListContent', () => {
   const mockStore = configureMockStore();

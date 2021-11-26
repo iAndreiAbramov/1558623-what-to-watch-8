@@ -66,7 +66,7 @@ function LoginPageForm(): JSX.Element {
   }, [email, password]);
 
   return (
-    <div className="sign-in user-page__content">
+    <div className="sign-in user-page__content" data-testid="login-page-form">
       <LoginPageFormError message={ message } />
       <form className="sign-in__form" onSubmit={ handleFormSubmit }>
         <div className="sign-in__fields">
