@@ -14,6 +14,7 @@ function AddReviewPage(): JSX.Element {
       <section
         style={ { backgroundColor: backgroundColor } }
         className="film-card film-card--full"
+        data-testid="add-review-page"
       >
         <div className="film-card__header">
           <div className="film-card__bg">
@@ -27,7 +28,7 @@ function AddReviewPage(): JSX.Element {
           <div className="film-card__poster film-card__poster--small">
             <img
               src={ posterImage }
-              alt={ `${ posterImage } poster` }
+              alt={ `${ name } poster` }
               width="218"
               height="327"
             />
