@@ -55,7 +55,7 @@ function AddReviewForm(props: AddReviewFormTypes): JSX.Element {
   };
 
   return (
-    <div className="add-review">
+    <div className="add-review" data-testid="add-review-form">
       <form
         onSubmit={ handleSubmit }
         className="add-review__form"
