@@ -3,18 +3,17 @@ import * as Redux from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
-import { render, screen } from '@testing-library/react';
 import thunk from 'redux-thunk';
 import userEvent from '@testing-library/user-event';
 import { AppRoute } from '../../const';
-import ButtonMyList from './button-my-list';
+import ButtonAddReview from './button-add-review';
 import { createApi } from '../../services/api';
 import { mockStoreWithAuth, mockStoreWithNoAuth } from '../../mocks/store-mocks';
+import { render, screen } from '@testing-library/react';
 
 const TEST_ID = '1';
-const TEST_IS_FAVORITE = false;
 
-describe('Component ButtonMyList', () => {
+describe('Component ButtonAddReview', () => {
   const onFakeUnauthorized = jest.fn();
   const api = createApi(onFakeUnauthorized);
   const middlewares = [thunk.withExtraArgument(api)];
@@ -25,33 +24,15 @@ describe('Component ButtonMyList', () => {
     render(
       <Provider store={ store }>
         <BrowserRouter>
-          <ButtonMyList id={ TEST_ID } isFavorite={ TEST_IS_FAVORITE } />
+          <ButtonAddReview id={ TEST_ID } />
         </BrowserRouter>
       </Provider>);
 
-    expect(screen.getByText('My list')).toBeInTheDocument();
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByText('Add review')).toBeInTheDocument();
+    expect(screen.getByRole('link')).toBeInTheDocument();
   });
 
-  it('should redirect to login page if user is not logged in', () => {
-    const store = mockStore(mockStoreWithNoAuth);
-    window.history.pushState(null, '', '/fake');
-    render(
-      <Provider store={ store }>
-        <BrowserRouter window={ window }>
-          <Routes>
-            <Route path="/fake" element={ <ButtonMyList id={ TEST_ID } isFavorite={ TEST_IS_FAVORITE } /> } />
-            <Route path={ AppRoute.Login } element={ <h1>Login page</h1> } />
-          </Routes>
-        </BrowserRouter>
-      </Provider>);
-
-    expect(screen.queryByText('Login page')).not.toBeInTheDocument();
-    userEvent.click(screen.getByRole('button'));
-    expect(screen.getByText('Login page')).toBeInTheDocument();
-  });
-
-  it('should dispatch an action on click if user is logged in', () => {
+  it('should dispatch an action on click if user is logged in and go to review page', () => {
     const dispatch = jest.fn();
     const useDispatch = jest.spyOn(Redux, 'useDispatch');
     useDispatch.mockReturnValue(dispatch);
@@ -63,14 +44,17 @@ describe('Component ButtonMyList', () => {
           <Routes>
             <Route
               path={ `${ AppRoute.Film }/${ TEST_ID }` }
-              element={ <ButtonMyList id={ TEST_ID } isFavorite={ TEST_IS_FAVORITE } /> }
+              element={ <ButtonAddReview id={ TEST_ID } /> }
             />
+            <Route path={ `${ AppRoute.Film }/${ TEST_ID }/review` } element={ <h1>Review page</h1> } />
           </Routes>
         </BrowserRouter>
       </Provider>);
 
     expect(dispatch).toBeCalledTimes(0);
-    userEvent.click(screen.getByRole('button'));
+    expect(screen.queryByText('Review page')).not.toBeInTheDocument();
+    userEvent.click(screen.getByRole('link'));
     expect(dispatch).toBeCalledTimes(1);
+    expect(screen.getByText('Review page')).toBeInTheDocument();
   });
 });
