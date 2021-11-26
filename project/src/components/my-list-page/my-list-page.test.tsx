@@ -7,10 +7,9 @@ import { mockStoreWithAuth } from '../../mocks/store-mocks';
 import MyListPage from './my-list-page';
 
 describe('Component MyListPage', () => {
-  const mockStore = configureMockStore();
   it('should render correctly', () => {
+    const mockStore = configureMockStore();
     const store = mockStore(mockStoreWithAuth);
-
     const fakeApp = (
       <Provider store={ store }>
         <BrowserRouter>

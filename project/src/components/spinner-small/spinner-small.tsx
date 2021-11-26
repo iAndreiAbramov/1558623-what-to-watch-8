@@ -3,7 +3,7 @@ import './spinner-small.css';
 
 function SpinnerSmall(): JSX.Element {
   return (
-    <div className="overlay-small">
+    <div className="overlay-small" data-testid="spinner-small">
       <div className="spinner-small-wrapper">
         <img
           width="200"
