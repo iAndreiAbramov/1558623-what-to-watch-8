@@ -3,10 +3,10 @@ import * as Redux from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
+import userEvent from '@testing-library/user-event';
 import LoginPageForm from './login-page-form';
 import { mockStoreWithAuth } from '../../mocks/store-mocks';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 const CORRECT_EMAIL= 'test@test.com';
 const INCORRECT_EMAIL= 'test@test';

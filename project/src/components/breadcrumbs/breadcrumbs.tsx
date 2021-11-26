@@ -22,7 +22,7 @@ function Breadcrumbs(): JSX.Element {
   };
 
   return (
-    <nav className="breadcrumbs">
+    <nav className="breadcrumbs" data-testid="breadcrumbs">
       <ul className="breadcrumbs__list">
         <li className="breadcrumbs__item">
           <Link
