@@ -5,10 +5,10 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { ActionType } from '../../store/action-creators';
 import { AppRoute } from '../../const';
 import ButtonPlay from './button-play';
 import { mockStoreWithNoAuth } from '../../mocks/store-mocks';
-import { ActionType } from '../../store/action-creators';
 
 describe('Component ButtonPlay', () => {
   const mockStore = configureMockStore();
