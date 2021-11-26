@@ -5,15 +5,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { render, screen } from '@testing-library/react';
 import thunk from 'redux-thunk';
+import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
+import { AppRoute } from '../../const';
 import { AuxProps } from '../../store/selectors.test';
 import Breadcrumbs from './breadcrumbs';
+import { createApi } from '../../services/api';
 import { getCurrentFilmData } from '../../store/selectors';
 import { mockStoreWithAuth } from '../../mocks/store-mocks';
-import { renderHook } from '@testing-library/react-hooks';
-import { AppRoute } from '../../const';
-import FilmPage from '../film-page/film-page';
-import { createApi } from '../../services/api';
 
 describe('Component BreadCrumbs', () => {
   const onFakeUnauthorized = jest.fn();

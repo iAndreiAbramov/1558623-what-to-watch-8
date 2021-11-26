@@ -28,7 +28,7 @@ function PageHeaderUserAuth(props: { avatarUrl: string }): JSX.Element {
   };
 
   return (
-    <ul className="user-block">
+    <ul className="user-block" data-testid="user-auth">
       <li className="user-block__item">
         <div className="user-block__avatar">
           <Link
