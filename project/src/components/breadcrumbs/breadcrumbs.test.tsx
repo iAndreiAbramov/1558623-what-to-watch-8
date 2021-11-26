@@ -1,15 +1,15 @@
 import React from 'react';
 import * as Redux from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { Provider, useSelector } from 'react-redux';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { AuxProps } from '../../store/selectors.test';
 import Breadcrumbs from './breadcrumbs';
 import { getCurrentFilmData } from '../../store/selectors';
 import { mockStoreWithAuth } from '../../mocks/store-mocks';
 import { renderHook } from '@testing-library/react-hooks';
-import userEvent from '@testing-library/user-event';
 
 describe('Component BreadCrumbs', () => {
   const mockStore = configureMockStore();
