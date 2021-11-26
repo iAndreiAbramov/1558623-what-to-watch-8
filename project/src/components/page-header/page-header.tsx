@@ -18,7 +18,7 @@ function PageHeader(): JSX.Element {
     : PageTitle.Login;
 
   return (
-    <header className="page-header user-page__head">
+    <header className="page-header user-page__head" data-testid="page-header">
       <PageHeaderLogo />
       {
         location.pathname === AppRoute.MyList

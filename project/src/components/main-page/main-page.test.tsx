@@ -34,6 +34,8 @@ describe('Component MainPage', () => {
     render(fakeApp);
 
     expect(screen.getByTestId('main-promo')).toBeInTheDocument();
+    expect(screen.getByTestId('page-header')).toBeInTheDocument();
+    expect(screen.getByTestId('page-footer')).toBeInTheDocument();
     expect(screen.getByTestId('main-page-content')).toBeInTheDocument();
   });
 
@@ -62,6 +64,8 @@ describe('Component MainPage', () => {
 
     expect(screen.getByTestId('spinner-big')).toBeInTheDocument();
     expect(screen.queryByTestId('main-promo')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('page-header')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('page-footer')).not.toBeInTheDocument();
     expect(screen.queryByTestId('main-page-content')).not.toBeInTheDocument();
   });
 });

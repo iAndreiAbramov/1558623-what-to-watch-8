@@ -4,7 +4,7 @@ import { AppRoute } from '../../const';
 
 function PageFooter(): JSX.Element {
   return (
-    <footer className="page-footer">
+    <footer className="page-footer" data-testid="page-footer">
       <div className="logo">
         <Link to={AppRoute.Main} className="logo__link logo__link--light">
           <span className="logo__letter logo__letter--1">W</span>

@@ -124,6 +124,6 @@ describe('Selector', () => {
 
   it('getPlayerData should return correct state', () => {
     const { result } = renderHook(() => useSelector(getPlayerData), { wrapper });
-    expect(result.current).toEqual(FetchStatus.Undefined);
+    expect(result.current).toEqual({ videoLink: 'fake-video-link' });
   });
 });

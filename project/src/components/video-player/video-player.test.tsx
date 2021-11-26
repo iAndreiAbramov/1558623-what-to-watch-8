@@ -22,6 +22,5 @@ describe('Component VideoPlayer', () => {
     expect(screen.getByText('Full screen')).toBeInTheDocument();
     expect(screen.getByText('Play')).toBeInTheDocument();
     expect(screen.getByText('Toggler')).toBeInTheDocument();
-    expect(screen.getByTestId('video-player')).toBeInTheDocument();
   });
 });
