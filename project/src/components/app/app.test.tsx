@@ -76,47 +76,6 @@ describe('Component App', () => {
     expect(screen.getByText('Add review page')).toBeInTheDocument();
   });
 
-  it('should redirect from private routes to login page while user is unauthorized', () => {
-    const store = mockStore(mockStoreWithNoAuth);
-
-    const fakeApp = (
-      <Provider store={ store }>
-        <BrowserRouter>
-          <Routes>
-            <Route path={ AppRoute.Login } element={ <h1>Login page</h1> } />
-            <Route
-              path={ AppRoute.MyList }
-              element={
-                <PrivateRoute>
-                  <h1>My list</h1>
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={ `${ AppRoute.Film }/:id/review` }
-              element={
-                <PrivateRoute>
-                  <h1>Add review page</h1>
-                </PrivateRoute>
-              }
-            />
-          </Routes>
-          <Link to={ AppRoute.MyList } data-testid="my-list-link" />
-          <Link to={ `${ AppRoute.Film }/:id/review` } data-testid="add-review-link" />
-        </BrowserRouter>
-      </Provider>);
-
-    render(fakeApp);
-
-    userEvent.click(screen.getByTestId('my-list-link'));
-    expect(screen.queryByText('My list')).not.toBeInTheDocument();
-    expect(screen.getByText('Login page')).toBeInTheDocument();
-
-    userEvent.click(screen.getByTestId('add-review-link'));
-    expect(screen.queryByText('Add review page')).not.toBeInTheDocument();
-    expect(screen.getByText('Login page')).toBeInTheDocument();
-  });
-
   it('should render all non private routes while user is unauthorized', () => {
     const store = mockStore(mockStoreWithNoAuth);
 
