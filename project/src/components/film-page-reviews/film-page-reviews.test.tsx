@@ -6,7 +6,7 @@ import { render, screen } from '@testing-library/react';
 import FilmPageReviews from './film-page-reviews';
 import { mockStoreWithAuth } from '../../mocks/store-mocks';
 
-describe('Component FilmPageDetails', () => {
+describe('Component FilmPageReviews', () => {
   const mockStore = configureMockStore();
   const store = mockStore(mockStoreWithAuth);
   it('should render correctly', () => {
