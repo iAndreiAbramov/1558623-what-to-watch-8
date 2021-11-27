@@ -25,7 +25,7 @@ function FilmPageTab(props: { name: string }): JSX.Element {
   };
 
   return (
-    <li className={ tabClassName }>
+    <li className={ tabClassName } data-testid="film-page-tab">
       <Link
         to={ location.pathname }
         className="film-nav__link"
