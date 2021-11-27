@@ -25,5 +25,5 @@ describe('Function adaptFilmsDataToFront', () => {
 describe('Function adaptUserDataToFront', () => {
   it('should take back user data and return front user data', () => {
     expect(adaptUserDataToFront(userBackMock)).toEqual(userFrontMock);
-  })
-})
+  });
+});

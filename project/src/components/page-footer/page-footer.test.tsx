@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import PageFooter from './page-footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import PageFooter from './page-footer';
 
 describe('Component PageFooter', () => {
   it('should render correctly', () => {

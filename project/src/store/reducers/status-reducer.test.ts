@@ -20,7 +20,7 @@ describe('Reducer statusReducer', () => {
       {
         type: ActionType.Unknown,
         payload: FetchStatus.Error,
-      }
+      },
     )).toEqual(initialState);
   });
 
@@ -36,7 +36,7 @@ describe('Reducer statusReducer', () => {
       {
         type: ActionType.SetPostStatus,
         payload: FetchStatus.Error,
-      }
+      },
     )).toEqual(expectedState);
   });
 
@@ -52,7 +52,7 @@ describe('Reducer statusReducer', () => {
       {
         type: ActionType.SetCommentPostStatus,
         payload: FetchStatus.Error,
-      }
+      },
     )).toEqual(expectedState);
   });
 
@@ -68,7 +68,7 @@ describe('Reducer statusReducer', () => {
       {
         type: ActionType.SetPromoGetStatus,
         payload: FetchStatus.Error,
-      }
+      },
     )).toEqual(expectedState);
   });
 
@@ -84,7 +84,7 @@ describe('Reducer statusReducer', () => {
       {
         type: ActionType.SetFilmsGetStatus,
         payload: FetchStatus.Error,
-      }
+      },
     )).toEqual(expectedState);
   });
 
@@ -100,7 +100,7 @@ describe('Reducer statusReducer', () => {
       {
         type: ActionType.SetFilmGetStatus,
         payload: FetchStatus.Error,
-      }
+      },
     )).toEqual(expectedState);
   });
 
@@ -116,7 +116,7 @@ describe('Reducer statusReducer', () => {
       {
         type: ActionType.SetSimilarGetStatus,
         payload: FetchStatus.Error,
-      }
+      },
     )).toEqual(expectedState);
   });
 
@@ -132,7 +132,7 @@ describe('Reducer statusReducer', () => {
       {
         type: ActionType.SetCommentsGetStatus,
         payload: FetchStatus.Error,
-      }
+      },
     )).toEqual(expectedState);
   });
 
@@ -148,7 +148,7 @@ describe('Reducer statusReducer', () => {
       {
         type: ActionType.SetFavoritesGetStatus,
         payload: FetchStatus.Error,
-      }
+      },
     )).toEqual(expectedState);
   });
 });

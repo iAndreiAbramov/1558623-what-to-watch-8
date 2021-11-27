@@ -20,7 +20,12 @@ describe('Component MainPagePromo', () => {
     </Provider>);
 
   it('should render correctly', () => {
-    const wrapper = ({ children }: AuxProps) => (<Provider store={ store }>{ children }</Provider>)
+    const wrapper = ({ children }: AuxProps) => (
+      <Provider
+        store={ store }
+      >
+        { children }
+      </Provider>);
     const { result } = renderHook(() => useSelector(getPromoData), { wrapper });
     const { name, genre, released } = result.current;
     render(fakeApp);
@@ -32,6 +37,6 @@ describe('Component MainPagePromo', () => {
     expect(screen.getByText(name)).toBeInTheDocument();
     expect(screen.getByText(genre)).toBeInTheDocument();
     expect(screen.getByText(released)).toBeInTheDocument();
-    expect(screen.getByAltText(`${ name } poster`)).toBeInTheDocument();
+    expect(screen.getAllByAltText(`${ name } poster`)).toHaveLength(2);
   });
 });

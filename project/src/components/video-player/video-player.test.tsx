@@ -13,7 +13,7 @@ describe('Component VideoPlayer', () => {
 
     const fakeApp = (
       <Provider store={ store }>
-          <VideoPlayer />
+        <VideoPlayer />
       </Provider>);
 
     render(fakeApp);

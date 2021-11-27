@@ -15,7 +15,7 @@ describe('Reducer mainReducer', () => {
       {
         type: ActionType.Unknown,
         payload: filmsFrontMock,
-      }
+      },
     )).toEqual(initialState);
   });
 
@@ -23,14 +23,14 @@ describe('Reducer mainReducer', () => {
     const expectedState: MainStateTypes = Object.assign(
       {},
       initialState,
-      { filmsData: filmsFrontMock }
-    )
+      { filmsData: filmsFrontMock },
+    );
     expect(mainReducer(
       initialState,
       {
         type: ActionType.SetFilmsData,
         payload: filmsFrontMock,
-      }
+      },
     )).toEqual(expectedState);
   });
 
@@ -38,14 +38,14 @@ describe('Reducer mainReducer', () => {
     const expectedState: MainStateTypes = Object.assign(
       {},
       initialState,
-      { activeTabName: 'Action' }
-    )
+      { activeTabName: 'Action' },
+    );
     expect(mainReducer(
       initialState,
       {
         type: ActionType.SetActiveFilter,
         payload: 'Action',
-      }
+      },
     )).toEqual(expectedState);
   });
 });

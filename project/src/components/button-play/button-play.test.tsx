@@ -49,7 +49,7 @@ describe('Component ButtonPlay', () => {
     expect(dispatch).toBeCalledWith({
       type: ActionType.SetPlayerData,
       payload: {
-        playerData: { videoLink: 'test-link' }
+        playerData: { videoLink: 'test-link' },
       },
     });
   });

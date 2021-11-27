@@ -12,7 +12,7 @@ const NUMBER_OF_STARS = 10;
 const FIRST_TEST_STAR = 0;
 const EIGHTH_TEST_STAR = 7;
 const RIGHT_COMMENT = 'This is a right comment. It means, that it\'s length is more than 50 symbols and less than' +
-  ' 400 symbols.'
+  ' 400 symbols.';
 const SHORT_COMMENT = 'Too short to be submited...';
 const LONG_COMMENT = 'Too long to be submited. Too long to be submited. Too long to be submited. Too long to be' +
   ' submited. Too long to be submited. Too long to be submited. Too long to be submited. Too long to be submited.Too' +
@@ -55,7 +55,7 @@ describe('Component AddReviewForm', () => {
 
   it('should dispatch action on submit only if requirements met', () => {
     const dispatch = jest.fn();
-    const useDispatch = jest.spyOn(Redux, 'useDispatch')
+    const useDispatch = jest.spyOn(Redux, 'useDispatch');
     useDispatch.mockReturnValue(dispatch);
 
     render(fakeApp);

@@ -260,12 +260,18 @@ describe('Async actions', () => {
     const reviewPost = {
       id: '1',
       rating: 8.0,
-      comment: "Test comment",
+      comment: 'Test comment',
     };
 
     mockAPI
-      .onPost(`${ APIRoute.Comments }/1`, { rating: 8.0, comment: "Test comment" })
-      .reply(HttpResponseStatus.Ok, [...commentsMocks, { rating: 8.0, comment: "Test comment" }]);
+      .onPost(
+        `${ APIRoute.Comments }/1`,
+        { rating: 8.0, comment: 'Test comment' },
+      )
+      .reply(
+        HttpResponseStatus.Ok,
+        [...commentsMocks, { rating: 8.0, comment: 'Test comment' }],
+      );
 
     await store.dispatch(postReviewAction(reviewPost));
 
@@ -280,11 +286,14 @@ describe('Async actions', () => {
     const reviewPost = {
       id: '1',
       rating: 8.0,
-      comment: "Test comment",
+      comment: 'Test comment',
     };
 
     mockAPI
-      .onPost(`${ APIRoute.Comments }/1`, { rating: 8.0, comment: "Test comment" })
+      .onPost(
+        `${ APIRoute.Comments }/1`,
+        { rating: 8.0, comment: 'Test comment' },
+      )
       .reply(HttpResponseStatus.Error);
 
     await store.dispatch(postReviewAction(reviewPost));

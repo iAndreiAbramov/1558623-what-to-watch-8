@@ -14,7 +14,7 @@ describe('Reducer playerReducer', () => {
       {
         type: ActionType.Unknown,
         payload: 'fake-string',
-      }
+      },
     )).toEqual(initialState);
   });
 

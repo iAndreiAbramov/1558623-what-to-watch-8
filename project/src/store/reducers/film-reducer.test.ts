@@ -26,8 +26,8 @@ describe('Reducer filmReducer', () => {
     const expectedState: FilmStateTypes = Object.assign(
       {},
       initialState,
-      { activeTabName: TabName.Reviews}
-      );
+      { activeTabName: TabName.Reviews },
+    );
     expect(filmReducer(
       initialState,
       {

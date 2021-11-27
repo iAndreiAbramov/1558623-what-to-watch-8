@@ -61,7 +61,7 @@ export const mockPromoData = {
   released: '2000',
   genre: 'Action',
   isFavorite: false,
-}
+};
 
 export const mockStoreWithAuth: MockStoreTypes = {
   [NameSpace.Main]: {

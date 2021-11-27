@@ -50,4 +50,4 @@ describe('Component PrivateRoute', () => {
     expect(screen.queryByText('Add review page')).not.toBeInTheDocument();
     expect(screen.getByText('Login page')).toBeInTheDocument();
   });
-})
+});

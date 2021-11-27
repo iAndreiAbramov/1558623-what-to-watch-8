@@ -13,9 +13,7 @@ describe('Reducer favoritesReducer', () => {
       },
     )).toEqual(initialState);
   });
-});
 
-describe('Reducer favoritesReducer', () => {
   it('Should update state with passed data', () => {
     const initialState = { favoriteFilms: [] };
     expect(favoritesReducer(
