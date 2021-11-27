@@ -4,10 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { Provider } from 'react-redux';
 import { render, screen } from '@testing-library/react';
-import MainPageTab from './main-page-tab';
-import { mockStoreWithAuth } from '../../mocks/store-mocks';
 import userEvent from '@testing-library/user-event';
 import { ActionType } from '../../store/action-creators';
+import MainPageTab from './main-page-tab';
+import { mockStoreWithAuth } from '../../mocks/store-mocks';
 
 const TEST_NAME = 'Action';
 

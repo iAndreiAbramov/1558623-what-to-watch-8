@@ -59,6 +59,7 @@ function FilmCard(props: FilmCardTypes): JSX.Element {
             alt={ name }
             width="280"
             height="175"
+            data-testid="image-preview"
           />
           <video
             style={ { width: '100%', height: '100%', display: `${ isPlaying ? '' : 'none' }` } }
@@ -68,6 +69,7 @@ function FilmCard(props: FilmCardTypes): JSX.Element {
             preload="none"
             width="280"
             height="175"
+            data-testid="video-preview"
           />
         </div>
       </Link>
