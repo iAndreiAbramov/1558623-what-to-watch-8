@@ -52,7 +52,7 @@ function FilmPage(): JSX.Element {
         &&
         <>
           <HiddenComponent />
-          <section className="film-card film-card--full" style={ { backgroundColor: backgroundColor } }>
+          <section className="film-card film-card--full" style={ { backgroundColor } }>
             <FilmPageTop />
             <div className="film-card__wrap film-card__translate-top">
               <div className="film-card__info">

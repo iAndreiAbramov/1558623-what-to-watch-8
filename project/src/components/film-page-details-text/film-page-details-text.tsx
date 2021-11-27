@@ -11,7 +11,7 @@ function FilmPageDetailsText(): JSX.Element {
   const formattedRunTime = getFormattedRunTime(runTime);
 
   return (
-    <div className="film-card__text film-card__row">
+    <div className="film-card__text film-card__row" data-testid="film-page-details-text">
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Director</strong>

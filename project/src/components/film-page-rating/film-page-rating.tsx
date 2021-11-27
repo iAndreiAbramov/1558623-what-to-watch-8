@@ -11,7 +11,7 @@ function FilmPageRating(): JSX.Element {
   const grade = getGradeFromRating(rating);
 
   return (
-    <div className="film-rating">
+    <div className="film-rating" data-testid="film-page-rating">
       <div className="film-rating__score">{ ratingString }</div>
       <p className="film-rating__meta">
         <span className="film-rating__level">{ grade }</span>

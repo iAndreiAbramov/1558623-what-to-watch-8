@@ -11,7 +11,7 @@ function FilmPageTabs(): JSX.Element {
   ));
 
   return (
-    <nav className="film-nav film-card__nav">
+    <nav className="film-nav film-card__nav" data-testid="film-page-tabs">
       <ul className="film-nav__list">
         { tabs }
       </ul>

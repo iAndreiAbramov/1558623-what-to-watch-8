@@ -13,7 +13,7 @@ function FilmPageTop(): JSX.Element {
   const { id, videoLink, backgroundImage, name, genre, released, isFavorite } = useSelector(getCurrentFilmData);
 
   return (
-    <div className="film-card__hero">
+    <div className="film-card__hero" data-testid="film-page-top">
       <PosterBackground
         backgroundImage={ backgroundImage }
         name={ name }

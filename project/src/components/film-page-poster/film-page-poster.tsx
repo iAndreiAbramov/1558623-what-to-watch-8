@@ -6,7 +6,10 @@ function FilmPagePoster(): JSX.Element {
   const { posterImage, name } = useSelector(getCurrentFilmData);
 
   return (
-    <div className="film-card__poster film-card__poster--big">
+    <div
+      className="film-card__poster film-card__poster--big"
+      data-testid="film-page-poster"
+    >
       <img
         src={ posterImage }
         alt={ `${ name } poster` }

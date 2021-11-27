@@ -26,7 +26,7 @@ function FilmPageReviewsList(): JSX.Element {
   const reviewsRight = reviews.slice(reviewsLeft.length);
 
   return (
-    <div className="film-card__reviews film-card__row">
+    <div className="film-card__reviews film-card__row" data-testid="film-page-reviews-list">
       {
         commentsGetStatus === FetchStatus.InProgress
         &&

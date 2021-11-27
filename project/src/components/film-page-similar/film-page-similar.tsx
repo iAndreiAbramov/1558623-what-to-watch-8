@@ -26,7 +26,10 @@ function FilmPageSimilar(): JSX.Element {
     });
 
   return (
-    <section className="catalog catalog--like-this">
+    <section
+      className="catalog catalog--like-this"
+      data-testid="film-page-similar"
+    >
       <h2 className="catalog__title">More like this</h2>
 
       <div className="catalog__films-list">

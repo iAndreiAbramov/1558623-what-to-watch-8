@@ -8,7 +8,7 @@ function FilmPageOverviewText(): JSX.Element {
   const starringString = `Starring: ${starring.join(', ')}`;
 
   return (
-    <div className="film-card__text">
+    <div className="film-card__text" data-testid="film-page-overview-text">
       { description }
 
       <p className="film-card__director">
