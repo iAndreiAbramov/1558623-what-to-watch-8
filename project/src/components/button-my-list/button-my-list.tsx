@@ -34,6 +34,7 @@ function ButtonMyList(props: ButtonMyListTypes): JSX.Element {
       onClick={ handleMyListClick }
       className="btn btn--list film-card__button"
       type="button"
+      data-testid="button-my-list"
     >
       <svg viewBox="0 0 19 20" width="19" height="20">
         <use xlinkHref={ myListIcon } />
