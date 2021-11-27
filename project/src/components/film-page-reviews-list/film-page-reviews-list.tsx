@@ -39,10 +39,10 @@ function FilmPageReviewsList(): JSX.Element {
         commentsGetStatus === FetchStatus.Success
         &&
         <>
-          <div className="film-card__reviews-col">
+          <div className="film-card__reviews-col" data-testid="reviews-left">
             { reviewsLeft }
           </div>
-          <div className="film-card__reviews-col">
+          <div className="film-card__reviews-col" data-testid="reviews-right">
             { reviewsRight }
           </div>
         </>
