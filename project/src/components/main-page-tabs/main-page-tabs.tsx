@@ -13,7 +13,7 @@ function MainPageTabs(props: HomePageTabsTypes): JSX.Element {
   ));
 
   return (
-    <ul className="catalog__genres-list">
+    <ul className="catalog__genres-list" data-testid="main-page-tabs">
       { tabs }
     </ul>
   );

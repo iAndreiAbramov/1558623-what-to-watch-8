@@ -32,7 +32,7 @@ function MainPageContent(): JSX.Element {
     }
   }, [filteredList.length, activeTabName, filmsData]);
 
-  const handleMoreButtonClick = useCallback(() => {
+  const handleMoreButtonClick = useCallback((): void => {
     let counterStep = FILMS_INCREMENT_STEP;
     if (counterStep > filteredList.length - renderCount) {
       counterStep = filteredList.length - renderCount;

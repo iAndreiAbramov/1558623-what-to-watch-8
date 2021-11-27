@@ -7,7 +7,7 @@ type HomePageMoreTypes = {
 function MainPageMore(props: HomePageMoreTypes): JSX.Element {
   const { clickHandler } = props;
   return (
-    <div className="catalog__more">
+    <div className="catalog__more" data-testid="main-page-more">
       <button
         className="catalog__button"
         type="button"
