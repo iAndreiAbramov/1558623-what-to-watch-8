@@ -23,6 +23,7 @@ function ButtonAddReview(props: {id: string}): JSX.Element {
       onClick={ handleAddReviewClick }
       to={ `${ AppRoute.Film }/${ id }/review` }
       className="btn film-card__button"
+      data-testid="button-add-review"
     >
       Add review
     </Link>

@@ -10,7 +10,7 @@ function PosterBackground(props: PosterBackgroundTypes): JSX.Element {
 
   return (
     <div className="film-card__bg" data-testid="poster-background">
-      <img src={ backgroundImage } alt={ name } />
+      <img src={ backgroundImage } alt={ `${ name } poster` } />
     </div>
   );
 }
