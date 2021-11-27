@@ -5,11 +5,11 @@ import { AppRoute } from '../../const';
 import { getActiveFilterName } from '../../store/selectors';
 import { setActiveFilterAction } from '../../store/action-creators';
 
-type HomePageTabTypes = {
+type MainPageTabTypes = {
   name: string,
 }
 
-function MainPageTab(props: HomePageTabTypes): JSX.Element {
+function MainPageTab(props: MainPageTabTypes): JSX.Element {
   const dispatch = useDispatch();
   const { name } = props;
   const activeTabName = useSelector(getActiveFilterName);
