@@ -32,7 +32,7 @@ describe('Component FilmPageReviewsList', () => {
     expect(screen.queryByTestId('error-small')).not.toBeInTheDocument();
   });
 
-  it('should render correctly if fetch status is in progress', () => {
+  it('should render spinner if fetch status is in progress', () => {
     const progressStore = Object.assign(
       {},
       mockStoreWithAuth,
@@ -56,7 +56,7 @@ describe('Component FilmPageReviewsList', () => {
     expect(screen.queryByTestId('error-small')).not.toBeInTheDocument();
   });
 
-  it('should render correctly if fetch status is error', () => {
+  it('should render error message if fetch status is error', () => {
     const errorStore = Object.assign(
       {},
       mockStoreWithAuth,
