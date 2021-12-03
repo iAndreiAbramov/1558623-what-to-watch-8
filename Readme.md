@@ -1,6 +1,6 @@
 # Проект «What To Watch»
 
-**[--> Проект размещен на хостинге vercel по ссылке <--](https://1558623-what-to-watch-8-okevuuf5u-iandreiabramov.vercel.app/)**
+**[--> Проект размещен на хостинге vercel по ссылке <--](https://1558623-what-to-watch-8.vercel.app/)**
 
 Настоящий проект выполнен в рамках курса "React. Разработка сложных клиентских приложений" от HTML Academy.
 
