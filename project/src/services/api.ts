@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { getToken } from './token';
 import { HttpResponseStatus } from '../const';
 
-const BASE_URL = 'https://8.react.pages.academy/wtw';
+const BASE_URL = 'https://9.react.pages.academy/wtw';
 const TIMEOUT = 5000;
 
 export const createApi = (onUnauthorized: () => void): AxiosInstance => {
